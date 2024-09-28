@@ -1,5 +1,5 @@
-import Link from 'next/link';
-import Head from 'next/head';
+import Link from "next/link";
+import Head from "next/head";
 
 /**
  * Custom 404 Error Page
@@ -9,21 +9,23 @@ import Head from 'next/head';
  */
 const Custom404 = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-LightThema">
       {/* Page metadata */}
       <Head>
         <title>404 - ページが見つかりません</title>
       </Head>
 
       {/* 404 Error Title */}
-      <h1 className="text-5xl font-bold text-customBlue mb-4">404</h1>
+      <h1 className="text-5xl font-bold text-Thema mb-4">404</h1>
 
       {/* Error Message */}
-      <p className="text-xl text-gray-700 mb-8">お探しのページが見つかりません。</p>
+      <p className="text-xl text-gray-700 mb-8">
+        お探しのページが見つかりません。
+      </p>
 
       {/* Link back to Home */}
       <Link href="/" passHref>
-        <a className="px-6 py-3 bg-customBlue text-white rounded-md shadow hover:bg-customLightBlue transition-colors">
+        <a className="px-6 py-3 bg-Thema text-Background rounded-md shadow hover:bg-LightThema transition-colors">
           ホームに戻る
         </a>
       </Link>

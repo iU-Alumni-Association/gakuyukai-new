@@ -1,64 +1,78 @@
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const PrivacyPolicy = () => {
   return (
     <>
       <Header />
-      <section className="py-24 bg-gray-100">
+      <section className="py-24 bg-LightThema">
         <div className="container mx-auto px-5">
-          <h1 className="text-4xl font-bold text-gray-800 mb-8">プライバシーポリシー</h1>
+          <h1 className="text-4xl font-bold text-gray-800 mb-8">
+            プライバシーポリシー
+          </h1>
           <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-            合同会社Kalytero（以下「当社」）は、お客様のプライバシーを尊重し、個人情報の保護に努めています。当プライバシーポリシーでは、当社がどのようにお客様の個人情報を収集、使用、共有するかについて説明します。
+            iU学友会（以下「当組織」）は、個人情報の重要性を認識し、その保護に努めています。本プライバシーポリシーでは、当組織が提供するサービスにおいて収集する情報の種類、利用目的、取り扱い方法について説明します。
           </p>
 
-          <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">1. 収集する情報</h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">
+            1. 基本的考え方
+          </h2>
           <p className="text-lg text-gray-700 mb-4 leading-relaxed">
-            当社は、お客様から次のような個人情報を収集することがあります：
+            当組織は、ウェブサイトを通じて提供するサービスを円滑に運営するため、必要な範囲で利用者の情報を収集します。収集した情報は、利用目的の範囲内で適切に取り扱います。
+          </p>
+
+          <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">
+            2. 収集する情報の範囲
+          </h2>
+          <p className="text-lg text-gray-700 mb-4 leading-relaxed">
+            当組織は、以下の情報を収集する場合があります:
           </p>
           <ul className="list-disc list-inside text-lg text-gray-700 mb-8 leading-relaxed">
-            <li>お名前、メールアドレス、電話番号などの連絡先情報</li>
-            <li>お客様のご利用状況やアクセスに関する情報</li>
-            <li>その他、お問い合わせやサービス利用に関連する情報</li>
+            <li>お名前、メールアドレスなどの連絡先情報</li>
+            <li>お問い合わせ時に提供された情報</li>
+            <li>アクセス履歴やサイト利用状況などの技術情報</li>
           </ul>
 
-          <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">2. 情報の利用目的</h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">
+            3. 利用目的
+          </h2>
           <p className="text-lg text-gray-700 mb-4 leading-relaxed">
-            当社は、以下の目的でお客様の個人情報を利用します：
+            当組織は、以下の目的で収集した情報を利用します:
           </p>
           <ul className="list-disc list-inside text-lg text-gray-700 mb-8 leading-relaxed">
-            <li>サービス提供およびサポートのため</li>
-            <li>お客様からのお問い合わせに対応するため</li>
-            <li>サービス向上や新サービスの開発のため</li>
-            <li>法令の遵守のため</li>
+            <li>サービスの提供および改善</li>
+            <li>お問い合わせへの対応</li>
+            <li>ウェブサイトの運営およびセキュリティ対策</li>
           </ul>
 
-          <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">3. 個人情報の共有</h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">
+            4. 個人情報の共有
+          </h2>
           <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-            当社は、お客様の同意がある場合、または法令に基づき必要とされる場合を除き、個人情報を第三者と共有することはありません。
+            当組織は、法令に基づく場合や利用者の同意がある場合を除き、収集した個人情報を第三者に提供することはありません。ただし、匿名化されたデータは統計情報として公開される場合があります。
           </p>
 
-          <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">4. セキュリティ</h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">
+            5. 安全確保の措置
+          </h2>
           <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-            当社は、お客様の個人情報を保護するため、適切な技術的および組織的な対策を講じています。個人情報の不正アクセス、紛失、改ざん、漏洩を防止するためのセキュリティ対策を強化しています。
+            当組織は、個人情報の漏えい、滅失、改ざんを防止するために適切なセキュリティ対策を実施しています。また、外部委託業者に対しても同様の措置を講じます。
           </p>
 
-          <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">5. クッキーの使用</h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">
+            6. 改定
+          </h2>
           <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-            当社のウェブサイトでは、ユーザーの利便性向上のためにクッキーを使用しています。クッキーを無効にすることもできますが、その場合、当ウェブサイトの一部機能が正しく動作しないことがあります。
+            本プライバシーポリシーは、必要に応じて改定されることがあります。改定後のポリシーは、ウェブサイト上で告知された時点で効力を持ちます。
           </p>
 
-          <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">6. お問い合わせ</h2>
+          <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">
+            7. お問い合わせ
+          </h2>
           <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-            当社のプライバシーポリシーに関してご質問がある場合は、以下の連絡先までお問い合わせください：
-          </p>
-          <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-            メールアドレス: contact@kalytero.co.jp
-          </p>
-
-          <h2 className="text-2xl font-semibold text-gray-800 mt-8 mb-4">7. 改定</h2>
-          <p className="text-lg text-gray-700 mb-8 leading-relaxed">
-            当社は、本プライバシーポリシーを必要に応じて改定することがあります。改定後のポリシーは、当ウェブサイトに掲載した時点で効力を生じます。
+            プライバシーポリシーに関するお問い合わせは、以下の連絡先までお願いします。
+            <br />
+            メールアドレス: gakuyukai_jichi@i-u.ac.jp
           </p>
         </div>
       </section>

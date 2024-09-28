@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
-import { getBlogsByQuery } from '@/lib/microcms';
-import type { Blog } from '@/lib/types';
-import BlogItem from '@/components/BlogItem';
-import NoResults from '@/components/NoResults';
-import BlogHeader from '@/components/BlogHeader';
-import Footer from '@/components/Footer';
-import LoadingBar from '@/components/LoadingBar';
-import Meta from '@/components/Meta';
+import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
+import { getBlogsByQuery } from "@/lib/microcms";
+import type { Blog } from "@/lib/types";
+import BlogItem from "@/components/BlogItem";
+import NoResults from "@/components/NoResults";
+import BlogHeader from "@/components/BlogHeader";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import Footer from "@/components/Footer";
+import LoadingBar from "@/components/LoadingBar";
+import Meta from "@/components/Meta";
 
 /**
  * SearchPage component handles displaying the results of a blog search query.
@@ -33,11 +34,14 @@ const SearchPage = () => {
 
       setLoading(true);
       try {
-        const { contents, totalCount } = await getBlogsByQuery(query as string, currentPage);
+        const { contents, totalCount } = await getBlogsByQuery(
+          query as string,
+          currentPage
+        );
         setBlogs(contents);
         setTotalPages(Math.ceil(totalCount / 10)); // Calculate total pages based on 10 items per page
       } catch (error) {
-        console.error('Error fetching blogs:', error);
+        console.error("Error fetching blogs:", error);
       } finally {
         setLoading(false);
       }
@@ -58,18 +62,21 @@ const SearchPage = () => {
     <>
       {/* Meta section */}
       <Meta
-        title="Kalytero | ブログ検索"
-        description="Kalyteroのブログ検索ページです。お探しの記事を検索してご覧いただけます。"
-        url="https://kalytero.ne.jp/search"
+        title="iU 学友会 | ブログ検索"
+        description="iU 学友会のブログ検索ページです。お探しの記事を検索してご覧いただけます。"
+        url="https://i-u.io/search"
       />
       <BlogHeader />
+      <Breadcrumbs />
 
       <div className="container mx-auto py-12 min-h-svh p-4">
         {/* Display loading bar */}
         <LoadingBar loading={loading} />
 
         {/* Search results header */}
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">検索結果: {query}</h1>
+        <h1 className="text-3xl font-bold text-gray-800 mb-8">
+          検索結果: {query}
+        </h1>
 
         {/* Main content: display either loading, no results, or list of blogs */}
         {loading ? (
@@ -93,8 +100,8 @@ const SearchPage = () => {
                 onClick={() => handlePageChange(index + 1)}
                 className={`px-4 py-2 rounded-md border transition-colors duration-200 ${
                   currentPage === index + 1
-                    ? 'bg-customBlue text-white'
-                    : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-100'
+                    ? "bg-Thema text-Background"
+                    : "bg-Background border-gray-300 text-gray-700 hover:bg-LightThema"
                 }`}
               >
                 {index + 1}

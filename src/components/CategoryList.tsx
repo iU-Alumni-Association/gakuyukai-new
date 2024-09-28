@@ -1,10 +1,10 @@
-import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import { getBlogsByCategory, getCategory } from '@/lib/microcms';
-import BlogItem from '@/components/BlogItem';
-import NoResults from '@/components/NoResults';
-import Head from 'next/head';
-import { Blog, Category } from '@/lib/types';
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { getBlogsByCategory, getCategory } from "@/lib/microcms";
+import BlogItem from "@/components/BlogItem";
+import NoResults from "@/components/NoResults";
+import Head from "next/head";
+import { Blog, Category } from "@/lib/types";
 
 interface CategoryListProps {
   setIsLoading: (isLoading: boolean) => void;
@@ -42,7 +42,11 @@ const CategoryList: React.FC<CategoryListProps> = ({ setIsLoading }) => {
       if (!categoryId) return;
 
       setIsLoading(true); // Show loading state
-      const data = await getBlogsByCategory(categoryId as string, page, blogsPerPage);
+      const data = await getBlogsByCategory(
+        categoryId as string,
+        page,
+        blogsPerPage
+      );
       setBlogs(data.contents); // Set blogs in state
       setTotalPages(Math.ceil(data.totalCount / blogsPerPage)); // Calculate total pages
       setIsLoading(false); // Hide loading state
@@ -73,15 +77,20 @@ const CategoryList: React.FC<CategoryListProps> = ({ setIsLoading }) => {
   return (
     <div className="blog-container">
       <Head>
-        <title>{category ? `${category.name} のカテゴリ` : 'カテゴリ'} | 合同会社Kalytero</title>
-        <meta name="description" content={category ? category.explanation : ''} />
+        <title>
+          {category ? `${category.name} のカテゴリ` : "カテゴリ"} | iU 学友会
+        </title>
+        <meta
+          name="description"
+          content={category ? category.explanation : ""}
+        />
         <meta
           name="keywords"
-          content={`Uematsu, IT, 中小企業, DX, デジタルトランスフォーメーション, カテゴリ, ${category ? category.name : ''}`}
+          content={`学友会, ${category ? category.name : ""}`}
         />
       </Head>
 
-      <h1>{category ? category.name : ''}</h1>
+      <h1>{category ? category.name : ""}</h1>
 
       {category && (category.explanation || category.image) && (
         <div className="category-info">
@@ -99,7 +108,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ setIsLoading }) => {
       )}
 
       {blogs.length === 0 ? (
-        <NoResults query={category ? category.name : 'このカテゴリ'} />
+        <NoResults query={category ? category.name : "このカテゴリ"} />
       ) : (
         <ul className="blog-list">
           {blogs.map((blog) => (
@@ -114,7 +123,7 @@ const CategoryList: React.FC<CategoryListProps> = ({ setIsLoading }) => {
             <button
               key={index + 1}
               onClick={() => handlePageChange(index + 1)}
-              className={`page-button ${currentPage === index + 1 ? 'active' : ''}`}
+              className={`page-button ${currentPage === index + 1 ? "active" : ""}`}
             >
               {index + 1}
             </button>

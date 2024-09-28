@@ -1,11 +1,12 @@
-export const runtime = 'experimental-edge';
+export const runtime = "experimental-edge";
 
-import { GetStaticPaths, GetStaticProps } from 'next';
-import { getNewsDetail, getNews } from '@/lib/microcms';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import type { Blog } from '@/lib/types';
-import Head from 'next/head';
+import { GetStaticPaths, GetStaticProps } from "next";
+import { getNewsDetail, getNews } from "@/lib/microcms";
+import Header from "@/components/Header";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import Footer from "@/components/Footer";
+import type { Blog } from "@/lib/types";
+import Head from "next/head";
 
 type NewsDetailProps = {
   news: Blog | null;
@@ -30,10 +31,16 @@ const NewsDetailPage = ({ news }: NewsDetailProps): JSX.Element => {
         <meta name="description" content={news.title} />
       </Head>
       <Header />
+      <Breadcrumbs />
       <div className="container mx-auto px-4 py-8 mt-10">
         <h1 className="text-3xl font-bold mb-6">{news.title}</h1>
-        <p className="text-gray-600 mb-4">{new Date(news.date).toLocaleDateString()}</p>
-        <div className="prose max-w-none" dangerouslySetInnerHTML={{ __html: news.content }} />
+        <p className="text-gray-600 mb-4">
+          {new Date(news.date).toLocaleDateString()}
+        </p>
+        <div
+          className="prose max-w-none"
+          dangerouslySetInnerHTML={{ __html: news.content }}
+        />
       </div>
       <Footer />
     </>

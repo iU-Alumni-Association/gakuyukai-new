@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';
-import { getNews } from '@/lib/microcms';
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import Link from 'next/link';
-import LoadingBar from '@/components/LoadingBar';
-import type { Blog } from '@/lib/types';
-import Meta from '@/components/Meta';
+import { useState, useEffect } from "react";
+import { getNews } from "@/lib/microcms";
+import Header from "@/components/Header";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import Footer from "@/components/Footer";
+import Link from "next/link";
+import LoadingBar from "@/components/LoadingBar";
+import type { Blog } from "@/lib/types";
+import Meta from "@/components/Meta";
 
 const NewsPage = () => {
   // State variables for news articles, pagination, and loading status
@@ -28,7 +29,7 @@ const NewsPage = () => {
         setNews(contents);
         setTotalPages(Math.ceil(totalCount / 10)); // Calculate total number of pages
       } catch (error) {
-        console.error('Error fetching news:', error);
+        console.error("Error fetching news:", error);
       } finally {
         setLoading(false);
       }
@@ -43,14 +44,17 @@ const NewsPage = () => {
 
       {/* Meta section */}
       <Meta
-        title="Kalytero | ニュース"
-        description="Kalyteroのニュース一覧ページです。最新のニュースをご覧いただけます。"
-        url="https://kalytero.ne.jp/news"
+        title="iU 学友会 | ニュース"
+        description="iU 学友会のニュース一覧ページです。最新のニュースをご覧いただけます。"
+        url="https://i-u.io/news"
       />
 
       <Header />
+      <Breadcrumbs />
       <div className="container mx-auto py-12 min-h-svh">
-        <h2 className="text-center text-3xl font-bold mb-12 text-gray-800">ニュース一覧</h2>
+        <h2 className="text-center text-3xl font-bold mb-12 text-gray-800">
+          ニュース一覧
+        </h2>
 
         {/* Display a loading message or the news list */}
         {loading ? (
@@ -62,13 +66,20 @@ const NewsPage = () => {
               <li key={item.id} className="p-4 border-b border-gray-200">
                 <Link
                   href={`/news/${item.id}`}
-                  className="block hover:underline text-xl font-semibold text-customBlue"
+                  className="block hover:underline text-xl font-semibold text-Thema"
                 >
                   {item.title}
                 </Link>
-                <p className="text-gray-600">{new Date(item.date).toLocaleDateString()}</p>
+                <p className="text-gray-600">
+                  {new Date(item.date).toLocaleDateString()}
+                </p>
                 <p className="mt-2 text-gray-800 line-clamp-3">
-                  {item.content.replace(/(<([^>]+)>)/gi, '') /* Remove HTML tags from content */}
+                  {
+                    item.content.replace(
+                      /(<([^>]+)>)/gi,
+                      ""
+                    ) /* Remove HTML tags from content */
+                  }
                 </p>
               </li>
             ))}
@@ -84,8 +95,8 @@ const NewsPage = () => {
                 onClick={() => handlePageChange(index + 1)}
                 className={`px-4 py-2 rounded-md border transition-colors duration-200 ${
                   currentPage === index + 1
-                    ? 'bg-customBlue text-white' // Active page styling
-                    : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-100' // Inactive page styling
+                    ? "bg-Thema text-Background" // Active page styling
+                    : "bg-Background border-gray-300 text-gray-700 hover:bg-LightThema" // Inactive page styling
                 }`}
               >
                 {index + 1}

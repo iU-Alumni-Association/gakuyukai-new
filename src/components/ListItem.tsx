@@ -1,4 +1,4 @@
-import Image from 'next/image';
+import Image from "next/image";
 
 type ListItemProps = {
   title: string;
@@ -7,9 +7,14 @@ type ListItemProps = {
   imageAlt?: string;
 };
 
-const ListItem = ({ title, description, imageSrc, imageAlt }: ListItemProps) => {
+const ListItem = ({
+  title,
+  description,
+  imageSrc,
+  imageAlt,
+}: ListItemProps) => {
   return (
-    <div className="bg-white rounded-3xl p-6">
+    <div className="bg-Background rounded-3xl p-6">
       {imageSrc && (
         <Image
           src={imageSrc}

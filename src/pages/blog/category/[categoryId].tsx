@@ -1,13 +1,14 @@
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import { getBlogsByCategory, getCategory } from '@/lib/microcms';
-import type { Blog, Category } from '@/lib/types';
-import BlogItem from '@/components/BlogItem';
-import NoResults from '@/components/NoResults';
-import BlogHeader from '@/components/BlogHeader';
-import Footer from '@/components/Footer';
-import LoadingBar from '@/components/LoadingBar';
-import Meta from '@/components/Meta';
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import { getBlogsByCategory, getCategory } from "@/lib/microcms";
+import type { Blog, Category } from "@/lib/types";
+import BlogItem from "@/components/BlogItem";
+import NoResults from "@/components/NoResults";
+import BlogHeader from "@/components/BlogHeader";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import Footer from "@/components/Footer";
+import LoadingBar from "@/components/LoadingBar";
+import Meta from "@/components/Meta";
 
 const CategoryPage = () => {
   const router = useRouter();
@@ -43,7 +44,7 @@ const CategoryPage = () => {
         setBlogs(contents);
         setTotalPages(Math.ceil(totalCount / 10));
       } catch (error) {
-        console.error('Error fetching category and blogs:', error);
+        console.error("Error fetching category and blogs:", error);
       } finally {
         setLoading(false);
       }
@@ -59,27 +60,36 @@ const CategoryPage = () => {
 
       {/* Meta section */}
       <Meta
-        title="Kalytero | ブログカテゴリー"
-        description="Kalyteroのブログカテゴリーページです。"
-        url="https://kalytero.ne.jp/blog/category"
+        title="i-u.io | ブログカテゴリー"
+        description="i-u.ioのブログカテゴリーページです。"
+        url="https://i-u.io/blog/category"
       />
 
       {/* Blog header component */}
       <BlogHeader />
+      <Breadcrumbs />
 
       <div className="container mx-auto py-12 min-h-svh p-4">
         {/* Category title */}
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">{category ? category.name : ''}</h1>
+        <h1 className="text-3xl font-bold text-gray-800 mb-8">
+          {category ? category.name : ""}
+        </h1>
 
         {/* Category description and image, if available */}
         {category && (category.explanation || category.image) && (
           <div className="mb-8 flex flex-col items-center text-center">
             {category.explanation && (
-              <p className="text-gray-700 mb-4 max-w-2xl">{category.explanation}</p>
+              <p className="text-gray-700 mb-4 max-w-2xl">
+                {category.explanation}
+              </p>
             )}
             {category.image && (
               <div className="w-full max-w-md">
-                <img src={category.image.url} alt={category.name} className="w-full h-auto" />
+                <img
+                  src={category.image.url}
+                  alt={category.name}
+                  className="w-full h-auto"
+                />
               </div>
             )}
           </div>
@@ -87,7 +97,7 @@ const CategoryPage = () => {
 
         {/* Blog posts list or no results message */}
         {blogs.length === 0 ? (
-          <NoResults query={category ? category.name : 'このカテゴリ'} />
+          <NoResults query={category ? category.name : "このカテゴリ"} />
         ) : (
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             {blogs.map((blog) => (
@@ -105,8 +115,8 @@ const CategoryPage = () => {
                 onClick={() => handlePageChange(index + 1)}
                 className={`px-4 py-2 rounded-md border transition-colors duration-200 ${
                   currentPage === index + 1
-                    ? 'bg-customBlue text-white'
-                    : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-100'
+                    ? "bg-Thema text-Background"
+                    : "bg-Background border-gray-300 text-gray-700 hover:bg-LightThema"
                 }`}
               >
                 {index + 1}

@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import { getCategories } from '@/lib/microcms';
-import type { Category } from '@/lib/types';
+import { useState, useEffect } from "react";
+import { useRouter } from "next/router";
+import Link from "next/link";
+import { getCategories } from "@/lib/microcms";
+import type { Category } from "@/lib/types";
 
 const BlogHeader = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
 
   // Fetch categories on component mount
@@ -33,11 +33,11 @@ const BlogHeader = () => {
   };
 
   return (
-    <header className="bg-white fixed w-full z-50 shadow-md top-0">
+    <header className="bg-Background fixed w-full z-50 shadow-md top-0">
       <div className="container mx-auto flex justify-between items-center p-3">
         {/* Logo and search form (hidden on mobile) */}
         <div className="flex items-center flex-grow">
-          <Link href="/blog" legacyBehavior>
+          <Link href="/" legacyBehavior>
             <img
               src="/logo.png"
               alt="gakuyukai Logo"
@@ -45,15 +45,18 @@ const BlogHeader = () => {
             />
           </Link>
           {/* Search input form */}
-          <form onSubmit={handleSearch} className="ml-4 hidden md:flex items-center">
+          <form
+            onSubmit={handleSearch}
+            className="ml-4 hidden md:flex items-center"
+          >
             <input
               type="text"
               placeholder="検索..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="p-2 border border-white bg-gray-100"
+              className="p-2 border border-Background bg-LightThema"
             />
-            <button type="submit" className="p-2 bg-gray-100 text-black ml-2">
+            <button type="submit" className="p-2 bg-LightThema text-black ml-2">
               検索
             </button>
           </form>
@@ -64,12 +67,13 @@ const BlogHeader = () => {
           <nav className="flex flex-col items-start md:items-center">
             <ul className="flex flex-col md:flex-row md:items-center">
               {categories.map((category) => {
-                const isCurrentPage = router.asPath === `/blog/category/${category.id}`;
+                const isCurrentPage =
+                  router.asPath === `/blog/category/${category.id}`;
                 return (
                   <li
                     key={category.id}
                     className={`md:ml-7 my-2 md:my-0 relative group p-2 ${
-                      isCurrentPage ? 'bg-Thema rounded-lg' : ''
+                      isCurrentPage ? "bg-Thema rounded-lg" : ""
                     }`}
                   >
                     <Link
@@ -94,7 +98,10 @@ const BlogHeader = () => {
         </div>
 
         {/* Mobile menu button */}
-        <button className="hamburger md:hidden text-3xl text-black" onClick={toggleMenu}>
+        <button
+          className="hamburger md:hidden text-3xl text-black"
+          onClick={toggleMenu}
+        >
           &#9776;
         </button>
       </div>
@@ -102,7 +109,7 @@ const BlogHeader = () => {
       {/* Mobile menu */}
       {menuOpen && (
         <div
-          className="fixed inset-0 bg-white backdrop-blur bg-opacity-80 z-50 flex justify-start items-start" // モーダル背景
+          className="fixed inset-0 bg-Background backdrop-blur bg-opacity-80 z-50 flex justify-start items-start" // モーダル背景
           onClick={toggleMenu}
         >
           <div
@@ -110,20 +117,26 @@ const BlogHeader = () => {
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button for mobile menu (right aligned) */}
-            <button className="absolute top-5 right-5 text-black text-3xl" onClick={toggleMenu}>
+            <button
+              className="absolute top-5 right-5 text-black text-3xl"
+              onClick={toggleMenu}
+            >
               &times;
             </button>
 
             {/* Search form in mobile menu */}
-            <form onSubmit={handleSearch} className="flex items-center space-x-2 w-full mt-5">
+            <form
+              onSubmit={handleSearch}
+              className="flex items-center space-x-2 w-full mt-5"
+            >
               <input
                 type="text"
                 placeholder="検索..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="p-2 border border-none bg-gray-100 flex-grow text-gray-800"
+                className="p-2 border border-none bg-LightThema flex-grow text-gray-800"
               />
-              <button type="submit" className="p-2 bg-gray-100 text-black">
+              <button type="submit" className="p-2 bg-LightThema text-black">
                 検索
               </button>
             </form>
@@ -132,7 +145,11 @@ const BlogHeader = () => {
             <ul className="flex flex-col items-start mt-8 space-y-4">
               {categories.map((category) => (
                 <li key={category.id}>
-                  <Link href={`/blog/category/${category.id}`} legacyBehavior onClick={toggleMenu}>
+                  <Link
+                    href={`/blog/category/${category.id}`}
+                    legacyBehavior
+                    onClick={toggleMenu}
+                  >
                     <a
                       className="text-black cursor-pointer text-xl"
                       onClick={toggleMenu}

@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react';
-import { getBlogs } from '@/lib/microcms';
-import type { Blog } from '@/lib/types';
-import BlogItem from '@/components/BlogItem';
-import BlogHeader from '@/components/BlogHeader';
-import LoadingBar from '@/components/LoadingBar';
-import Footer from '@/components/Footer';
-import Meta from '@/components/Meta';
+import { useState, useEffect } from "react";
+import { getBlogs } from "@/lib/microcms";
+import type { Blog } from "@/lib/types";
+import BlogItem from "@/components/BlogItem";
+import BlogHeader from "@/components/BlogHeader";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import LoadingBar from "@/components/LoadingBar";
+import Footer from "@/components/Footer";
+import Meta from "@/components/Meta";
 
 const BlogPage = () => {
   // State for storing blog posts, pagination, and loading status
@@ -34,7 +35,7 @@ const BlogPage = () => {
         setBlogs(contents);
         setTotalPages(Math.ceil(totalCount / 10)); // Calculate total pages based on totalCount
       } catch (error) {
-        console.error('Error fetching blogs:', error);
+        console.error("Error fetching blogs:", error);
       } finally {
         setLoading(false); // Hide loading indicator
       }
@@ -50,12 +51,13 @@ const BlogPage = () => {
 
       {/* Meta section */}
       <Meta
-        title="Kalytero | ブログ"
-        description="Kalyteroのブログページです。最新の記事をご覧いただけます。"
-        url="https://kalytero.ne.jp/blog"
+        title="iU 学友会 | ブログ"
+        description="学友会のブログページです。最新の記事をご覧いただけます。"
+        url="https://i-u.io/blog"
       />
       {/* Blog Header */}
       <BlogHeader />
+      <Breadcrumbs />
 
       <div className="container mx-auto py-12 min-h-svh p-4">
         <h1 className="text-3xl font-bold text-gray-800 mb-8">最近の記事</h1>
@@ -80,8 +82,8 @@ const BlogPage = () => {
                 onClick={() => handlePageChange(index + 1)}
                 className={`px-4 py-2 rounded-md border transition-colors duration-200 ${
                   currentPage === index + 1
-                    ? 'bg-customBlue text-white'
-                    : 'bg-white border-gray-300 text-gray-700 hover:bg-gray-100'
+                    ? "bg-Thema text-Background"
+                    : "bg-Background border-gray-300 text-gray-700 hover:bg-LightThema"
                 }`}
               >
                 {index + 1}

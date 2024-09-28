@@ -1,55 +1,85 @@
-import Header from '@/components/Header';
-import Footer from '@/components/Footer';
-import Meta from '@/components/Meta';
+import Header from "@/components/Header";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import Footer from "@/components/Footer";
+import Meta from "@/components/Meta";
+import Link from "next/link";
 
-const Service = () => {
+const ServicePage = () => {
   return (
     <>
-      {/* Meta section */}
-      <Meta
-        title="Kalytero | サービス"
-        description="Kalyteroのサービスページでは、私たちのサービスについて紹介します。"
-        url="https://kalytero.ne.jp/services"
-      />
-
-      {/* Header section */}
+      <Meta title="iU 学友会 | サービス" />
       <Header />
+      <Breadcrumbs />
+      <main className="py-16 bg-Background">
+        <div className="container mx-auto px-4">
+          <h1 className="text-4xl font-bold text-center mb-12">申請関係</h1>
 
-      {/* Main content for the services page */}
-      <section className="py-24 bg-gray-100">
-        <div className="container mx-auto px-5 text-center">
-          <h2 className="text-3xl font-bold mb-12 text-gray-800">私たちのサービス</h2>
-
-          {/* In-house Development Section */}
-          <div className="mb-16 p-8 bg-white shadow-lg">
-            <h3 className="text-2xl font-semibold mb-4">アウトソーシング</h3>
-            <p className="text-lg text-gray-700 leading-relaxed">
-              幅広い分野のプロジェクトの受注が可能です
+          {/* Warehouse Rental Service Section */}
+          <section className="mb-12">
+            <h2 className="text-3xl font-semibold mb-6">倉庫貸出サービス</h2>
+            <p className="text-lg text-gray-700 leading-relaxed mb-4">
+              学友会の倉庫を利用したい方は、以下のリンクから申請フォームにアクセスできます。
+              倉庫の利用には事前の申し込みが必要ですので、詳細をご確認の上、申請をお願いします。
             </p>
-            <ul className="text-left mt-6 list-disc list-inside">
-              <li>Android / iOSアプリ</li>
-              <li>WEBアプリ (React / Next.js)</li>
-              <li>AWS / クラウド</li>
-              <li>生成AI活用</li>
-            </ul>
-          </div>
+            <Link href="/service/warehouse">
+              <span className="text-blue-500 hover:underline">
+                倉庫貸出申請フォームへ
+              </span>
+            </Link>
+          </section>
 
-          {/* Outsourced Development Section */}
-          <div className="p-8 bg-white shadow-lg">
-            <h3 className="text-2xl font-semibold mb-4">自社開発</h3>
-            <p className="text-lg text-gray-700 leading-relaxed">
-              培ったノウハウを活用したサービス設計をしています
-            </p>
-            <ul className="text-left mt-6 list-disc list-inside">
-              <li>Discord 音声AI（開発中）</li>
+          {/* Other Services Section */}
+          <section className="mb-12">
+            <h2 className="text-3xl font-semibold mb-6">
+              その他の申請・サービス
+            </h2>
+            <ul className="list-disc pl-5 text-lg text-gray-700">
+              <li className="mb-2">
+                <Link
+                  href="/service/event"
+                  className="text-blue-500 hover:underline"
+                >
+                  イベント開催申請
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link
+                  href="/service/budget"
+                  className="text-blue-500 hover:underline"
+                >
+                  予算申請
+                </Link>
+              </li>
+              <li className="mb-2">
+                <Link
+                  href="/service/support"
+                  className="text-blue-500 hover:underline"
+                >
+                  学生支援サービス
+                </Link>
+              </li>
             </ul>
-          </div>
+          </section>
+
+          {/* FAQ Section */}
+          <section>
+            <h2 className="text-3xl font-semibold mb-6">よくある質問（FAQ）</h2>
+            <p className="text-lg text-gray-700 leading-relaxed">
+              サービスに関してご不明点がある場合は、FAQをご確認ください。
+              それでも解決しない場合は、
+              <Link href="/contact">
+                <span className="text-blue-500 hover:underline">
+                  お問い合わせページ
+                </span>
+              </Link>
+              からご連絡ください。
+            </p>
+          </section>
         </div>
-      </section>
-
+      </main>
       <Footer />
     </>
   );
 };
 
-export default Service;
+export default ServicePage;
