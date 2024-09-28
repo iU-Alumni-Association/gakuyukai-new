@@ -10,7 +10,6 @@ const BlogHeader = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const router = useRouter();
 
-  // Fetch categories on component mount
   useEffect(() => {
     const fetchCategories = async () => {
       const data: Category[] = await getCategories();
@@ -19,12 +18,10 @@ const BlogHeader = () => {
     fetchCategories();
   }, []);
 
-  // Toggle the mobile menu
   const toggleMenu = () => {
     setMenuOpen((prevState) => !prevState);
   };
 
-  // Handle the search form submission
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
@@ -33,75 +30,36 @@ const BlogHeader = () => {
   };
 
   return (
-    <header className="bg-Background fixed w-full z-50 shadow-md top-0">
+    <header className="bg-background fixed w-full z-50 shadow-md top-0">
       <div className="container mx-auto flex justify-between items-center p-3">
-        {/* Logo and search form (hidden on mobile) */}
-        <div className="flex items-center flex-grow">
-          <Link href="/" legacyBehavior>
-            <img
-              src="/logo.png"
-              alt="gakuyukai Logo"
-              className="max-h-xs max-h-9 cursor-pointer"
-            />
-          </Link>
-          {/* Search input form */}
-          <form
-            onSubmit={handleSearch}
-            className="ml-4 hidden md:flex items-center"
-          >
-            <input
-              type="text"
-              placeholder="検索..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="p-2 border border-Background bg-LightThema"
-            />
-            <button type="submit" className="p-2 bg-LightThema text-black ml-2">
-              検索
-            </button>
-          </form>
-        </div>
+        {/* Logo */}
+        <Link href="/" legacyBehavior>
+          <img
+            src="/logo.png"
+            alt="gakuyukai Logo"
+            className="max-h-xs max-h-9 cursor-pointer"
+          />
+        </Link>
 
-        {/* Navigation menu (hidden on mobile) */}
-        <div className="hidden md:flex flex-grow justify-end">
-          <nav className="flex flex-col items-start md:items-center">
-            <ul className="flex flex-col md:flex-row md:items-center">
-              {categories.map((category) => {
-                const isCurrentPage =
-                  router.asPath === `/blog/category/${category.id}`;
-                return (
-                  <li
-                    key={category.id}
-                    className={`md:ml-7 my-2 md:my-0 relative group p-2 ${
-                      isCurrentPage ? "bg-Thema rounded-lg" : ""
-                    }`}
-                  >
-                    <Link
-                      href={`/blog/category/${category.id}`}
-                      legacyBehavior
-                      className="text-black cursor-pointer"
-                    >
-                      {category.name}
-                    </Link>
-                    {/* Hover underline animation */}
-                    <div
-                      className="absolute bottom-0 left-0 w-full h-[0.125rem] 
-                    origin-left duration-300 mt-[0.25rem] 
-                    bg-transparent group-hover:bg-Thema 
-                    transition-all transform scale-x-0 group-hover:scale-x-100"
-                    ></div>
-                  </li>
-                );
-              })}
-            </ul>
-          </nav>
-        </div>
-
-        {/* Mobile menu button */}
-        <button
-          className="hamburger md:hidden text-3xl text-black"
-          onClick={toggleMenu}
+        {/* Search input form for PC */}
+        <form
+          onSubmit={handleSearch}
+          className="ml-4 hidden md:flex items-center"
         >
+          <input
+            type="text"
+            placeholder="検索..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="p-2 border border-background bg-secondary"
+          />
+          <button type="submit" className="p-2 bg-secondary text-black ml-2">
+            検索
+          </button>
+        </form>
+
+        {/* Hamburger menu button */}
+        <button className="hamburger text-3xl text-black" onClick={toggleMenu}>
           &#9776;
         </button>
       </div>
@@ -109,14 +67,14 @@ const BlogHeader = () => {
       {/* Mobile menu */}
       {menuOpen && (
         <div
-          className="fixed inset-0 bg-Background backdrop-blur bg-opacity-80 z-50 flex justify-start items-start" // モーダル背景
+          className="fixed inset-0 bg-background backdrop-blur bg-opacity-80 z-50 flex justify-start items-start"
           onClick={toggleMenu}
         >
           <div
             className="w-full h-auto p-5 pt-16 relative flex flex-col items-start bg-transparent"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close button for mobile menu (right aligned) */}
+            {/* Close button for mobile menu */}
             <button
               className="absolute top-5 right-5 text-black text-3xl"
               onClick={toggleMenu}
@@ -134,9 +92,9 @@ const BlogHeader = () => {
                 placeholder="検索..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="p-2 border border-none bg-LightThema flex-grow text-gray-800"
+                className="p-2 border border-none bg-secondary flex-grow text-gray-800"
               />
-              <button type="submit" className="p-2 bg-LightThema text-black">
+              <button type="submit" className="p-2 bg-secondary text-black">
                 検索
               </button>
             </form>

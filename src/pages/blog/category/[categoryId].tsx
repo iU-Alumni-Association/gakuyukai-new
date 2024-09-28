@@ -71,7 +71,7 @@ const CategoryPage = () => {
 
       <div className="container mx-auto py-12 min-h-svh p-4">
         {/* Category title */}
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">
+        <h1 className="text-h1 sm:text-h1Sm font-bold text-brand mb-8">
           {category ? category.name : ""}
         </h1>
 
@@ -79,7 +79,7 @@ const CategoryPage = () => {
         {category && (category.explanation || category.image) && (
           <div className="mb-8 flex flex-col items-center text-center">
             {category.explanation && (
-              <p className="text-gray-700 mb-4 max-w-2xl">
+              <p className="text-paragraph sm:text-pSm mb-4 max-w-2xl">
                 {category.explanation}
               </p>
             )}
@@ -115,8 +115,8 @@ const CategoryPage = () => {
                 onClick={() => handlePageChange(index + 1)}
                 className={`px-4 py-2 rounded-md border transition-colors duration-200 ${
                   currentPage === index + 1
-                    ? "bg-Thema text-Background"
-                    : "bg-Background border-gray-300 text-gray-700 hover:bg-LightThema"
+                    ? "bg-brand-accent text-brand-lighter"
+                    : "bg-neutral-background border-gray-300 text-gray-700 hover:bg-brand-light"
                 }`}
               >
                 {index + 1}

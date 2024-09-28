@@ -60,11 +60,15 @@ const BlogPage = () => {
       <Breadcrumbs />
 
       <div className="container mx-auto py-12 min-h-svh p-4">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">最近の記事</h1>
+        <h1 className="text-h3 sm:text-h3Sm font-bold text-gray-800 mb-8">
+          最近の記事
+        </h1>
 
         {/* Conditional rendering based on loading state */}
         {loading ? (
-          <p className="text-center text-gray-600">読み込み中...</p>
+          <p className="text-hp sm:text-hpSm text-center text-gray-600">
+            読み込み中...
+          </p>
         ) : (
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             {blogs.map((blog) => (
@@ -82,8 +86,8 @@ const BlogPage = () => {
                 onClick={() => handlePageChange(index + 1)}
                 className={`px-4 py-2 rounded-md border transition-colors duration-200 ${
                   currentPage === index + 1
-                    ? "bg-Thema text-Background"
-                    : "bg-Background border-gray-300 text-gray-700 hover:bg-LightThema"
+                    ? "bg-highlight text-background"
+                    : "bg-background border-gray-300 text-gray-700 hover:bg-secondary"
                 }`}
               >
                 {index + 1}

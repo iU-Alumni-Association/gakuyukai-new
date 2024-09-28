@@ -40,7 +40,7 @@ const BlogPage = ({ blog }: BlogProps) => {
       <>
         <LoadingBar loading={loading} />
         <div className="flex justify-center items-center min-h-screen p-4">
-          <p className="text-lg text-gray-600">Loading...</p>
+          <p className="text-p sm:text-pSm text-gray-600">Loading...</p>
         </div>
       </>
     );
@@ -64,7 +64,9 @@ const BlogPage = ({ blog }: BlogProps) => {
         </Head>
 
         {/* Blog Title */}
-        <h1 className="text-4xl font-bold text-gray-900 mb-6">{blog.title}</h1>
+        <h1 className="text-h1 sm:text-h1Sm font-bold text-gray-900 mb-6">
+          {blog.title}
+        </h1>
 
         {/* Eyecatch Image */}
         {blog.eyecatch && (

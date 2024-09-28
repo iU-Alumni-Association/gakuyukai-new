@@ -74,13 +74,15 @@ const SearchPage = () => {
         <LoadingBar loading={loading} />
 
         {/* Search results header */}
-        <h1 className="text-3xl font-bold text-gray-800 mb-8">
+        <h1 className="text-h1 sm:text-h1Sm font-bold text-gray-800 mb-8">
           検索結果: {query}
         </h1>
 
         {/* Main content: display either loading, no results, or list of blogs */}
         {loading ? (
-          <p className="text-center text-gray-600">読み込み中...</p>
+          <p className="text-p sm:text-pSm text-center text-gray-600">
+            読み込み中...
+          </p>
         ) : blogs.length === 0 ? (
           <NoResults query={query as string} />
         ) : (
@@ -100,8 +102,8 @@ const SearchPage = () => {
                 onClick={() => handlePageChange(index + 1)}
                 className={`px-4 py-2 rounded-md border transition-colors duration-200 ${
                   currentPage === index + 1
-                    ? "bg-Thema text-Background"
-                    : "bg-Background border-gray-300 text-gray-700 hover:bg-LightThema"
+                    ? "bg-highlight text-background"
+                    : "bg-background border-gray-300 text-gray-700 hover:bg-secondary"
                 }`}
               >
                 {index + 1}

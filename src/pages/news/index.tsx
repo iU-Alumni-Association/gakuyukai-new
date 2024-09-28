@@ -52,13 +52,15 @@ const NewsPage = () => {
       <Header />
       <Breadcrumbs />
       <div className="container mx-auto py-12 min-h-svh">
-        <h2 className="text-center text-3xl font-bold mb-12 text-gray-800">
+        <h2 className="text-h2 sm:text-h2Sm font-bold mb-12 mx-4 ">
           ニュース一覧
         </h2>
 
         {/* Display a loading message or the news list */}
         {loading ? (
-          <p className="text-center text-gray-600">読み込み中...</p>
+          <p className="text-center text-p sm:text-pSm text-gray-600">
+            読み込み中...
+          </p>
         ) : (
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
             {/* Render each news item */}
@@ -66,14 +68,14 @@ const NewsPage = () => {
               <li key={item.id} className="p-4 border-b border-gray-200">
                 <Link
                   href={`/news/${item.id}`}
-                  className="block hover:underline text-xl font-semibold text-Thema"
+                  className="block hover:underline text-xl font-semibold text-highlight"
                 >
                   {item.title}
                 </Link>
-                <p className="text-gray-600">
+                <p className="text-p sm:text-pSm text-gray-600">
                   {new Date(item.date).toLocaleDateString()}
                 </p>
-                <p className="mt-2 text-gray-800 line-clamp-3">
+                <p className="mt-2 text-p sm:text-pSm line-clamp-3">
                   {
                     item.content.replace(
                       /(<([^>]+)>)/gi,
@@ -95,8 +97,8 @@ const NewsPage = () => {
                 onClick={() => handlePageChange(index + 1)}
                 className={`px-4 py-2 rounded-md border transition-colors duration-200 ${
                   currentPage === index + 1
-                    ? "bg-Thema text-Background" // Active page styling
-                    : "bg-Background border-gray-300 text-gray-700 hover:bg-LightThema" // Inactive page styling
+                    ? "bg-highlight text-background" // Active page styling
+                    : "bg-background border-gray-300 text-gray-700 hover:bg-secondary" // Inactive page styling
                 }`}
               >
                 {index + 1}

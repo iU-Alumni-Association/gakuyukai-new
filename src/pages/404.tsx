@@ -9,14 +9,14 @@ import Head from "next/head";
  */
 const Custom404 = () => {
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-LightThema">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-secondary">
       {/* Page metadata */}
       <Head>
         <title>404 - ページが見つかりません</title>
       </Head>
 
       {/* 404 Error Title */}
-      <h1 className="text-5xl font-bold text-Thema mb-4">404</h1>
+      <h1 className="text-5xl font-bold text-highlight mb-4">404</h1>
 
       {/* Error Message */}
       <p className="text-xl text-gray-700 mb-8">
@@ -25,7 +25,7 @@ const Custom404 = () => {
 
       {/* Link back to Home */}
       <Link href="/" passHref>
-        <a className="px-6 py-3 bg-Thema text-Background rounded-md shadow hover:bg-LightThema transition-colors">
+        <a className="px-6 py-3 bg-highlight text-background rounded-md shadow hover:bg-secondary transition-colors">
           ホームに戻る
         </a>
       </Link>

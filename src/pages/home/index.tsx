@@ -40,25 +40,27 @@ const HomePage = () => {
       <Header />
       <main className="transition-opacity duration-500 opacity-100">
         {/* Hero Section */}
-        <section className="bg-Thema text-white pt-28 pb-20 text-center">
-          <h1 className="text-4xl font-bold mb-4">iU 学友会へようこそ</h1>
-          <p className="text-lg mb-6">
+        <section className="bg-blue-300 text-white pt-28 pb-20 text-center">
+          <h1 className="text-h1 sm:text-h1Sm font-bold mb-4">
+            iU 学友会へようこそ
+          </h1>
+          <p className="text-p sm:text-pSm mb-6">
             私たちは学生のために様々なサービスを提供しています。
           </p>
           <Link href="/contact">
-            <span className="bg-white text-black px-6 py-3 rounded-full hover:bg-LightThema transition">
+            <span className="bg-button text-black px-6 py-3 rounded-full hover:bg-buttonHover transition">
               お問い合わせはこちら
             </span>
           </Link>
         </section>
 
         {/* About Section */}
-        <section className="py-16 bg-LightThema">
+        <section className="py-16 bg-secondary">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-semibold text-center mb-8">
+            <h2 className="text-h2 sm:text-h2Sm font-semibold text-center mb-8">
               学友会について
             </h2>
-            <p className="text-lg text-center text-gray-700 leading-relaxed max-w-2xl mx-auto">
+            <p className="text-center text-paragraph sm:text-pSm leading-relaxed max-w-2xl mx-auto">
               学友会は、学生のための活動を支援し、コミュニティを強化することを目指しています。
               イベントの企画、倉庫の貸し出し、その他さまざまなサービスを提供しています。
             </p>
@@ -68,7 +70,7 @@ const HomePage = () => {
         {/* Latest News Section */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-semibold text-center mb-8">
+            <h2 className="text-h2 sm:text-h2Sm font-semibold text-center mb-8">
               最新ニュース
             </h2>
             {loading ? (
@@ -76,8 +78,8 @@ const HomePage = () => {
                 最新ニュースを読み込み中...
               </p>
             ) : latestNews ? (
-              <div className="bg-LightThema p-6 rounded-lg shadow-lg">
-                <h3 className="text-2xl font-bold mb-4 text-DarkThema">
+              <div className="bg-secondary p-6 rounded-lg shadow-lg">
+                <h3 className="text-h3 sm:text-h3Sm font-bold mb-4 text-headline">
                   {latestNews.title}
                 </h3>
                 <p className="text-gray-600">
@@ -87,7 +89,7 @@ const HomePage = () => {
                   {latestNews.content.replace(/(<([^>]+)>)/gi, "")}
                 </p>
                 <Link href={`/news/${latestNews.id}`}>
-                  <span className="block mt-4 text-Thema hover:underline">
+                  <span className="block mt-4 text-highlight hover:underline">
                     続きを読む
                   </span>
                 </Link>
@@ -103,15 +105,15 @@ const HomePage = () => {
         {/* Warehouse Rental Section */}
         <section className="py-16 bg-white">
           <div className="container mx-auto px-4">
-            <h2 className="text-3xl font-semibold text-center mb-8">
+            <h2 className="text-h2 sm:text-h2Sm font-semibold text-center mb-8">
               倉庫貸出について
             </h2>
-            <p className="text-lg text-center text-gray-700 leading-relaxed max-w-2xl mx-auto mb-6">
+            <p className="text-center text-paragraph sm:text-pSm leading-relaxed max-w-2xl mx-auto mb-6">
               倉庫の貸し出しをご希望の方は、下記のリンクから詳細をご確認いただけます。
             </p>
             <div className="text-center">
               <Link href="/service">
-                <span className="bg-Thema text-black px-6 py-3 rounded-full hover:bg-Thema transition">
+                <span className="bg-button text-black px-6 py-3 rounded-full hover:bg-buttonHover transition">
                   倉庫貸出詳細
                 </span>
               </Link>

@@ -53,17 +53,19 @@ const AboutPage = () => {
       <Header />
       <Breadcrumbs />
       <LoadingBar loading={loading} />
-      <main className="py-16 bg-Background">
+      <main className="py-16 bg-neutral-background">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-center mb-12">
+          <h1 className="text-h1 sm:text-h1Sm font-bold text-center mb-12 text-brand-dark">
             学友会について
           </h1>
 
           {/* Committees Section */}
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold mb-6">活動中の委員会</h2>
+            <h2 className="text-h2 sm:text-h2Sm font-semibold mb-6 text-brand-dark">
+              活動中の委員会
+            </h2>
             {committees.length === 0 ? (
-              <p className="text-lg text-gray-600">
+              <p className="text-p sm:text-pSm text-neutral-paragraph">
                 委員会情報は現在準備中です。もうしばらくお待ちください。
               </p>
             ) : (
@@ -77,9 +79,11 @@ const AboutPage = () => {
 
           {/* Circles Section */}
           <section>
-            <h2 className="text-3xl font-semibold mb-6">活動中のサークル</h2>
+            <h2 className="text-h2 sm:text-h2Sm font-semibold mb-6 text-brand-dark">
+              活動中のサークル
+            </h2>
             {circles.length === 0 ? (
-              <p className="text-lg text-gray-600">
+              <p className="text-p sm:text-pSm text-neutral-paragraph">
                 サークル情報は現在準備中です。もうしばらくお待ちください。
               </p>
             ) : (

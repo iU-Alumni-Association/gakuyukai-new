@@ -18,7 +18,7 @@ const BlogItem: React.FC<BlogItemProps> = ({ blog }) => (
     className={`blog-item ${blog.eyecatch ? "md:col-span-2" : "md:col-span-1"}`}
   >
     <Link href={`/blog/${blog.id}`}>
-      <div className="card group cursor-pointer transition-colors duration-300 hover:bg-LightThema">
+      <div className="card group cursor-pointer transition-colors duration-300 hover:bg-secondary">
         {/* Layout changes based on screen size: vertical on mobile, horizontal on desktop */}
         <div
           className={`card-main flex flex-col ${blog.eyecatch ? "md:flex-row" : ""} w-full`}
@@ -35,7 +35,7 @@ const BlogItem: React.FC<BlogItemProps> = ({ blog }) => (
           <div
             className={`${blog.eyecatch ? "md:w-1/2" : "w-full"} card-content p-4`}
           >
-            <h2 className="card-title text-xl font-bold text-gray-900 group-hover:text-Thema transition-colors">
+            <h2 className="card-title text-xl font-bold text-gray-900 group-hover:text-highlight transition-colors">
               {blog.title}
             </h2>
             <p className="card-timestamp text-sm text-gray-500">

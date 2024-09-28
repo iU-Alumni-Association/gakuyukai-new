@@ -33,8 +33,8 @@ const NewsDetailPage = ({ news }: NewsDetailProps): JSX.Element => {
       <Header />
       <Breadcrumbs />
       <div className="container mx-auto px-4 py-8 mt-10">
-        <h1 className="text-3xl font-bold mb-6">{news.title}</h1>
-        <p className="text-gray-600 mb-4">
+        <h1 className="text-h1 sm:text-h1Sm font-bold mb-6">{news.title}</h1>
+        <p className="text-p sm:text-pSm text-gray-600 mb-4">
           {new Date(news.date).toLocaleDateString()}
         </p>
         <div

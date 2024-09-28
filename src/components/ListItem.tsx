@@ -14,7 +14,7 @@ const ListItem = ({
   imageAlt,
 }: ListItemProps) => {
   return (
-    <div className="bg-Background rounded-3xl p-6">
+    <div className="bg-background rounded-3xl p-6">
       {imageSrc && (
         <Image
           src={imageSrc}
@@ -25,7 +25,9 @@ const ListItem = ({
           objectFit="contain"
         />
       )}
-      <h3 className="text-xl font-semibold mt-4 text-gray-900">{title}</h3>
+      <h3 className="text-h3 sm:text-h3Sm font-semibold mt-4 text-gray-900">
+        {title}
+      </h3>
       <p className="mt-2 text-gray-600">{description}</p>
     </div>
   );

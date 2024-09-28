@@ -12,7 +12,7 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-gradient-to-t from-Thema to-transparent text-DarkThema py-10 shadow-lg">
+    <footer className="bg-gradient-to-t from-highlight to-transparent text-headline py-10 shadow-lg">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center">
           <div className="mb-5">
@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
               ))}
             </ul>
           </div>
-          <div className="border-t border-DarkThema pt-4 text-center w-full">
+          <div className="border-t border-headline pt-4 text-center w-full">
             <p>© 2023-2024 iU gakuyukai. All rights reserved.</p>
             <p className="mt-1">Email: gakuyukai_jichi@i-u.ac.jp</p>
           </div>

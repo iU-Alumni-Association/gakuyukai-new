@@ -50,7 +50,7 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-Background fixed w-full z-50 shadow-md top-0">
+    <header className="bg-background fixed w-full z-50 shadow-md top-0">
       <div className="container mx-auto flex justify-between items-center p-3">
         {/* Logo Section */}
         <div className="flex items-center flex-grow">
@@ -78,7 +78,7 @@ const Header = () => {
                       <a
                         href={href}
                         className={`border-radius rounded-md cursor-pointer py-2 px-4 ${
-                          isCurrentPage ? "bg-Thema" : ""
+                          isCurrentPage ? "bg-highlight" : ""
                         } transition-all duration-300`}
                         onClick={(e) => handleNavigation(e, href)}
                       >
@@ -95,8 +95,8 @@ const Header = () => {
                       <div
                         className={`absolute bottom-0 left-0 w-full h-[0.125rem] origin-left duration-300 mt-[0.25rem] ${
                           isCurrentPage
-                            ? "bg-Thema"
-                            : "bg-transparent group-hover:bg-Thema"
+                            ? "bg-highlight"
+                            : "bg-transparent group-hover:bg-highlight"
                         } transition-all transform scale-x-0 group-hover:scale-x-100`}
                       ></div>
                     </li>
@@ -119,7 +119,7 @@ const Header = () => {
       {/* Mobile Menu Overlay */}
       {menuOpen && (
         <div
-          className={`fixed inset-0 bg-Background bg-opacity-75 backdrop-blur-sm flex justify-start items-start z-50 transition-opacity duration-300 ${
+          className={`fixed inset-0 bg-background bg-opacity-75 backdrop-blur-sm flex justify-start items-start z-50 transition-opacity duration-300 ${
             menuOpen
               ? "opacity-100 animate-fadeIn"
               : "opacity-0 pointer-events-none animate-fadeOut"
@@ -148,7 +148,7 @@ const Header = () => {
                       <a
                         href={href}
                         className={`border-radius rounded-md cursor-pointer text-xl py-2 px-4 ${
-                          isCurrentPage ? "bg-Thema" : ""
+                          isCurrentPage ? "bg-highlight" : ""
                         } transition-all duration-300`}
                         onClick={(e) => handleNavigation(e, href)}
                       >

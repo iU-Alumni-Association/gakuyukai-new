@@ -10,14 +10,18 @@ const ServicePage = () => {
       <Meta title="iU 学友会 | サービス" />
       <Header />
       <Breadcrumbs />
-      <main className="py-16 bg-Background">
+      <main className="py-16 bg-background">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl font-bold text-center mb-12">申請関係</h1>
+          <h1 className="text-h2 sm:text-h1Sm font-bold text-center mb-12">
+            申請関係
+          </h1>
 
           {/* Warehouse Rental Service Section */}
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold mb-6">倉庫貸出サービス</h2>
-            <p className="text-lg text-gray-700 leading-relaxed mb-4">
+            <h2 className="text-h2 sm:text-h2Sm font-semibold mb-6">
+              倉庫貸出サービス
+            </h2>
+            <p className="text-p sm:text-pSm text-gray-700 leading-relaxed mb-4">
               学友会の倉庫を利用したい方は、以下のリンクから申請フォームにアクセスできます。
               倉庫の利用には事前の申し込みが必要ですので、詳細をご確認の上、申請をお願いします。
             </p>
@@ -30,7 +34,7 @@ const ServicePage = () => {
 
           {/* Other Services Section */}
           <section className="mb-12">
-            <h2 className="text-3xl font-semibold mb-6">
+            <h2 className="text-h2 sm:text-h2Sm font-semibold mb-6">
               その他の申請・サービス
             </h2>
             <ul className="list-disc pl-5 text-lg text-gray-700">
@@ -63,8 +67,10 @@ const ServicePage = () => {
 
           {/* FAQ Section */}
           <section>
-            <h2 className="text-3xl font-semibold mb-6">よくある質問（FAQ）</h2>
-            <p className="text-lg text-gray-700 leading-relaxed">
+            <h2 className="text-h2 sm:text-h2Sm font-semibold mb-6">
+              よくある質問（FAQ）
+            </h2>
+            <p className="text-p sm:text-pSm text-gray-700 leading-relaxed">
               サービスに関してご不明点がある場合は、FAQをご確認ください。
               それでも解決しない場合は、
               <Link href="/contact">
