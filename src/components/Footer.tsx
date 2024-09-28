@@ -5,14 +5,14 @@ const Footer: React.FC = () => {
   const navigationLinks = [
     { href: "/", label: "ホーム" },
     { href: "/services", label: "サービス" },
-    { href: "/about", label: "会社情報" },
+    { href: "/about", label: "組織情報" },
     { href: "/news", label: "ニュース" },
     { href: "/contact", label: "お問い合わせ" },
     { href: "/blog", label: "ブログ" },
   ];
 
   return (
-    <footer className="bg-gradient-to-t from-yellow-300 to-transparent text-gray-900 py-10 shadow-lg">
+    <footer className="bg-gradient-to-t from-Thema to-transparent text-DarkThema py-10 shadow-lg">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center">
           <div className="mb-5">
@@ -23,7 +23,7 @@ const Footer: React.FC = () => {
                   className="transition-transform transform hover:scale-105"
                 >
                   <Link href={link.href} passHref>
-                    <span className="text-lg font-medium hover:text-yellow-600 cursor-pointer">
+                    <span className="text-lg font-medium hover:text-yellow-700 cursor-pointer">
                       {link.label}
                     </span>
                   </Link>
@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
               ))}
             </ul>
           </div>
-          <div className="border-t border-black pt-4 text-center w-full">
+          <div className="border-t border-DarkThema pt-4 text-center w-full">
             <p>© 2023-2024 iU gakuyukai. All rights reserved.</p>
             <p className="mt-1">Email: gakuyukai_jichi@i-u.ac.jp</p>
           </div>

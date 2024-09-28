@@ -1,5 +1,5 @@
-import { useRouter } from 'next/router';
-import Link from 'next/link';
+import { useRouter } from "next/router";
+import Link from "next/link";
 
 /**
  * Breadcrumbs component to display the current page path.
@@ -9,20 +9,20 @@ const Breadcrumbs = () => {
   const router = useRouter();
 
   // Split the current path into segments and create breadcrumbs.
-  const pathSegments = router.asPath.split('/').filter(segment => segment);
+  const pathSegments = router.asPath.split("/").filter((segment) => segment);
 
   return (
-    <div className="mt-24 mx-10 border-radius rounded-full  bg-gray-200 py-2">
+    <div className="mt-24 mx-10 sm:mx-4 border-radius rounded-full bg-gray-200 py-2">
       <div className="container mx-auto px-4">
         <nav aria-label="breadcrumb">
-          <ol className="flex space-x-2 text-sm text-gray-600">
+          <ol className="flex flex-wrap space-x-2 text-sm text-gray-600">
             <li>
               <Link href="/" className="hover:underline">
                 home
               </Link>
             </li>
             {pathSegments.map((segment, index) => {
-              const href = '/' + pathSegments.slice(0, index + 1).join('/');
+              const href = "/" + pathSegments.slice(0, index + 1).join("/");
               const isLast = index === pathSegments.length - 1;
 
               return (

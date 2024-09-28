@@ -1,15 +1,15 @@
-export const runtime = 'experimental-edge';
+export const runtime = "experimental-edge";
 
-import { GetStaticPaths, GetStaticProps } from 'next';
-import Head from 'next/head';
-import { useRouter } from 'next/router';
-import { useState, useEffect } from 'react';
-import { getBlogDetail, getBlogs } from '@/lib/microcms';
-import type { Blog } from '@/lib/types';
-import BlogHeader from '@/components/BlogHeader';
-import Footer from '@/components/Footer';
-import LoadingBar from '@/components/LoadingBar';
-import Breadcrumbs from '@/components/Breadcrumbs';
+import { GetStaticPaths, GetStaticProps } from "next";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import { getBlogDetail, getBlogs } from "@/lib/microcms";
+import type { Blog } from "@/lib/types";
+import BlogHeader from "@/components/BlogHeader";
+import Footer from "@/components/Footer";
+import LoadingBar from "@/components/LoadingBar";
+import Breadcrumbs from "@/components/Breadcrumbs";
 
 // Define the props for the BlogPage component
 type BlogProps = {
@@ -60,7 +60,7 @@ const BlogPage = ({ blog }: BlogProps) => {
         <Head>
           <title>{blog.title}</title>
           <meta name="description" content={blog.description} />
-          <meta name="keywords" content={blog.category?.name || ''} />
+          <meta name="keywords" content={blog.category?.name || ""} />
         </Head>
 
         {/* Blog Title */}
@@ -114,7 +114,7 @@ export const getStaticProps: GetStaticProps = async (context) => {
   const blog = await getBlogDetail(id as string);
 
   // Log the fetched blog data for debugging purposes
-  console.log('Blog data:', blog);
+  console.log("Blog data:", blog);
 
   // If no blog is found, return 404
   if (!blog) {

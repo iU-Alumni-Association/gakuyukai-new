@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-import { DecoratedTorusKnot4a } from "three/examples/jsm/curves/CurveExtras.js";
 
 const config: Config = {
   content: [

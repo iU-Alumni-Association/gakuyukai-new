@@ -21,7 +21,7 @@ const ServicePage = () => {
               学友会の倉庫を利用したい方は、以下のリンクから申請フォームにアクセスできます。
               倉庫の利用には事前の申し込みが必要ですので、詳細をご確認の上、申請をお願いします。
             </p>
-            <Link href="/service/warehouse">
+            <Link href="https://rental.i-u.io/">
               <span className="text-blue-500 hover:underline">
                 倉庫貸出申請フォームへ
               </span>
@@ -36,7 +36,7 @@ const ServicePage = () => {
             <ul className="list-disc pl-5 text-lg text-gray-700">
               <li className="mb-2">
                 <Link
-                  href="/service/event"
+                  href="/services"
                   className="text-blue-500 hover:underline"
                 >
                   イベント開催申請
@@ -44,7 +44,7 @@ const ServicePage = () => {
               </li>
               <li className="mb-2">
                 <Link
-                  href="/service/budget"
+                  href="/services"
                   className="text-blue-500 hover:underline"
                 >
                   予算申請
@@ -52,7 +52,7 @@ const ServicePage = () => {
               </li>
               <li className="mb-2">
                 <Link
-                  href="/service/support"
+                  href="/services"
                   className="text-blue-500 hover:underline"
                 >
                   学生支援サービス
