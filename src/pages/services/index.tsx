@@ -1,8 +1,8 @@
-import Header from "@/components/Header";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import Footer from "@/components/Footer";
-import Meta from "@/components/Meta";
-import Link from "next/link";
+import Header from '@/components/Header';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import Footer from '@/components/Footer';
+import Meta from '@/components/Meta';
+import Link from 'next/link';
 
 const ServicePage = () => {
   return (
@@ -10,18 +10,18 @@ const ServicePage = () => {
       <Meta title="iU 学友会 | サービス" />
       <Header />
       <Breadcrumbs />
-      <main className="py-16 bg-background">
+      <main className="bg-background py-16">
         <div className="container mx-auto px-4">
-          <h1 className="text-h2 sm:text-h1Sm font-bold text-center mb-12">
+          <h1 className="mb-12 text-center text-h2 font-bold sm:text-h1Sm">
             申請関係
           </h1>
 
           {/* Warehouse Rental Service Section */}
           <section className="mb-12">
-            <h2 className="text-h2 sm:text-h2Sm font-semibold mb-6">
+            <h2 className="mb-6 text-h2 font-semibold sm:text-h2Sm">
               倉庫貸出サービス
             </h2>
-            <p className="text-p sm:text-pSm text-gray-700 leading-relaxed mb-4">
+            <p className="mb-4 text-p leading-relaxed text-gray-700 sm:text-pSm">
               学友会の倉庫を利用したい方は、以下のリンクから申請フォームにアクセスできます。
               倉庫の利用には事前の申し込みが必要ですので、詳細をご確認の上、申請をお願いします。
             </p>
@@ -34,7 +34,7 @@ const ServicePage = () => {
 
           {/* Other Services Section */}
           <section className="mb-12">
-            <h2 className="text-h2 sm:text-h2Sm font-semibold mb-6">
+            <h2 className="mb-6 text-h2 font-semibold sm:text-h2Sm">
               その他の申請・サービス
             </h2>
             <ul className="list-disc pl-5 text-lg text-gray-700">
@@ -67,10 +67,10 @@ const ServicePage = () => {
 
           {/* FAQ Section */}
           <section>
-            <h2 className="text-h2 sm:text-h2Sm font-semibold mb-6">
+            <h2 className="mb-6 text-h2 font-semibold sm:text-h2Sm">
               よくある質問（FAQ）
             </h2>
-            <p className="text-p sm:text-pSm text-gray-700 leading-relaxed">
+            <p className="text-p leading-relaxed text-gray-700 sm:text-pSm">
               サービスに関してご不明点がある場合は、FAQをご確認ください。
               それでも解決しない場合は、
               <Link href="/contact">

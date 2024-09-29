@@ -1,16 +1,20 @@
-import { useEffect, useState } from "react";
-import Header from "@/components/Header";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import Footer from "@/components/Footer";
-import Meta from "@/components/Meta";
-import { getBlogsByCategory } from "@/lib/microcms";
-import BlogItem from "@/components/BlogItem";
-import LoadingBar from "@/components/LoadingBar";
-import { Blog } from "@/lib/types";
+import { useEffect, useState } from 'react';
+import Header from '@/components/Header';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import Footer from '@/components/Footer';
+import Meta from '@/components/Meta';
+import { getBlogsByCategory } from '@/lib/microcms';
+import BlogItem from '@/components/BlogItem';
+import LoadingBar from '@/components/LoadingBar';
+import { Blog } from '@/lib/types';
 
 const AboutPage = () => {
-  const [committees, setCommittees] = useState<Blog[]>([]);
-  const [circles, setCircles] = useState<Blog[]>([]);
+  const [committees, setCommittees] = useState<
+    Blog[]
+  >([]);
+  const [circles, setCircles] = useState<Blog[]>(
+    [],
+  );
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -18,10 +22,18 @@ const AboutPage = () => {
     const fetchCommittees = async () => {
       setLoading(true);
       try {
-        const committeeData = await getBlogsByCategory("committee", 1, 5);
+        const committeeData =
+          await getBlogsByCategory(
+            'committee',
+            1,
+            5,
+          );
         setCommittees(committeeData.contents);
       } catch (error) {
-        console.error("Error fetching committee data:", error);
+        console.error(
+          'Error fetching committee data:',
+          error,
+        );
       } finally {
         setLoading(false);
       }
@@ -31,10 +43,18 @@ const AboutPage = () => {
     const fetchCircles = async () => {
       setLoading(true);
       try {
-        const circleData = await getBlogsByCategory("circle", 1, 5);
+        const circleData =
+          await getBlogsByCategory(
+            'circle',
+            1,
+            5,
+          );
         setCircles(circleData.contents);
       } catch (error) {
-        console.error("Error fetching circle data:", error);
+        console.error(
+          'Error fetching circle data:',
+          error,
+        );
       } finally {
         setLoading(false);
       }
@@ -53,46 +73,50 @@ const AboutPage = () => {
       <Header />
       <Breadcrumbs />
       <LoadingBar loading={loading} />
-      <main className="py-16 bg-neutral-background">
+      <main className="bg-neutral-background py-16">
         <div className="container mx-auto px-4">
-          <h1 className="text-h1 sm:text-h1Sm font-bold text-center mb-12 text-brand-dark">
+          <h1 className="text-brand-dark mb-12 text-center text-h1 font-bold sm:text-h1Sm">
             学友会について
           </h1>
 
           {/* Committees Section */}
           <section className="mb-12">
-            <h2 className="text-h2 sm:text-h2Sm font-semibold mb-6 text-brand-dark">
+            <h2 className="text-brand-dark mb-6 text-h2 font-semibold sm:text-h2Sm">
               活動中の委員会
             </h2>
-            {committees.length === 0 ? (
-              <p className="text-p sm:text-pSm text-neutral-paragraph">
+            {committees.length === 0 ?
+              <p className="text-neutral-paragraph text-p sm:text-pSm">
                 委員会情報は現在準備中です。もうしばらくお待ちください。
               </p>
-            ) : (
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            : <ul className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 {committees.map((committee) => (
-                  <BlogItem key={committee.id} blog={committee} />
+                  <BlogItem
+                    key={committee.id}
+                    blog={committee}
+                  />
                 ))}
               </ul>
-            )}
+            }
           </section>
 
           {/* Circles Section */}
           <section>
-            <h2 className="text-h2 sm:text-h2Sm font-semibold mb-6 text-brand-dark">
+            <h2 className="text-brand-dark mb-6 text-h2 font-semibold sm:text-h2Sm">
               活動中のサークル
             </h2>
-            {circles.length === 0 ? (
-              <p className="text-p sm:text-pSm text-neutral-paragraph">
+            {circles.length === 0 ?
+              <p className="text-neutral-paragraph text-p sm:text-pSm">
                 サークル情報は現在準備中です。もうしばらくお待ちください。
               </p>
-            ) : (
-              <ul className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            : <ul className="grid grid-cols-1 gap-6 md:grid-cols-2">
                 {circles.map((circle) => (
-                  <BlogItem key={circle.id} blog={circle} />
+                  <BlogItem
+                    key={circle.id}
+                    blog={circle}
+                  />
                 ))}
               </ul>
-            )}
+            }
           </section>
         </div>
       </main>

@@ -1,22 +1,22 @@
-import { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 /**
- * Header component with responsive navigation and menu toggle functionality.
+ * Header component with responsive navigation and
+ * menu toggle functionality.
  */
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
-  /**
-   * Toggle the mobile menu visibility.
-   */
+  /** Toggle the mobile menu visibility. */
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
   /**
-   * Handle window resize to close the menu when the viewport width exceeds 768px.
+   * Handle window resize to close the menu when
+   * the viewport width exceeds 768px.
    */
   const handleResize = () => {
     if (window.innerWidth >= 768) {
@@ -26,21 +26,30 @@ const Header = () => {
 
   // Set up event listener for window resize.
   useEffect(() => {
-    window.addEventListener("resize", handleResize);
+    window.addEventListener(
+      'resize',
+      handleResize,
+    );
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener(
+        'resize',
+        handleResize,
+      );
     };
   }, []);
 
   /**
-   * Handle navigation to a specific route. If already on the route, do nothing.
-   * Otherwise, navigate to the new route and close the menu.
+   * Handle navigation to a specific route. If
+   * already on the route, do nothing. Otherwise,
+   * navigate to the new route and close the
+   * menu.
    *
-   * @param {string} href - The target URL for navigation.
+   * @param {string} href - The target URL for
+   *   navigation.
    */
   const handleNavigation = (
     e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
+    href: string,
   ) => {
     e.preventDefault(); // Prevent default link behavior
     if (router.asPath !== href) {
@@ -50,10 +59,10 @@ const Header = () => {
   };
 
   return (
-    <header className="bg-background fixed w-full z-50 shadow-md top-0">
-      <div className="container mx-auto flex justify-between items-center p-3">
+    <header className="fixed top-0 z-50 w-full bg-background shadow-md">
+      <div className="container mx-auto flex items-center justify-between p-3">
         {/* Logo Section */}
-        <div className="flex items-center flex-grow">
+        <div className="flex flex-grow items-center">
           <a href="/">
             <img
               src="/logo.png"
@@ -64,52 +73,61 @@ const Header = () => {
         </div>
 
         {/* Desktop Navigation */}
-        <div className="hidden md:flex flex-grow justify-end">
-          <nav className="flex flex-col md:flex-row items-center">
+        <div className="hidden flex-grow justify-end md:flex">
+          <nav className="flex flex-col items-center md:flex-row">
             <ul className="flex flex-col md:flex-row">
-              {["/services", "/about", "/news", "/contact", "/blog"].map(
-                (href, index) => {
-                  const isCurrentPage = router.asPath === href;
-                  return (
-                    <li
-                      key={index}
-                      className="md:ml-1 my-2 md:my-0 relative group py-2"
+              {[
+                '/services',
+                '/about',
+                '/news',
+                '/contact',
+                '/blog',
+              ].map((href, index) => {
+                const isCurrentPage =
+                  router.asPath === href;
+                return (
+                  <li
+                    key={index}
+                    className="group relative my-2 py-2 md:my-0 md:ml-1"
+                  >
+                    <a
+                      href={href}
+                      className={`border-radius cursor-pointer rounded-md px-4 py-2 ${
+                        isCurrentPage ?
+                          'bg-highlight'
+                        : ''
+                      } transition-all duration-300`}
+                      onClick={(e) =>
+                        handleNavigation(e, href)
+                      }
                     >
-                      <a
-                        href={href}
-                        className={`border-radius rounded-md cursor-pointer py-2 px-4 ${
-                          isCurrentPage ? "bg-highlight" : ""
-                        } transition-all duration-300`}
-                        onClick={(e) => handleNavigation(e, href)}
-                      >
-                        {
-                          [
-                            "サービス",
-                            "組織情報",
-                            "ニュース",
-                            "お問い合わせ",
-                            "ブログ",
-                          ][index]
-                        }
-                      </a>
-                      <div
-                        className={`absolute bottom-0 left-0 w-full h-[0.125rem] origin-left duration-300 mt-[0.25rem] ${
-                          isCurrentPage
-                            ? "bg-highlight"
-                            : "bg-transparent group-hover:bg-highlight"
-                        } transition-all transform scale-x-0 group-hover:scale-x-100`}
-                      ></div>
-                    </li>
-                  );
-                }
-              )}
+                      {
+                        [
+                          'サービス',
+                          '組織情報',
+                          'ニュース',
+                          'お問い合わせ',
+                          'ブログ',
+                        ][index]
+                      }
+                    </a>
+                    <div
+                      className={`absolute bottom-0 left-0 mt-[0.25rem] h-[0.125rem] w-full origin-left duration-300 ${
+                        isCurrentPage ?
+                          'bg-highlight'
+                        : 'bg-transparent group-hover:bg-highlight'
+                      } scale-x-0 transform transition-all group-hover:scale-x-100`}
+                    ></div>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="hamburger md:hidden text-3xl text-black"
+          className="hamburger text-3xl text-black md:hidden"
           onClick={toggleMenu}
         >
           &#9776;
@@ -119,53 +137,62 @@ const Header = () => {
       {/* Mobile Menu Overlay */}
       {menuOpen && (
         <div
-          className={`fixed inset-0 bg-background bg-opacity-75 backdrop-blur-sm flex justify-start items-start z-50 transition-opacity duration-300 ${
-            menuOpen
-              ? "opacity-100 animate-fadeIn"
-              : "opacity-0 pointer-events-none animate-fadeOut"
+          className={`fixed inset-0 z-50 flex items-start justify-start bg-background bg-opacity-75 backdrop-blur-sm transition-opacity duration-300 ${
+            menuOpen ?
+              'animate-fadeIn opacity-100'
+            : 'pointer-events-none animate-fadeOut opacity-0'
           }`}
           onClick={toggleMenu}
         >
           <nav
-            className="w-full h-auto p-5 pt-16 relative flex flex-col items-start bg-transparent"
+            className="relative flex h-auto w-full flex-col items-start bg-transparent p-5 pt-16"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close button for mobile menu (right aligned) */}
             <button
-              className="absolute top-5 right-5 text-black text-3xl"
+              className="absolute right-5 top-5 text-3xl text-black"
               onClick={toggleMenu}
             >
               &times;
             </button>
 
             {/* Mobile category links */}
-            <ul className="flex flex-col items-start mt-8 space-y-4">
-              {["/services", "/about", "/news", "/contact", "/blog"].map(
-                (href, index) => {
-                  const isCurrentPage = router.asPath === href;
-                  return (
-                    <li key={index}>
-                      <a
-                        href={href}
-                        className={`border-radius rounded-md cursor-pointer text-xl py-2 px-4 ${
-                          isCurrentPage ? "bg-highlight" : ""
-                        } transition-all duration-300`}
-                        onClick={(e) => handleNavigation(e, href)}
-                      >
-                        {
-                          [
-                            "サービス",
-                            "組織情報",
-                            "ニュース",
-                            "お問い合わせ",
-                            "ブログ",
-                          ][index]
-                        }
-                      </a>
-                    </li>
-                  );
-                }
-              )}
+            <ul className="mt-8 flex flex-col items-start space-y-4">
+              {[
+                '/services',
+                '/about',
+                '/news',
+                '/contact',
+                '/blog',
+              ].map((href, index) => {
+                const isCurrentPage =
+                  router.asPath === href;
+                return (
+                  <li key={index}>
+                    <a
+                      href={href}
+                      className={`border-radius cursor-pointer rounded-md px-4 py-2 text-xl ${
+                        isCurrentPage ?
+                          'bg-highlight'
+                        : ''
+                      } transition-all duration-300`}
+                      onClick={(e) =>
+                        handleNavigation(e, href)
+                      }
+                    >
+                      {
+                        [
+                          'サービス',
+                          '組織情報',
+                          'ニュース',
+                          'お問い合わせ',
+                          'ブログ',
+                        ][index]
+                      }
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </nav>
         </div>

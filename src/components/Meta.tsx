@@ -1,5 +1,5 @@
-import Head from "next/head";
-import React from "react";
+import Head from 'next/head';
+import React from 'react';
 
 interface MetaProps {
   title: string;
@@ -11,28 +11,61 @@ interface MetaProps {
 
 const Meta: React.FC<MetaProps> = ({
   title,
-  description = "情報経営イノベーション学友会は学生が運営する自治組織です",
-  keywords = "情報経営イノベーション学友会, iU GAKUYUKAI, 学友会, 学生自治組織",
-  imageUrl = "/main-top.webp",
-  url = "https://i-u.io",
+  description = '情報経営イノベーション学友会は学生が運営する自治組織です',
+  keywords = '情報経営イノベーション学友会, iU GAKUYUKAI, 学友会, 学生自治組織',
+  imageUrl = '/main-top.webp',
+  url = 'https://i-u.io',
 }) => {
   return (
     <Head>
       <title>{title}</title>
-      <meta name="description" content={description} />
+      <meta
+        name="description"
+        content={description}
+      />
       <meta name="keywords" content={keywords} />
-      <meta property="author" content="iU Gakuyukai." />
+      <meta
+        property="author"
+        content="iU Gakuyukai."
+      />
       <meta property="og:title" content={title} />
-      <meta property="og:description" content={description} />
-      <meta property="og:image" content={imageUrl} />
+      <meta
+        property="og:description"
+        content={description}
+      />
+      <meta
+        property="og:image"
+        content={imageUrl}
+      />
       <meta property="og:url" content={url} />
-      <meta property="og:type" content="website" />
-      <meta name="twitter:creator" content="@iuniversity2020" />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={title} />
-      <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content={imageUrl} />
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta
+        property="og:type"
+        content="website"
+      />
+      <meta
+        name="twitter:creator"
+        content="@iuniversity2020"
+      />
+      <meta
+        name="twitter:card"
+        content="summary_large_image"
+      />
+      <meta
+        name="twitter:title"
+        content={title}
+      />
+      <meta
+        name="twitter:description"
+        content={description}
+      />
+      <meta
+        name="twitter:image"
+        content={imageUrl}
+      />
+      <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1"
+      />
       <link rel="icon" href="/favicon.ico" />
 
       {/* Google Analytics */}

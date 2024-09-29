@@ -1,8 +1,8 @@
-import Header from "@/components/Header";
-import Breadcrumbs from "@/components/Breadcrumbs";
-import Footer from "@/components/Footer";
-import Meta from "@/components/Meta";
-import ContactForm from "@/components/ContactForm";
+import Header from '@/components/Header';
+import Breadcrumbs from '@/components/Breadcrumbs';
+import Footer from '@/components/Footer';
+import Meta from '@/components/Meta';
+import ContactForm from '@/components/ContactForm';
 
 const Contact = () => {
   return (

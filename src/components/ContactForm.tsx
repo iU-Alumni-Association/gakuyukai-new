@@ -1,62 +1,92 @@
-import { useState, useEffect, FormEvent } from "react";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import Head from "next/head";
+import {
+  useState,
+  useEffect,
+  FormEvent,
+} from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import Head from 'next/head';
 
 const ContactForm = () => {
   const [loading, setLoading] = useState(false);
-  const [apiError, setApiError] = useState("");
-  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [apiError, setApiError] = useState('');
+  const [errors, setErrors] = useState<
+    Record<string, string>
+  >({});
   const router = useRouter();
 
   useEffect(() => {
-    console.log("API Endpoint:", process.env.NEXT_PUBLIC_API_ENDPOINT);
+    console.log(
+      'API Endpoint:',
+      process.env.NEXT_PUBLIC_API_ENDPOINT,
+    );
   }, []);
 
-  const validate = (data: Record<string, string>) => {
+  const validate = (
+    data: Record<string, string>,
+  ) => {
     const newErrors: Record<string, string> = {};
-    if (!data.name) newErrors.name = "お名前は必須です。";
-    if (!data.email) newErrors.email = "メールアドレスは必須です。";
+    if (!data.name)
+      newErrors.name = 'お名前は必須です。';
+    if (!data.email)
+      newErrors.email =
+        'メールアドレスは必須です。';
     else if (
-      !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(data.email)
+      !/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/.test(
+        data.email,
+      )
     )
-      newErrors.email = "有効なメールアドレスを入力してください。";
-    if (!data.phone) newErrors.phone = "電話番号は必須です。";
+      newErrors.email =
+        '有効なメールアドレスを入力してください。';
+    if (!data.phone)
+      newErrors.phone = '電話番号は必須です。';
     else if (!/^[0-9]+$/.test(data.phone))
-      newErrors.phone = "有効な電話番号をハイフンなしで入力してください。";
-    if (!data.subject) newErrors.subject = "件名は必須です。";
-    if (!data.message) newErrors.message = "メッセージは必須です。";
-    if (data.studentId && !/im|IM/.test(data.studentId)) {
-      newErrors.studentId = "学籍番号には'IM'が含まれている必要があります。";
+      newErrors.phone =
+        '有効な電話番号をハイフンなしで入力してください。';
+    if (!data.subject)
+      newErrors.subject = '件名は必須です。';
+    if (!data.message)
+      newErrors.message =
+        'メッセージは必須です。';
+    if (
+      data.studentId &&
+      !/im|IM/.test(data.studentId)
+    ) {
+      newErrors.studentId =
+        "学籍番号には'IM'が含まれている必要があります。";
     }
 
     return newErrors;
   };
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (
+    event: FormEvent<HTMLFormElement>,
+  ) => {
     event.preventDefault();
     setLoading(true);
-    setApiError("");
+    setApiError('');
     setErrors({});
 
     const form = event.currentTarget;
     const formData = new FormData(form);
-    const data = Object.fromEntries(formData.entries()) as Record<
-      string,
-      string
-    >;
+    const data = Object.fromEntries(
+      formData.entries(),
+    ) as Record<string, string>;
 
     const validationErrors = validate(data);
-    if (Object.keys(validationErrors).length > 0) {
+    if (
+      Object.keys(validationErrors).length > 0
+    ) {
       setErrors(validationErrors);
       setLoading(false);
       return;
     }
 
-    const apiEndpoint = process.env.NEXT_PUBLIC_API_ENDPOINT;
+    const apiEndpoint =
+      process.env.NEXT_PUBLIC_API_ENDPOINT;
     if (!apiEndpoint) {
       setApiError(
-        "送信に失敗しました。お手数ですが、メールにてご連絡ください。"
+        '送信に失敗しました。お手数ですが、メールにてご連絡ください。',
       );
       setLoading(false);
       return;
@@ -64,27 +94,30 @@ const ContactForm = () => {
 
     try {
       const response = await fetch(apiEndpoint, {
-        method: "POST",
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify(data),
       });
 
       if (response.ok) {
         form.reset();
-        router.push("/success");
+        router.push('/success');
       } else {
         const result = await response.json();
         setApiError(
           result.message ||
-            "送信に失敗しました。お手数ですが、メールにてご連絡ください。"
+            '送信に失敗しました。お手数ですが、メールにてご連絡ください。',
         );
       }
     } catch (error) {
-      console.error("Error sending message:", error);
+      console.error(
+        'Error sending message:',
+        error,
+      );
       setApiError(
-        "送信に失敗しました。お手数ですが、メールにてご連絡ください。"
+        '送信に失敗しました。お手数ですが、メールにてご連絡ください。',
       );
     } finally {
       setLoading(false);
@@ -95,15 +128,21 @@ const ContactForm = () => {
     <div className="bg-background py-10">
       <Head>
         <title>iU 学友会 - お問い合わせ</title>
-        <meta name="description" content="会社へのお問い合わせページ" />
+        <meta
+          name="description"
+          content="会社へのお問い合わせページ"
+        />
       </Head>
       <div className="container mx-auto px-4">
-        <div className="bg-yellow-50 p-8 rounded-lg shadow-lg">
-          <h1 className="text-h2 sm:text-h1Sm font-bold text-highlight mb-6">
+        <div className="rounded-lg bg-yellow-50 p-8 shadow-lg">
+          <h1 className="mb-6 text-h2 font-bold text-highlight sm:text-h1Sm">
             お問い合わせ
           </h1>
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <form
+            onSubmit={handleSubmit}
+            className="space-y-6"
+          >
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
               {/* Name Input */}
               <div>
                 <label
@@ -117,14 +156,16 @@ const ContactForm = () => {
                   id="name"
                   type="text"
                   className={`mt-1 block w-full rounded-md border ${
-                    errors.name
-                      ? "border-red-500 focus:border-red-500"
-                      : "border-gray-300 focus:border-highlight focus:ring-highlight"
+                    errors.name ?
+                      'border-red-500 focus:border-red-500'
+                    : 'border-paragraph focus:border-highlight focus:ring-highlight'
                   } shadow-sm`}
                   required
                 />
                 {errors.name && (
-                  <p className="text-sm text-red-500 mt-1">{errors.name}</p>
+                  <p className="mt-1 text-sm text-red-500">
+                    {errors.name}
+                  </p>
                 )}
               </div>
               {/* Student ID Input */}
@@ -133,21 +174,24 @@ const ContactForm = () => {
                   htmlFor="studentId"
                   className="block text-sm font-medium text-gray-700"
                 >
-                  学籍番号 <span className="text-gray-500">(例: IM123456)</span>
+                  学籍番号{' '}
+                  <span className="text-gray-500">
+                    (例: 20IM2020)
+                  </span>
                 </label>
                 <input
                   name="studentId"
                   id="studentId"
                   type="text"
                   className={`mt-1 block w-full rounded-md border ${
-                    errors.studentId
-                      ? "border-red-500 focus:border-red-500"
-                      : "border-gray-300 focus:border-highlight focus:ring-highlight"
+                    errors.studentId ?
+                      'border-red-500 focus:border-red-500'
+                    : 'border-paragraph focus:border-highlight focus:ring-highlight'
                   } shadow-sm`}
                   required
                 />
                 {errors.studentId && (
-                  <p className="text-sm text-red-500 mt-1">
+                  <p className="mt-1 text-sm text-red-500">
                     {errors.studentId}
                   </p>
                 )}
@@ -165,14 +209,16 @@ const ContactForm = () => {
                   id="email"
                   type="email"
                   className={`mt-1 block w-full rounded-md border ${
-                    errors.email
-                      ? "border-red-500 focus:border-red-500"
-                      : "border-gray-300 focus:border-highlight focus:ring-highlight"
+                    errors.email ?
+                      'border-red-500 focus:border-red-500'
+                    : 'border-paragraph focus:border-highlight focus:ring-highlight'
                   } shadow-sm`}
                   required
                 />
                 {errors.email && (
-                  <p className="text-sm text-red-500 mt-1">{errors.email}</p>
+                  <p className="mt-1 text-sm text-red-500">
+                    {errors.email}
+                  </p>
                 )}
               </div>
               {/* Phone Number Input */}
@@ -188,14 +234,16 @@ const ContactForm = () => {
                   id="phone"
                   type="tel"
                   className={`mt-1 block w-full rounded-md border ${
-                    errors.phone
-                      ? "border-red-500 focus:border-red-500"
-                      : "border-gray-300 focus:border-highlight focus:ring-highlight"
+                    errors.phone ?
+                      'border-red-500 focus:border-red-500'
+                    : 'border-paragraph focus:border-highlight focus:ring-highlight'
                   } shadow-sm`}
                   required
                 />
                 {errors.phone && (
-                  <p className="text-sm text-red-500 mt-1">{errors.phone}</p>
+                  <p className="mt-1 text-sm text-red-500">
+                    {errors.phone}
+                  </p>
                 )}
               </div>
             </div>
@@ -212,14 +260,16 @@ const ContactForm = () => {
                 id="subject"
                 type="text"
                 className={`mt-1 block w-full rounded-md border ${
-                  errors.subject
-                    ? "border-red-500 focus:border-red-500"
-                    : "border-gray-300 focus:border-highlight focus:ring-highlight"
+                  errors.subject ?
+                    'border-red-500 focus:border-red-500'
+                  : 'border-paragraph focus:border-highlight focus:ring-highlight'
                 } shadow-sm`}
                 required
               />
               {errors.subject && (
-                <p className="text-sm text-red-500 mt-1">{errors.subject}</p>
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.subject}
+                </p>
               )}
             </div>
             {/* Message Input */}
@@ -235,21 +285,23 @@ const ContactForm = () => {
                 id="message"
                 rows={4}
                 className={`mt-1 block w-full rounded-md border ${
-                  errors.message
-                    ? "border-red-500 focus:border-red-500"
-                    : "border-gray-300 focus:border-highlight focus:ring-highlight"
+                  errors.message ?
+                    'border-red-500 focus:border-red-500'
+                  : 'border-paragraph focus:border-highlight focus:ring-highlight'
                 } shadow-sm`}
                 required
               ></textarea>
               {errors.message && (
-                <p className="text-sm text-red-500 mt-1">{errors.message}</p>
+                <p className="mt-1 text-sm text-red-500">
+                  {errors.message}
+                </p>
               )}
             </div>
             {/* Submit Button */}
             <div>
               <button
                 type="submit"
-                className="w-full inline-flex justify-center py-3 px-4 border border-transparent text-sm font-medium text-background bg-button hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-buttonHover"
+                className="inline-flex w-full justify-center border border-transparent bg-button px-4 py-3 text-sm font-medium text-background hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-buttonHover focus:ring-offset-2"
                 disabled={loading}
               >
                 送信
@@ -259,7 +311,9 @@ const ContactForm = () => {
           {/* Display API Error */}
           {apiError && (
             <div className="mt-6">
-              <p className="text-sm text-red-600">{apiError}</p>
+              <p className="text-sm text-red-600">
+                {apiError}
+              </p>
             </div>
           )}
           {/* Privacy Policy Notice */}
@@ -268,7 +322,7 @@ const ContactForm = () => {
               お問い合わせ内容を送信することにより、
               <Link
                 href="/privacy-policy"
-                className="text-highlight hover:underline inline"
+                className="inline text-highlight hover:underline"
               >
                 プライバシーポリシー
               </Link>

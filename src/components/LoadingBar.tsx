@@ -1,17 +1,24 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState,
+  useEffect,
+} from 'react';
 
 interface LoadingBarProps {
   loading: boolean;
 }
 
 /**
- * LoadingBar Component
+ * LoadingBar Component.
  *
- * Displays a progress bar at the top of the screen when a loading state is active.
+ * Displays a progress bar at the top of the
+ * screen when a loading state is active.
  *
- * @param {boolean} loading - Determines whether the loading bar is visible and active.
+ * @param {boolean} loading - Determines whether
+ *   the loading bar is visible and active.
  */
-const LoadingBar: React.FC<LoadingBarProps> = ({ loading }) => {
+const LoadingBar: React.FC<LoadingBarProps> = ({
+  loading,
+}) => {
   const [progress, setProgress] = useState(0);
   const [visible, setVisible] = useState(false);
 
@@ -25,7 +32,9 @@ const LoadingBar: React.FC<LoadingBarProps> = ({ loading }) => {
 
       // Increment progress until 90%
       interval = setInterval(() => {
-        setProgress((prev) => (prev < 90 ? prev + 10 : prev));
+        setProgress((prev) =>
+          prev < 90 ? prev + 10 : prev,
+        );
       }, 300);
     } else {
       // Complete progress and hide the loading bar
@@ -40,7 +49,7 @@ const LoadingBar: React.FC<LoadingBarProps> = ({ loading }) => {
 
   return (
     <div
-      className={`z-[1000] fixed top-0 left-0 w-full h-1 transition-opacity duration-300 ease-linear ${
+      className={`fixed left-0 top-0 z-[1000] h-1 w-full transition-opacity duration-300 ease-linear ${
         visible ? 'opacity-100' : 'opacity-0'
       }`}
     >

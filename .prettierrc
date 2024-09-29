@@ -1,0 +1,34 @@
+{
+  "plugins": [
+    "prettier-plugin-jsdoc",
+    "prettier-plugin-organize-imports",
+    "prettier-plugin-tailwindcss"
+  ],
+  "experimentalTernaries": true,
+  "printWidth": 50,
+  "singleQuote": true,
+  "jsxSingleQuote": false,
+  "trailingComma": "all",
+  "semi": true,
+  "tabWidth": 2,
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "tailwindConfig": "./tailwind.config.ts",
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "options": {
+        "parser": "typescript"
+      }
+    },
+    {
+      "files": ["*.html"],
+      "options": {
+        "printWidth": 80,
+        "htmlWhitespaceSensitivity": "ignore"
+      }
+    }
+  ],
+  "jsdocSpaces": 1,
+  "jsdocDescriptionWithDot": true
+}
