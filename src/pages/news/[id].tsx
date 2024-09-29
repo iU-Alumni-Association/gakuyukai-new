@@ -6,7 +6,9 @@
  * "ニュースが見つかりません" を表示します。
  */
 
-export const runtime = 'edge';
+export const config = {
+  runtime: 'experimental-edge',
+};
 import {
   GetStaticPaths,
   GetStaticProps,
