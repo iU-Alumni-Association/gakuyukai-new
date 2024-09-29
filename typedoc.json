@@ -1,9 +1,5 @@
 {
-  "entryPoints": [
-    "src/index.ts",
-    "src/**/*.ts",
-    "components/**/*.ts"
-  ],
+  "entryPoints": ["src/**/*.ts"],
   "out": "docs",
   "exclude": [
     "node_modules",
