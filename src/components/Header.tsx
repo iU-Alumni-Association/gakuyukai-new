@@ -189,7 +189,7 @@ const Header = () => {
                   <li key={index}>
                     <a
                       href={href}
-                      className={`border-radius cursor-pointer rounded-md px-4 py-2 text-xl ${
+                      className={`border-radius cursor-pointer rounded-md px-4 py-2 text-xl text-gray-800 ${
                         isCurrentPage ?
                           'bg-highlight'
                         : ''
