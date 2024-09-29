@@ -1,3 +1,9 @@
+/**
+ * @file
+ * このファイルは、MicroCMSから取得したカテゴリに基づいてブログリストを表示するコンポーネントを提供します。
+ * カテゴリごとのブログ記事をページネーション付きで表示し、結果がない場合は適切なUIを表示します。
+ */
+
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import {
@@ -10,20 +16,23 @@ import Head from 'next/head';
 import { Blog, Category } from '@/lib/types';
 
 interface CategoryListProps {
+  /**
+   * 親コンポーネントで読み込み状態を制御する関数
+   * @param {boolean} isLoading - 現在の読み込み状態
+   */
   setIsLoading: (isLoading: boolean) => void;
 }
 
 /**
- * Renders a list of blogs filtered by category.
- * Fetches the blogs and category information from
- * MicroCMS based on the category ID in the URL.
- * Handles pagination and displays appropriate UI
- * for no results.
+ * カテゴリに基づいてブログを表示するコンポーネント
+ * URLのカテゴリIDに基づいてMicroCMSからブログ情報とカテゴリ情報を取得します。
+ * ページネーション対応で、ブログがない場合は適切なメッセージを表示します。
  *
- * @param {object} props - Component props.
+ * @param {object} props - コンポーネントのプロパティ
  * @param {(isLoading: boolean) => void} props.setIsLoading
- *   - Function to control loading state in parent
- *       component.
+ *   - 親コンポーネントで読み込み状態を制御するための関数
+ *
+ * @returns {JSX.Element} カテゴリに基づいたブログリストを表示するReactコンポーネント
  */
 const CategoryList: React.FC<
   CategoryListProps
@@ -31,7 +40,7 @@ const CategoryList: React.FC<
   const router = useRouter();
   const { categoryId } = router.query;
 
-  // State management for blogs, category details, pagination
+  // ブログ、カテゴリ情報、ページネーション用のステート管理
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [category, setCategory] =
     useState<Category | null>(null);
@@ -39,37 +48,34 @@ const CategoryList: React.FC<
     useState(1);
   const [totalPages, setTotalPages] = useState(0);
 
-  // Define number of blogs to fetch per page
+  // 1ページあたりのブログ表示数
   const blogsPerPage = 10;
 
   /**
-   * Fetch blogs for the selected category and the
-   * current page. Calculates total pages for
-   * pagination.
+   * カテゴリに基づいたブログを取得し、現在のページに対応するブログを表示
+   * ページネーションのために総ページ数を計算
    *
-   * @param {number} page - Current page number
-   *   for fetching blogs.
+   * @param {number} page - 現在のページ番号
    */
   useEffect(() => {
     const fetchBlogs = async (page: number) => {
       if (!categoryId) return;
 
-      setIsLoading(true); // Show loading state
+      setIsLoading(true); // ローディング状態を表示
       const data = await getBlogsByCategory(
         categoryId as string,
         page,
         blogsPerPage,
       );
-      setBlogs(data.contents); // Set blogs in state
+      setBlogs(data.contents); // ブログデータをステートにセット
       setTotalPages(
         Math.ceil(data.totalCount / blogsPerPage),
-      ); // Calculate total pages
-      setIsLoading(false); // Hide loading state
+      ); // 総ページ数を計算
+      setIsLoading(false); // ローディング状態を解除
     };
 
     /**
-     * Fetch category details based on category
-     * ID.
+     * カテゴリIDに基づいてカテゴリ詳細を取得
      */
     const fetchCategory = async () => {
       if (!categoryId) return;
@@ -77,7 +83,7 @@ const CategoryList: React.FC<
       const data = await getCategory(
         categoryId as string,
       );
-      setCategory(data); // Set category details in state
+      setCategory(data); // カテゴリ情報をステートにセット
     };
 
     fetchBlogs(currentPage);
@@ -85,15 +91,15 @@ const CategoryList: React.FC<
   }, [categoryId, setIsLoading, currentPage]);
 
   /**
-   * Handle page change event.
+   * @description
+   * ページ変更時にページ番号を設定します。
    *
-   * @param {number} page - The new page number to
-   *   navigate to.
+   * @param {number} page - 新しいページ番号
    */
   const handlePageChange = (
     pageNumber: number,
   ) => {
-    setCurrentPage(pageNumber); // Update the current page state
+    setCurrentPage(pageNumber); // 現在のページ番号を更新
   };
 
   return (

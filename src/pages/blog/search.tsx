@@ -1,3 +1,9 @@
+/**
+ * @file
+ * このファイルは、ブログ検索ページの実装を提供します。
+ * ユーザーが検索クエリを入力し、その結果としてブログ記事を表示する機能を持ちます。
+ */
+
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { getBlogsByQuery } from '@/lib/microcms';
@@ -11,16 +17,17 @@ import LoadingBar from '@/components/LoadingBar';
 import Meta from '@/components/Meta';
 
 /**
- * SearchPage component handles displaying the
- * results of a blog search query. It fetches blog
- * posts based on the query from the router's
- * query parameters.
+ * @description
+ * 検索結果ページを表示するためのコンポーネントです。このコンポーネントは、Next.jsのルーターから
+ * 検索クエリを取得し、そのクエリに基づいてブログ記事を検索・表示します。
+ *
+ * @component
  */
 const SearchPage = () => {
   const router = useRouter();
   const { query } = router.query;
 
-  // State variables to store blogs, loading status, and pagination
+  // ブログ記事、読み込みステータス、ページネーションの状態を管理するためのstate
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] =
@@ -28,9 +35,12 @@ const SearchPage = () => {
   const [totalPages, setTotalPages] = useState(1);
 
   /**
-   * Fetch blogs based on the current query and
-   * page. This effect is triggered whenever the
-   * query or currentPage changes.
+   * @description
+   * 検索クエリとページ番号に基づいてブログ記事を取得する非同期関数。
+   * 検索クエリまたは現在のページが変更されるたびにこの関数が実行されます。
+   *
+   * @remarks
+   * 1ページあたり10件のブログ記事を表示するように設定されています。
    */
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -44,10 +54,10 @@ const SearchPage = () => {
             currentPage,
           );
         setBlogs(contents);
-        setTotalPages(Math.ceil(totalCount / 10)); // Calculate total pages based on 10 items per page
+        setTotalPages(Math.ceil(totalCount / 10)); // 1ページあたり10件の記事で総ページ数を計算
       } catch (error) {
         console.error(
-          'Error fetching blogs:',
+          'ブログ取得中にエラーが発生しました:',
           error,
         );
       } finally {
@@ -59,10 +69,10 @@ const SearchPage = () => {
   }, [query, currentPage]);
 
   /**
-   * Handle page change event.
+   * @description
+   * ページ変更時にページ番号を設定します。
    *
-   * @param {number} page - The new page number to
-   *   navigate to.
+   * @param {number} page - 新しいページ番号
    */
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -70,7 +80,7 @@ const SearchPage = () => {
 
   return (
     <>
-      {/* Meta section */}
+      {/* メタ情報 */}
       <Meta
         title="iU 学友会 | ブログ検索"
         description="iU 学友会のブログ検索ページです。お探しの記事を検索してご覧いただけます。"
@@ -80,15 +90,15 @@ const SearchPage = () => {
       <Breadcrumbs />
 
       <div className="container mx-auto min-h-svh p-4 pb-12">
-        {/* Display loading bar */}
+        {/* ローディングバーの表示 */}
         <LoadingBar loading={loading} />
 
-        {/* Search results header */}
+        {/* 検索結果のヘッダー */}
         <h1 className="mb-8 text-h1 font-bold text-gray-800 sm:text-h1Sm">
           検索結果: {query}
         </h1>
 
-        {/* Main content: display either loading, no results, or list of blogs */}
+        {/* メインコンテンツ：読み込み中、結果なし、またはブログリストの表示 */}
         {loading ?
           <p className="text-center text-p text-gray-600 sm:text-pSm">
             読み込み中...
@@ -105,13 +115,11 @@ const SearchPage = () => {
           </ul>
         }
 
-        {/* Pagination controls */}
+        {/* ページネーションのコントロール */}
         {totalPages > 1 && (
           <div className="flex justify-center space-x-2">
             {Array.from(
-              {
-                length: totalPages,
-              },
+              { length: totalPages },
               (_, index) => (
                 <button
                   key={index + 1}

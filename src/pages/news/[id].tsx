@@ -1,4 +1,10 @@
-export const runtime = 'experimental-edge';
+/**
+ * @file
+ * このファイルは、ニュース記事の詳細ページを表示するための
+ * コンポーネントと、静的生成のための関数を提供します。
+ * 記事が存在しない場合にはフォールバックとして
+ * "ニュースが見つかりません" を表示します。
+ */
 
 import {
   GetStaticPaths,
@@ -19,17 +25,17 @@ type NewsDetailProps = {
 };
 
 /**
- * News Detail Page Component.
+ * ニュース詳細ページコンポーネント
  *
- * @param {NewsDetailProps} props - The news
- *   detail props containing the news data.
- * @returns {JSX.Element} - The rendered
- *   NewsDetailPage component.
+ * @param {NewsDetailProps} props - ニュース詳細データを含むプロパティ
+ * @returns {JSX.Element} - レンダリングされたニュース詳細ページの JSX 要素
+ * @remarks
+ * ニュースが存在しない場合、"ニュースが見つかりません" というメッセージを表示します。
  */
 const NewsDetailPage = ({
   news,
 }: NewsDetailProps): JSX.Element => {
-  // If no news is found, display a fallback message.
+  // ニュースが見つからない場合、フォールバックメッセージを表示
   if (!news) {
     return (
       <p className="text-center">
@@ -71,14 +77,15 @@ const NewsDetailPage = ({
 };
 
 /**
- * Generate paths for static generation.
+ * 静的生成用のパスを生成します。
  *
  * @returns {Promise<{
  *   paths: { params: { id: string } }[];
  *   fallback: boolean;
  * }>}
- *   - Paths for the news articles and whether
- *       fallback should be enabled.
+ *   - 記事のパスリストおよびフォールバックの有効化設定
+ * @remarks
+ * まだ事前生成されていないパスも動的に生成できるよう、`fallback: true` に設定しています。
  */
 export const getStaticPaths: GetStaticPaths =
   async () => {
@@ -89,23 +96,22 @@ export const getStaticPaths: GetStaticPaths =
 
     return {
       paths,
-      fallback: true, // Enable dynamic page generation if the path is not pre-rendered.
+      fallback: true, // 動的ページ生成を有効にします
     };
   };
 
 /**
- * Fetch data for the news detail page at build
- * time.
+ * ニュース詳細ページのデータをビルド時に取得します。
  *
- * @param {any} context - The static props
- *   context.
+ * @param {any} context - 静的プロップスのコンテキスト
  * @returns {Promise<{
  *   props: { news: Blog };
  *   notFound?: boolean;
  *   revalidate: number;
  * }>}
- *   - The props for the page, or a notFound flag if
- *       no news is found.
+ *   - ページのプロパティ、またはニュースが見つからない場合は `notFound` フラグ
+ * @remarks
+ * Incremental Static Regeneration (ISR) を利用して、ニュースが定期的に最新のものに更新されます。
  */
 export const getStaticProps: GetStaticProps =
   async (context) => {
@@ -114,7 +120,7 @@ export const getStaticProps: GetStaticProps =
       id as string,
     );
 
-    // If the news is not found, return a 404 page.
+    // ニュースが見つからない場合は 404 ページを返す
     if (!news) {
       return {
         notFound: true,
@@ -125,7 +131,7 @@ export const getStaticProps: GetStaticProps =
       props: {
         news,
       },
-      revalidate: 1, // Enable Incremental Static Regeneration (ISR) for keeping the content up to date.
+      revalidate: 1, // ISRを使い、コンテンツを最新の状態に保つ
     };
   };
 

@@ -1,28 +1,41 @@
+/**
+ * @file
+ * CardBorderコンポーネントを定義します。このコンポーネントは、
+ * タイトル、説明、日付を表示するボーダー付きカードを提供し、
+ * ニュース詳細ページへのリンクとして機能します。
+ */
+
 import React from 'react';
 import Link from 'next/link';
 
 /**
- * Props for the CardBorder component.
- *
- * @typedef {Object} CardBorderProps
- * @property {string} title - The title of the card.
- * @property {string} description - The description of the card.
- * @property {string} date - The date to be displayed on the card.
- * @property {string} id - The ID used for linking to the news detail page.
+ * CardBorderコンポーネントのプロパティを定義するインターフェース。
+ * @property {string} title - カードのタイトル。
+ * @property {string} description - カードの説明。
+ * @property {string} date - カードに表示される日付。
+ * @property {string} id - ニュース詳細ページへのリンクに使用されるID。
  */
 interface CardBorderProps {
   title: string;
   description: string;
   date: string;
-  id: string; // The ID for linking to the news detail page
+  id: string; // ニュース詳細ページへのリンクに使用されるID
 }
 
 /**
- * CardBorder component that displays a bordered card with a title, description, and date.
- * The card is linked to a news detail page using the provided ID.
+ * @description
+ * CardBorderコンポーネントは、タイトル、説明、および日付を含むボーダー付きカードを表示します。
+ * 提供されたIDを使用して、ニュース詳細ページにリンクします。
+ * @param {CardBorderProps} props - CardBorderコンポーネントのプロパティ。
+ * @returns {JSX.Element} レンダリングされたカードコンポーネント。
  *
- * @param {CardBorderProps} props - The props for the CardBorder component.
- * @returns {JSX.Element} The rendered card component.
+ * @example
+ * <CardBorder
+ *   title="ニュースのタイトル"
+ *   description="ニュースの概要説明"
+ *   date="2024-09-29"
+ *   id="12345"
+ * />
  */
 const CardBorder: React.FC<CardBorderProps> = ({
   title,

@@ -1,6 +1,23 @@
+/**
+ * @file
+ * このファイルはプライバシーポリシーページのコンポーネントを定義しています。
+ * ヘッダー、フッター、およびプライバシーポリシーに関する情報が含まれています。
+ */
+
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
+/**
+ * プライバシーポリシーページのコンポーネント
+ * @returns {JSX.Element} プライバシーポリシーページのJSX要素を返します
+ * @remarks
+ * このコンポーネントでは、Tailwind CSSのユーティリティクラスを使用してレイアウトを定義しています。
+ * 背景色は `bg-background` で指定され、フォントサイズやマージンなども調整されています。
+ * @example
+ * ```
+ * <PrivacyPolicy />
+ * ```
+ */
 const PrivacyPolicy = () => {
   return (
     <>

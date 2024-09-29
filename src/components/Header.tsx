@@ -2,21 +2,32 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 /**
- * Header component with responsive navigation and
- * menu toggle functionality.
+ * @file
+ * このファイルは、レスポンシブなヘッダーコンポーネントを実装し、ナビゲーション機能や
+ * メニューのトグル機能を提供します。
+ */
+
+/**
+ * ヘッダーコンポーネント
+ * @description
+ * レスポンシブナビゲーションと、メニューのトグル機能を持ったヘッダーコンポーネント。
+ * ビューポートのサイズ変更に応じて、モバイルメニューが自動的に閉じます。
+ * @returns {JSX.Element} ヘッダーコンポーネントのJSX要素
  */
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
-  /** Toggle the mobile menu visibility. */
+  /**
+   * モバイルメニューの表示/非表示を切り替える関数
+   */
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
   /**
-   * Handle window resize to close the menu when
-   * the viewport width exceeds 768px.
+   * ウィンドウサイズ変更時に、ビューポート幅が768pxを超えたら
+   * メニューを自動的に閉じるハンドラ関数
    */
   const handleResize = () => {
     if (window.innerWidth >= 768) {
@@ -24,7 +35,9 @@ const Header = () => {
     }
   };
 
-  // Set up event listener for window resize.
+  /**
+   * ウィンドウリサイズイベントにリスナーを設定し、クリーンアップ時にリスナーを解除します。
+   */
   useEffect(() => {
     window.addEventListener(
       'resize',
@@ -39,19 +52,17 @@ const Header = () => {
   }, []);
 
   /**
-   * Handle navigation to a specific route. If
-   * already on the route, do nothing. Otherwise,
-   * navigate to the new route and close the
-   * menu.
-   *
-   * @param {string} href - The target URL for
-   *   navigation.
+   * ナビゲーション処理
+   * @description
+   * 指定されたURLに遷移し、現在のページと異なる場合はルートを変更し、メニューを閉じます。
+   * @param {React.MouseEvent<HTMLAnchorElement>} e - クリックイベント
+   * @param {string} href - ナビゲーション先のURL
    */
   const handleNavigation = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string,
   ) => {
-    e.preventDefault(); // Prevent default link behavior
+    e.preventDefault(); // デフォルトのリンク動作を無効化
     if (router.asPath !== href) {
       router.push(href);
     }
@@ -61,18 +72,18 @@ const Header = () => {
   return (
     <header className="fixed top-0 z-50 w-full bg-background shadow-md">
       <div className="container mx-auto flex items-center justify-between p-3">
-        {/* Logo Section */}
+        {/* ロゴセクション */}
         <div className="flex flex-grow items-center">
           <a href="/">
             <img
               src="/logo.png"
-              alt="gakuyukai Logo"
+              alt="gakuyukai ロゴ"
               className="max-h-xs max-h-9 cursor-pointer"
             />
           </a>
         </div>
 
-        {/* Desktop Navigation */}
+        {/* デスクトップナビゲーション */}
         <div className="hidden flex-grow justify-end md:flex">
           <nav className="flex flex-col items-center md:flex-row">
             <ul className="flex flex-col md:flex-row">
@@ -125,7 +136,7 @@ const Header = () => {
           </nav>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* モバイルメニューボタン */}
         <button
           className="hamburger text-3xl text-black md:hidden"
           onClick={toggleMenu}
@@ -134,7 +145,7 @@ const Header = () => {
         </button>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* モバイルメニューオーバーレイ */}
       {menuOpen && (
         <div
           className={`fixed inset-0 z-50 flex items-start justify-start bg-background bg-opacity-75 backdrop-blur-sm transition-opacity duration-300 ${
@@ -148,7 +159,7 @@ const Header = () => {
             className="relative flex h-auto w-full flex-col items-start bg-transparent p-5 pt-16"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close button for mobile menu (right aligned) */}
+            {/* モバイルメニューの閉じるボタン */}
             <button
               className="absolute right-5 top-5 text-3xl text-black"
               onClick={toggleMenu}
@@ -156,7 +167,7 @@ const Header = () => {
               &times;
             </button>
 
-            {/* Mobile category links */}
+            {/* モバイルカテゴリーリンク */}
             <ul className="mt-8 flex flex-col items-start space-y-4">
               {[
                 '/services',

@@ -1,3 +1,9 @@
+/**
+ * @file
+ * このファイルは、ニュースページの実装を提供します。
+ * ニュース記事の一覧表示やカテゴリによるフィルタリング、ページネーション機能を実装しています。
+ */
+
 import { useState, useEffect } from 'react';
 import {
   getNews,
@@ -12,7 +18,14 @@ import Meta from '@/components/Meta';
 import type { Blog, Category } from '@/lib/types';
 
 /**
- * NewsPage component renders a paginated list of news articles with category sorting.
+ * ニュースページコンポーネント
+ * @description
+ * カテゴリによる絞り込み機能とページネーションを備えたニュース記事一覧を表示するコンポーネントです。
+ * @returns {JSX.Element} ニュースページのコンテンツを表示するReactコンポーネント
+ * @example
+ * ```
+ * <NewsPage />
+ * ```
  */
 const NewsPage = () => {
   const [news, setNews] = useState<Blog[]>([]);
@@ -20,14 +33,17 @@ const NewsPage = () => {
     Category[]
   >([]);
   const [selectedCategory, setSelectedCategory] =
-    useState<string>(''); // State for selected category
+    useState<string>(''); // 選択されたカテゴリ
   const [currentPage, setCurrentPage] =
-    useState(1);
-  const [totalPages, setTotalPages] = useState(0);
-  const [loading, setLoading] = useState(false);
+    useState(1); // 現在のページ番号
+  const [totalPages, setTotalPages] = useState(0); // 合計ページ数
+  const [loading, setLoading] = useState(false); // ローディング状態
 
   /**
-   * Fetch news articles based on selected category and current page.
+   * ニュース記事をフェッチする関数
+   * @remarks
+   * ページ番号と選択されたカテゴリに基づいてニュース記事を取得します。
+   * データフェッチ中はローディングバーが表示されます。
    */
   useEffect(() => {
     const fetchNews = async () => {
@@ -43,7 +59,7 @@ const NewsPage = () => {
         setTotalPages(Math.ceil(totalCount / 10));
       } catch (error) {
         console.error(
-          'Error fetching news:',
+          'ニュースの取得中にエラーが発生しました:',
           error,
         );
       } finally {
@@ -54,7 +70,9 @@ const NewsPage = () => {
   }, [currentPage, selectedCategory]);
 
   /**
-   * Fetch categories on initial load.
+   * カテゴリをフェッチする関数
+   * @remarks
+   * 初回ロード時に、利用可能なニュースカテゴリを取得します。
    */
   useEffect(() => {
     const fetchCategories = async () => {
@@ -63,7 +81,7 @@ const NewsPage = () => {
         setCategories(categories);
       } catch (error) {
         console.error(
-          'Error fetching categories:',
+          'カテゴリの取得中にエラーが発生しました:',
           error,
         );
       }
@@ -71,15 +89,27 @@ const NewsPage = () => {
     fetchCategories();
   }, []);
 
+  /**
+   * ページ番号変更時の処理
+   * @param {number} page - 新しいページ番号
+   * @description
+   * ページ番号を変更して、そのページのニュースをフェッチします。
+   */
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
+  /**
+   * カテゴリ変更時の処理
+   * @param {string} category - 選択されたカテゴリのID
+   * @description
+   * カテゴリが変更された際に、ニュースをそのカテゴリに基づいてフィルタリングし、ページ番号をリセットします。
+   */
   const handleCategoryChange = (
     category: string,
   ) => {
     setSelectedCategory(category);
-    setCurrentPage(1); // Reset to first page when category changes
+    setCurrentPage(1); // カテゴリ変更時にページをリセット
   };
 
   return (
@@ -97,7 +127,7 @@ const NewsPage = () => {
           ニュース一覧
         </h2>
 
-        {/* Category filter */}
+        {/* カテゴリフィルタ */}
         <div className="mx-4 mb-8">
           <select
             id="category"
@@ -119,7 +149,7 @@ const NewsPage = () => {
           </select>
         </div>
 
-        {/* News list */}
+        {/* ニュースリスト */}
         {loading ?
           <p className="text-center text-p text-paragraph sm:text-pSm">
             読み込み中...
@@ -152,7 +182,7 @@ const NewsPage = () => {
           </>
         }
 
-        {/* Pagination */}
+        {/* ページネーション */}
         {totalPages > 1 && (
           <div className="flex justify-center space-x-2">
             {Array.from(

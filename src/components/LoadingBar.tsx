@@ -1,50 +1,68 @@
+/**
+ * @file
+ * このファイルは、`LoadingBar` コンポーネントの実装を提供します。
+ * `loading` 状態に応じて画面上部にプログレスバーを表示し、ユーザーに処理中であることを視覚的に知らせます。
+ */
+
 import React, {
   useState,
   useEffect,
 } from 'react';
 
+/**
+ * `LoadingBarProps` インターフェース
+ * @property {boolean} loading - ローディング中かどうかを示すフラグ
+ */
 interface LoadingBarProps {
   loading: boolean;
 }
 
 /**
- * LoadingBar Component.
+ * LoadingBar コンポーネント
  *
- * Displays a progress bar at the top of the
- * screen when a loading state is active.
+ * @description
+ * ローディング中の状態を視覚化するためのプログレスバーを表示します。ローディング中は進行状況が90%まで進み、完了後に非表示になります。
  *
- * @param {boolean} loading - Determines whether
- *   the loading bar is visible and active.
+ * @param {boolean} loading - ローディングバーを表示するかどうかを制御するフラグ
+ *
+ * @example
+ * ```tsx
+ * <LoadingBar loading={true} />
+ * ```
+ *
+ * @remarks
+ * `loading` が `true` の場合、バーが90%まで増加し、`loading` が `false` に変わったタイミングで100%まで進行してからフェードアウトします。
  */
 const LoadingBar: React.FC<LoadingBarProps> = ({
   loading,
 }) => {
-  const [progress, setProgress] = useState(0);
-  const [visible, setVisible] = useState(false);
+  const [progress, setProgress] = useState(0); // プログレスバーの進行状況
+  const [visible, setVisible] = useState(false); // プログレスバーの表示制御
 
   useEffect(() => {
     let interval: NodeJS.Timeout;
 
     if (loading) {
-      // Start showing the loading bar
+      // ローディング中の進行状況をリセットし、バーを表示
       setVisible(true);
       setProgress(0);
 
-      // Increment progress until 90%
+      // プログレスバーを90%まで定期的に増加
       interval = setInterval(() => {
         setProgress((prev) =>
           prev < 90 ? prev + 10 : prev,
         );
       }, 300);
     } else {
-      // Complete progress and hide the loading bar
+      // ローディング完了時に100%に設定し、バーをフェードアウト
       setProgress(100);
       setTimeout(() => {
         setVisible(false);
       }, 500);
     }
 
-    return () => clearInterval(interval); // Clean up interval on component unmount or when loading changes
+    // コンポーネントがアンマウントされるか、`loading` 状態が変わったときにクリーンアップ
+    return () => clearInterval(interval);
   }, [loading]);
 
   return (

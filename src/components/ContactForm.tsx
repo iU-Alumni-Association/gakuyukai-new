@@ -1,3 +1,8 @@
+/**
+ * @file
+ * このファイルは、問い合わせフォームを提供します。フォームはユーザーからの入力を検証し、APIにデータを送信します。
+ */
+
 import {
   useState,
   useEffect,
@@ -7,7 +12,12 @@ import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Head from 'next/head';
 
-const ContactForm = () => {
+/**
+ * 問い合わせフォームを提供するコンポーネント
+ * @returns {JSX.Element} フォームUI
+ */
+const ContactForm = (): JSX.Element => {
+  // ローディング状態、APIエラー、およびフォームエラーメッセージを管理
   const [loading, setLoading] = useState(false);
   const [apiError, setApiError] = useState('');
   const [errors, setErrors] = useState<
@@ -15,6 +25,11 @@ const ContactForm = () => {
   >({});
   const router = useRouter();
 
+  /**
+   * APIエンドポイントのログを表示するための副作用
+   * @remarks
+   * このエフェクトはコンポーネントがマウントされた際に一度だけ実行されます。
+   */
   useEffect(() => {
     console.log(
       'API Endpoint:',
@@ -22,9 +37,14 @@ const ContactForm = () => {
     );
   }, []);
 
+  /**
+   * フォームの入力データを検証する関数
+   * @param {Record<string, string>} data - ユーザーが入力したフォームデータ
+   * @returns {Record<string, string>} エラーメッセージを持つオブジェクト
+   */
   const validate = (
     data: Record<string, string>,
-  ) => {
+  ): Record<string, string> => {
     const newErrors: Record<string, string> = {};
     if (!data.name)
       newErrors.name = 'お名前は必須です。';
@@ -59,9 +79,14 @@ const ContactForm = () => {
     return newErrors;
   };
 
+  /**
+   * フォームが送信された際に呼び出される関数
+   * @param {FormEvent<HTMLFormElement>} event - フォーム送信イベント
+   * @returns {Promise<void>} 非同期処理の完了
+   */
   const handleSubmit = async (
     event: FormEvent<HTMLFormElement>,
-  ) => {
+  ): Promise<void> => {
     event.preventDefault();
     setLoading(true);
     setApiError('');
@@ -143,7 +168,7 @@ const ContactForm = () => {
             className="space-y-6"
           >
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {/* Name Input */}
+              {/* 名前入力フィールド */}
               <div>
                 <label
                   htmlFor="name"
@@ -168,7 +193,7 @@ const ContactForm = () => {
                   </p>
                 )}
               </div>
-              {/* Student ID Input */}
+              {/* 学籍番号入力フィールド */}
               <div>
                 <label
                   htmlFor="studentId"
@@ -196,7 +221,7 @@ const ContactForm = () => {
                   </p>
                 )}
               </div>
-              {/* Email Input */}
+              {/* メールアドレス入力フィールド */}
               <div>
                 <label
                   htmlFor="email"
@@ -221,7 +246,7 @@ const ContactForm = () => {
                   </p>
                 )}
               </div>
-              {/* Phone Number Input */}
+              {/* 電話番号入力フィールド */}
               <div>
                 <label
                   htmlFor="phone"
@@ -247,7 +272,7 @@ const ContactForm = () => {
                 )}
               </div>
             </div>
-            {/* Subject Input */}
+            {/* 件名入力フィールド */}
             <div>
               <label
                 htmlFor="subject"
@@ -272,7 +297,7 @@ const ContactForm = () => {
                 </p>
               )}
             </div>
-            {/* Message Input */}
+            {/* メッセージ入力フィールド */}
             <div>
               <label
                 htmlFor="message"
@@ -297,7 +322,7 @@ const ContactForm = () => {
                 </p>
               )}
             </div>
-            {/* Submit Button */}
+            {/* 送信ボタン */}
             <div>
               <button
                 type="submit"
@@ -308,7 +333,7 @@ const ContactForm = () => {
               </button>
             </div>
           </form>
-          {/* Display API Error */}
+          {/* APIエラーメッセージ表示 */}
           {apiError && (
             <div className="mt-6">
               <p className="text-sm text-red-600">
@@ -316,7 +341,7 @@ const ContactForm = () => {
               </p>
             </div>
           )}
-          {/* Privacy Policy Notice */}
+          {/* プライバシーポリシー通知 */}
           <div className="mt-8 text-sm text-gray-600">
             <p>
               お問い合わせ内容を送信することにより、

@@ -1,3 +1,9 @@
+/**
+ * @file
+ * このファイルは、ブログの詳細ページのレンダリングを担当しています。
+ * microCMSからブログデータを取得し、動的に表示する機能を提供します。
+ */
+
 export const runtime = 'experimental-edge';
 
 import {
@@ -18,18 +24,20 @@ import LoadingBar from '@/components/LoadingBar';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
 // Define the props for the BlogPage component
+/**
+ * ブログページコンポーネントのプロパティ型
+ * @property {Blog | null} blog - ブログのデータ、存在しない場合はnull
+ */
 type BlogProps = {
   blog: Blog | null;
 };
 
 /**
- * BlogPage Component Renders the blog page with
- * dynamic content.
+ * BlogPage コンポーネント
+ * ブログデータを動的にレンダリングします。
  *
- * @param {BlogProps} props - The blog data passed
- *   as props.
- * @returns {JSX.Element} - The rendered blog
- *   page.
+ * @param {BlogProps} props - ブログデータを含むプロパティ
+ * @returns {JSX.Element} - レンダリングされたブログページ
  */
 const BlogPage = ({ blog }: BlogProps) => {
   const router = useRouter();
@@ -37,28 +45,28 @@ const BlogPage = ({ blog }: BlogProps) => {
     router.isFallback,
   );
 
-  // Handle loading state based on fallback
+  // Fallbackモードに基づいてロード状態を管理
   useEffect(() => {
     if (!router.isFallback) {
       setLoading(false);
     }
   }, [router.isFallback]);
 
-  // Display loading screen while fetching data
+  // データ取得中にローディング画面を表示
   if (loading) {
     return (
       <>
         <LoadingBar loading={loading} />
         <div className="flex min-h-screen items-center justify-center p-4">
           <p className="text-p text-gray-600 sm:text-pSm">
-            Loading...
+            ロード中...
           </p>
         </div>
       </>
     );
   }
 
-  // Return null if no blog data is available
+  // ブログデータがない場合、nullを返す
   if (!blog) {
     return null;
   }
@@ -81,12 +89,12 @@ const BlogPage = ({ blog }: BlogProps) => {
           />
         </Head>
 
-        {/* Blog Title */}
+        {/* ブログタイトル */}
         <h1 className="mb-6 text-h1 font-bold text-gray-900 sm:text-h1Sm">
           {blog.title}
         </h1>
 
-        {/* Eyecatch Image */}
+        {/* アイキャッチ画像 */}
         {blog.eyecatch && (
           <div className="mb-8 flex justify-center">
             <img
@@ -97,7 +105,7 @@ const BlogPage = ({ blog }: BlogProps) => {
           </div>
         )}
 
-        {/* Blog Content */}
+        {/* ブログコンテンツ */}
         <div
           className="prose prose-lg break-all"
           dangerouslySetInnerHTML={{
@@ -111,15 +119,14 @@ const BlogPage = ({ blog }: BlogProps) => {
 };
 
 /**
- * GetStaticPaths - Generate the dynamic paths for
- * blog pages. Fetches the list of blog IDs to
- * create the paths.
+ * GetStaticPaths - ブログページ用の動的パスを生成します。
+ * ブログIDのリストを取得してパスを作成します。
  *
  * @returns {Promise<{
  *   paths: { params: { id: string } }[];
  *   fallback: boolean;
  * }>}
- *   - The dynamic paths and fallback setting.
+ *   - 動的パスとFallback設定を返す
  */
 export const getStaticPaths: GetStaticPaths =
   async () => {
@@ -132,16 +139,14 @@ export const getStaticPaths: GetStaticPaths =
   };
 
 /**
- * GetStaticProps - Fetch blog data based on the
- * provided ID.
+ * GetStaticProps - 指定されたIDに基づいてブログデータを取得します。
  *
- * @param {Object} context - The Next.js context
- *   object containing route parameters.
+ * @param {Object} context - Next.jsのコンテキストオブジェクト、ルートパラメータを含む
  * @returns {Promise<
  *   | { props: BlogProps; revalidate: number }
  *   | { notFound: true }
  * >}
- *   - The blog data or 404 if not found.
+ *   - ブログデータ、またはデータが見つからない場合は404を返す
  */
 export const getStaticProps: GetStaticProps =
   async (context) => {
@@ -150,17 +155,17 @@ export const getStaticProps: GetStaticProps =
       id as string,
     );
 
-    // Log the fetched blog data for debugging purposes
+    // デバッグ用に取得したブログデータをログ出力
     console.log('Blog data:', blog);
 
-    // If no blog is found, return 404
+    // ブログが見つからない場合は404を返す
     if (!blog) {
       return {
         notFound: true,
       };
     }
 
-    // Return the blog data as props and set revalidation interval
+    // ブログデータをpropsとして返し、再検証のインターバルを設定
     return {
       props: {
         blog,

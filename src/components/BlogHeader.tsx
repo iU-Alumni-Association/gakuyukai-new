@@ -1,18 +1,52 @@
+/**
+ * @file
+ * このファイルは、ブログヘッダーコンポーネントの実装を提供します。
+ * 主に、ナビゲーションメニューや検索機能を含むユーザーインターフェースを構成します。
+ */
+
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { getCategories } from '@/lib/microcms';
 import type { Category } from '@/lib/types';
 
+/**
+ * ブログヘッダーコンポーネント
+ * @description
+ * カテゴリー表示、検索機能、モバイルメニューのトグルなどを提供するブログのヘッダー部分を担当します。
+ */
 const BlogHeader = () => {
+  /**
+   * @description
+   * ブログカテゴリーのデータを保持する状態管理フック
+   * @type {Category[]}
+   */
   const [categories, setCategories] = useState<
     Category[]
   >([]);
+
+  /**
+   * @description
+   * モバイルメニューの開閉状態を管理する状態フック
+   * @type {boolean}
+   */
   const [menuOpen, setMenuOpen] = useState(false);
+
+  /**
+   * @description
+   * 検索クエリを保持する状態フック
+   * @type {string}
+   */
   const [searchQuery, setSearchQuery] =
     useState('');
+
   const router = useRouter();
 
+  /**
+   * @description
+   * カテゴリー情報を取得して状態を更新する非同期関数
+   * @returns {Promise<void>}
+   */
   useEffect(() => {
     const fetchCategories = async () => {
       const data: Category[] =
@@ -22,10 +56,20 @@ const BlogHeader = () => {
     fetchCategories();
   }, []);
 
+  /**
+   * @description
+   * モバイルメニューの表示状態をトグルする関数
+   */
   const toggleMenu = () => {
     setMenuOpen((prevState) => !prevState);
   };
 
+  /**
+   * @description
+   * 検索フォームの送信処理を行う関数
+   * @param {React.FormEvent} e - フォーム送信イベント
+   * @returns {void}
+   */
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchQuery.trim()) {
@@ -38,7 +82,7 @@ const BlogHeader = () => {
   return (
     <header className="fixed top-0 z-50 w-full bg-background shadow-md">
       <div className="container mx-auto flex items-center justify-between p-3">
-        {/* Logo */}
+        {/* ロゴ */}
         <Link href="/" legacyBehavior>
           <img
             src="/logo.png"
@@ -47,7 +91,7 @@ const BlogHeader = () => {
           />
         </Link>
 
-        {/* Search input form for PC */}
+        {/* PC用検索フォーム */}
         <form
           onSubmit={handleSearch}
           className="ml-4 hidden items-center md:flex"
@@ -69,7 +113,7 @@ const BlogHeader = () => {
           </button>
         </form>
 
-        {/* Hamburger menu button */}
+        {/* ハンバーガーメニュー */}
         <button
           className="hamburger text-3xl text-black"
           onClick={toggleMenu}
@@ -78,7 +122,7 @@ const BlogHeader = () => {
         </button>
       </div>
 
-      {/* Mobile menu */}
+      {/* モバイルメニュー */}
       {menuOpen && (
         <div
           className="fixed inset-0 z-50 flex items-start justify-start bg-background bg-opacity-80 backdrop-blur"
@@ -88,7 +132,7 @@ const BlogHeader = () => {
             className="relative flex h-auto w-full flex-col items-start bg-transparent p-5 pt-16"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Close button for mobile menu */}
+            {/* モバイルメニューの閉じるボタン */}
             <button
               className="absolute right-5 top-5 text-3xl text-black"
               onClick={toggleMenu}
@@ -96,7 +140,7 @@ const BlogHeader = () => {
               &times;
             </button>
 
-            {/* Search form in mobile menu */}
+            {/* モバイルメニュー内検索フォーム */}
             <form
               onSubmit={handleSearch}
               className="mt-5 flex w-full items-center space-x-2"
@@ -118,7 +162,7 @@ const BlogHeader = () => {
               </button>
             </form>
 
-            {/* Mobile category links */}
+            {/* モバイルメニュー内のカテゴリーリンク */}
             <ul className="mt-8 flex flex-col items-start space-y-4">
               {categories.map((category) => (
                 <li key={category.id}>

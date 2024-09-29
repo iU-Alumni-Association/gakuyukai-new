@@ -1,18 +1,26 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/**
+ * @description
+ * Google Fontsから'M PLUS 1p'フォントをインポートし、ページ全体で使用します。
+ */
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+1p:wght@400;700&display=swap');
 
 :root {
+  /**
+   * @description
+   * 明るいテーマの前景色を設定します。
+   */
   --foreground-rgb: 255, 255, 255;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 33, 33, 33;
-  }
-}
-
+/**
+ * @description
+ * ページ全体の背景と文字色のスタイルを定義します。
+ * フォントとして、M PLUS 1pを使用し、テーマに応じた前景色と背景色を設定します。
+ */
 body {
   color: rgb(var(--foreground-rgb));
   font-family: 'M PLUS 1p', sans-serif;
@@ -24,12 +32,20 @@ body {
     rgb(var(--background-start-rgb));
 }
 
+/**
+ * @description
+ * Tailwind CSSのユーティリティクラスを追加し、テキストのバランスを取る新しいクラス `.text-balance` を定義します。
+ */
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
 
+/**
+ * @description
+ * ビューポートの高さに基づいた最小高さを設定し、トップに64pxのマージンを付けます。
+ */
 .min-h-svh {
   min-height: calc(100vh - 204.67px);
   margin-top: 64px;

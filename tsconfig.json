@@ -20,6 +20,8 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
+    "src/**/*.ts",
+    "src/**/*.tsx",
     "src/components/HeaderBackground.js"
   ],
   "exclude": ["node_modules"]

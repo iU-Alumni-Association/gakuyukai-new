@@ -1,15 +1,23 @@
+/**
+ * @file
+ * このファイルは、現在のページのパスを表示するパンくずリストコンポーネントを提供します。
+ * ページヘッダーの下に表示され、背景色はグレーに設定されています。
+ */
+
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 /**
- * Breadcrumbs component to display the current
- * page path. Designed to appear below the header
- * with a gray background.
+ * パンくずリストを表示するコンポーネント
+ * @description
+ * 現在のURLパスを分割してパンくずリストを生成します。
+ * 各パスセグメントをリンクとして表示し、最後のセグメントはアクティブなページとして表示します。
+ * @returns {JSX.Element} パンくずリストを表すJSX要素
  */
-const Breadcrumbs = () => {
+const Breadcrumbs = (): JSX.Element => {
   const router = useRouter();
 
-  // Split the current path into segments and create breadcrumbs.
+  // 現在のパスを分割し、パンくずリスト用のセグメントを生成する
   const pathSegments = router.asPath
     .split('/')
     .filter((segment) => segment);

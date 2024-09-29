@@ -1,3 +1,9 @@
+/**
+ * @file
+ * このファイルは、ブログカテゴリーのページを表示するためのコンポーネントを提供します。
+ * カテゴリーごとのブログ記事を取得し、ページネーション機能を実装しています。
+ */
+
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import {
@@ -13,11 +19,15 @@ import Footer from '@/components/Footer';
 import LoadingBar from '@/components/LoadingBar';
 import Meta from '@/components/Meta';
 
-const CategoryPage = () => {
+/**
+ * ブログのカテゴリーに基づいたページを表示するコンポーネント
+ * @returns {JSX.Element} カテゴリーページをレンダリングする要素
+ */
+const CategoryPage = (): JSX.Element => {
   const router = useRouter();
   const { categoryId } = router.query;
 
-  // State management for category, blogs, pagination, and loading
+  // State管理: カテゴリー、ブログ記事、ページ数、読み込み状態
   const [category, setCategory] =
     useState<Category | null>(null);
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -26,23 +36,33 @@ const CategoryPage = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  // Handle pagination page change
+  /**
+   * @description
+   * ページ変更時にページ番号を設定します。
+   *
+   * @param {number} page - 新しいページ番号
+   */
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
-  // Fetch category and blogs when categoryId or page changes
+  /**
+   * カテゴリーとブログ記事を取得するための非同期処理
+   * カテゴリーIDと現在のページ番号が変わったときに実行される
+   */
   useEffect(() => {
     if (!categoryId) return;
 
     const fetchCategoryAndBlogs = async () => {
       setLoading(true);
       try {
+        // カテゴリー情報を取得
         const categoryData = await getCategory(
           categoryId as string,
         );
         setCategory(categoryData);
 
+        // カテゴリーに基づくブログ記事を取得
         const { contents, totalCount } =
           await getBlogsByCategory(
             categoryId as string,
@@ -53,7 +73,7 @@ const CategoryPage = () => {
         setTotalPages(Math.ceil(totalCount / 10));
       } catch (error) {
         console.error(
-          'Error fetching category and blogs:',
+          'カテゴリーとブログの取得中にエラーが発生しました:',
           error,
         );
       } finally {
@@ -66,27 +86,27 @@ const CategoryPage = () => {
 
   return (
     <>
-      {/* Loading bar for visual feedback */}
+      {/* ローディングバーを表示 */}
       <LoadingBar loading={loading} />
 
-      {/* Meta section */}
+      {/* メタデータ設定 */}
       <Meta
         title="i-u.io | ブログカテゴリー"
         description="i-u.ioのブログカテゴリーページです。"
         url="https://i-u.io/blog/category"
       />
 
-      {/* Blog header component */}
+      {/* ブログヘッダーとパンくずリスト */}
       <BlogHeader />
       <Breadcrumbs />
 
       <div className="container mx-auto min-h-svh p-4 pb-12">
-        {/* Category title */}
+        {/* カテゴリータイトル */}
         <h1 className="text-brand mb-8 text-h1 font-bold sm:text-h1Sm">
           {category ? category.name : ''}
         </h1>
 
-        {/* Category description and image, if available */}
+        {/* カテゴリー説明と画像（存在する場合） */}
         {category &&
           (category.explanation ||
             category.image) && (
@@ -108,7 +128,7 @@ const CategoryPage = () => {
             </div>
           )}
 
-        {/* Blog posts list or no results message */}
+        {/* ブログリストまたは検索結果なしのメッセージ */}
         {blogs.length === 0 ?
           <NoResults
             query={
@@ -127,7 +147,7 @@ const CategoryPage = () => {
           </ul>
         }
 
-        {/* Pagination controls */}
+        {/* ページネーション */}
         {totalPages > 1 && (
           <div className="flex justify-center space-x-2">
             {Array.from(
@@ -154,7 +174,7 @@ const CategoryPage = () => {
         )}
       </div>
 
-      {/* Footer component */}
+      {/* フッター */}
       <Footer />
     </>
   );

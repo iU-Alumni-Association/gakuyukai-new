@@ -1,15 +1,20 @@
+/**
+ * @file
+ * このファイルは、ニュース記事の概要を表示するCardNewsコンポーネントを提供します。
+ * 各ニュースカードにはタイトル、説明、日付が表示され、詳細ページへのリンクが含まれます。
+ */
+
 import React from 'react';
 import Link from 'next/link';
 
 /**
- * Props for the CardNews component.
- *
+ * CardNewsコンポーネントに渡されるプロパティの型定義
  * @typedef {Object} CardNewsProps
- * @property {string} title - The title of the card.
- * @property {string} description - The description of the card.
- * @property {string} date - The date to be displayed on the card.
- * @property {string} id - The ID used for linking to the news detail page.
- * @property {string} category - The category of the card, used for sorting or filtering.
+ * @property {string} title - カードのタイトル
+ * @property {string} description - カードの説明文
+ * @property {string} date - カードに表示する日付
+ * @property {string} id - ニュース詳細ページへのリンクに使用されるID
+ * @property {string} category - カードのカテゴリ。フィルタリングやソートに使用されます。
  */
 interface CardNewsProps {
   title: string;
@@ -20,11 +25,22 @@ interface CardNewsProps {
 }
 
 /**
- * CardNews component that displays a bordered card with a title, description, and date.
- * The card is linked to a news detail page using the provided ID.
+ * ニュースを表示するためのCardNewsコンポーネント
+ * タイトル、説明、日付をボーダー付きのカードで表示し、詳細ページへのリンクを提供します。
  *
- * @param {CardNewsProps} props - The props for the CardNews component.
- * @returns {JSX.Element} The rendered card component.
+ * @param {CardNewsProps} props - CardNewsコンポーネントに渡されるプロパティ
+ * @returns {JSX.Element} 表示するカードのJSX要素
+ *
+ * @example
+ * ```jsx
+ * <CardNews
+ *   title="最新ニュース"
+ *   description="これは最新ニュースの概要です。"
+ *   date="2024-09-29"
+ *   id="news-001"
+ *   category="テクノロジー"
+ * />
+ * ```
  */
 const CardNews: React.FC<CardNewsProps> = ({
   title,

@@ -1,3 +1,9 @@
+/**
+ * @file
+ * このファイルはブログページの実装を提供します。
+ * ブログ記事の一覧表示、ページネーション、ローディング状態管理を行います。
+ */
+
 import { useState, useEffect } from 'react';
 import { getBlogs } from '@/lib/microcms';
 import type { Blog } from '@/lib/types';
@@ -9,7 +15,7 @@ import Footer from '@/components/Footer';
 import Meta from '@/components/Meta';
 
 const BlogPage = () => {
-  // State for storing blog posts, pagination, and loading status
+  // ブログ記事、ページネーション、ローディング状態を管理するためのステート
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [currentPage, setCurrentPage] =
     useState(1);
@@ -17,35 +23,35 @@ const BlogPage = () => {
   const [loading, setLoading] = useState(false);
 
   /**
-   * Handle page change event.
+   * @description
+   * ページ変更時にページ番号を設定します。
    *
-   * @param {number} page - The new page number to
-   *   navigate to.
+   * @param {number} page - 新しいページ番号
    */
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
   /**
-   * Fetch blogs from MicroCMS when the component
-   * mounts or currentPage changes. It also
-   * handles loading state and error handling.
+   * MicroCMSからブログ記事を取得する関数。
+   * コンポーネントのマウント時、もしくは `currentPage` が変わった時に実行されます。
+   * ローディング状態とエラーハンドリングも行います。
    */
   useEffect(() => {
     const fetchBlogs = async () => {
-      setLoading(true); // Show loading indicator
+      setLoading(true); // ローディングインジケーターを表示
       try {
         const { contents, totalCount } =
           await getBlogs(currentPage, 10);
         setBlogs(contents);
-        setTotalPages(Math.ceil(totalCount / 10)); // Calculate total pages based on totalCount
+        setTotalPages(Math.ceil(totalCount / 10)); // 合計ページ数を計算
       } catch (error) {
         console.error(
-          'Error fetching blogs:',
+          'ブログ記事の取得中にエラーが発生しました:',
           error,
         );
       } finally {
-        setLoading(false); // Hide loading indicator
+        setLoading(false); // ローディングインジケーターを非表示
       }
     };
 
@@ -54,16 +60,16 @@ const BlogPage = () => {
 
   return (
     <>
-      {/* Loading Bar Component */}
+      {/* ローディングバーコンポーネント */}
       <LoadingBar loading={loading} />
 
-      {/* Meta section */}
+      {/* Metaセクション */}
       <Meta
         title="iU 学友会 | ブログ"
         description="学友会のブログページです。最新の記事をご覧いただけます。"
         url="https://i-u.io/blog"
       />
-      {/* Blog Header */}
+      {/* ブログヘッダー */}
       <BlogHeader />
       <Breadcrumbs />
 
@@ -72,7 +78,7 @@ const BlogPage = () => {
           最近の記事
         </h1>
 
-        {/* Conditional rendering based on loading state */}
+        {/* ローディング状態に基づく条件付きレンダリング */}
         {loading ?
           <p className="text-hp sm:text-hpSm text-center text-gray-600">
             読み込み中...
@@ -87,13 +93,11 @@ const BlogPage = () => {
           </ul>
         }
 
-        {/* Pagination controls, only render if there are multiple pages */}
+        {/* ページネーションコントロール（複数ページがある場合のみ表示） */}
         {totalPages > 1 && (
           <div className="flex justify-center space-x-2">
             {Array.from(
-              {
-                length: totalPages,
-              },
+              { length: totalPages },
               (_, index) => (
                 <button
                   key={index + 1}
@@ -114,7 +118,7 @@ const BlogPage = () => {
         )}
       </div>
 
-      {/* Footer Component */}
+      {/* フッターコンポーネント */}
       <Footer />
     </>
   );
