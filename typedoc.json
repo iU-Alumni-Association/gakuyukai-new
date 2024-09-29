@@ -35,11 +35,7 @@
   "lightHighlightTheme": "light-plus",
   "sourceLinkTemplate": "https://github.com/username/repository/blob/{gitRevision}/{file}#L{line}",
   "plugin": [
-    "typedoc-plugin-mermaid",
-    "typedoc-plugin-mdn-links",
     "typedoc-plugin-inline-sources",
-    "typedoc-plugin-replace-text",
-    "typedoc-plugin-extras",
     "typedoc-plugin-merge-modules",
     "typedoc-theme-hierarchy"
   ]
