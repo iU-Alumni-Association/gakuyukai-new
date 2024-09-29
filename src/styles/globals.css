@@ -21,6 +21,7 @@
 body {
   color: rgb(var(--foreground-rgb));
   font-family: 'M PLUS 1p', sans-serif;
+  color: #2b2b2b;
   background: linear-gradient(
       to bottom,
       transparent,
