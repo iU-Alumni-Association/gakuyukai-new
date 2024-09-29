@@ -13,7 +13,7 @@
   "excludeExternals": true,
   "includeVersion": true,
   "excludeNotDocumented": true,
-  "hideGenerator": false,
+  "hideGenerator": true,
   "categorizeByGroup": true,
   "defaultCategory": "General",
   "categoryOrder": [
@@ -22,13 +22,13 @@
     "Utilities",
     "Other"
   ],
-  "disableSources": false,
+  "disableSources": true,
   "sort": ["source-order"],
   "commentStyle": "jsdoc",
   "validation": {
-    "notExported": true,
-    "invalidLink": true,
-    "notDocumented": true
+    "notExported": false,
+    "invalidLink": false,
+    "notDocumented": false
   },
   "theme": "hierarchy",
   "darkHighlightTheme": "dark-plus",

@@ -20,8 +20,6 @@ interface CategoryListProps {
  *
  * @param {CategoryListProps} props -
  *   コンポーネントのプロパティ.
- * @param {function} props.setIsLoading -
- *   ローディング状態を設定する関数.
  * @returns {JSX.Element}
  *   カテゴリに基づいたブログリストを表示するReactコンポーネント.
  * @source

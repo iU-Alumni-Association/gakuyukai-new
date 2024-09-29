@@ -19,9 +19,6 @@ interface CategoryListProps {
  * ページネーション対応で、ブログがない場合は適切なメッセージを表示します。
  *
  * @param {object} props - コンポーネントのプロパティ.
- * @param {(isLoading: boolean) => void} props.setIsLoading
- *   - 親コンポーネントで読み込み状態を制御するための関数.
- *
  * @returns {JSX.Element}
  *   カテゴリに基づいたブログリストを表示するReactコンポーネント.
  */
