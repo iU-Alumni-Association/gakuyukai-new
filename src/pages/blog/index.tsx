@@ -1,9 +1,3 @@
-/**
- * @file
- * このファイルはブログページの実装を提供します。
- * ブログ記事の一覧表示、ページネーション、ローディング状態管理を行います。
- */
-
 import { useState, useEffect } from 'react';
 import { getBlogs } from '@/lib/microcms';
 import type { Blog } from '@/lib/types';
@@ -22,19 +16,13 @@ const BlogPage = () => {
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
 
-  /**
-   * @description
-   * ページ変更時にページ番号を設定します。
-   *
-   * @param {number} page - 新しいページ番号
-   */
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
   /**
-   * MicroCMSからブログ記事を取得する関数。
-   * コンポーネントのマウント時、もしくは `currentPage` が変わった時に実行されます。
+   * MicroCMSからブログ記事を取得する関数。 コンポーネントのマウント時、もしくは
+   * `currentPage` が変わった時に実行されます。
    * ローディング状態とエラーハンドリングも行います。
    */
   useEffect(() => {

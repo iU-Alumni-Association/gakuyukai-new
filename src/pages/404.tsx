@@ -1,14 +1,10 @@
-/**
- * @file
- * このファイルは、404エラーページを表示するカスタム404コンポーネントを定義します。
- */
+
 
 import Link from 'next/link';
 import Head from 'next/head';
 
 /**
  * カスタム404エラーページ
- * @description
  * ページが見つからない場合に表示されるエラーページです。ホームへのリンクを含みます。
  * @returns {JSX.Element} 404エラーページをレンダリングします。
  */

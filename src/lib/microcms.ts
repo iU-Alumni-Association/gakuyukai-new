@@ -19,24 +19,23 @@ if (!API_KEY) {
 }
 
 /**
- * MicroCMSからブログ記事のリストを取得します。
+ * ブログ記事のリストを取得します。
  *
- * @param {number} page - ページネーション用の現在のページ番号
- * @param {number} limit - 1ページあたりのブログ記事数
+ * @example
+ *   const { contents, totalCount } =
+ *     await getBlogs(1, 10);
+ *   console.log('ブログの合計数:', totalCount);
+ *   contents.forEach((blog) => {
+ *     console.log(blog.title);
+ *   });
+ *
+ * @param {number} page - 現在のページ番号 (デフォルトは1).
+ * @param {number} limit - 1ページあたりの記事数 (デフォルトは10).
  * @returns {Promise<{
  *   contents: Blog[];
  *   totalCount: number;
  * }>}
- *   - ブログリストと合計記事数を含むオブジェクト
- *
- * @example
- * ```
- * const { contents, totalCount } = await getBlogs(1, 10);
- * console.log('ブログの合計数:', totalCount);
- * contents.forEach(blog => {
- *   console.log(blog.title);
- * });
- * ```
+ *   - ブログリストと合計記事数を含むオブジェクト.
  */
 export const getBlogs = async (
   page = 1,
@@ -44,7 +43,9 @@ export const getBlogs = async (
 ) => {
   try {
     const response = await axios.get<{
+      /** ブログ記事の配列. */
       contents: Blog[];
+      /** 記事の合計数. */
       totalCount: number;
     }>(`${ENDPOINT}/blog`, {
       headers: {
@@ -63,20 +64,26 @@ export const getBlogs = async (
 };
 
 /**
- * 指定されたブログ記事の詳細情報を取得します。
- *
- * @param {string} contentId - ブログ記事のユニークなID
- * @returns {Promise<Blog | null>} - ブログ記事の詳細情報、エラー時はnullを返します
+ * ブログ記事の詳細情報を取得します。
  *
  * @example
- * ```
- * const blogDetail = await getBlogDetail('blog-id-123');
- * if (blogDetail) {
- *   console.log('タイトル:', blogDetail.title);
- * } else {
- *   console.error('ブログ記事が見つかりません');
- * }
- * ```
+ *   const blogDetail = await getBlogDetail(
+ *     'blog-id-123',
+ *   );
+ *   if (blogDetail) {
+ *     console.log(
+ *       'タイトル:',
+ *       blogDetail.title,
+ *     );
+ *   } else {
+ *     console.error(
+ *       'ブログ記事が見つかりません',
+ *     );
+ *   }
+ *
+ * @param {string} contentId - ブログ記事のID.
+ * @returns {Promise<Blog | null>} -
+ *   ブログ記事の詳細、エラー時はnullを返します.
  */
 export const getBlogDetail = async (
   contentId: string,
@@ -101,22 +108,24 @@ export const getBlogDetail = async (
 };
 
 /**
- * MicroCMSからすべてのカテゴリのリストを取得します。
- *
- * @returns {Promise<Category[]>} - カテゴリリスト
+ * カテゴリのリストを取得します。
  *
  * @example
- * ```
- * const categories = await getCategories();
- * console.log('取得したカテゴリ数:', categories.length);
- * categories.forEach(category => {
- *   console.log(category.name);
- * });
- * ```
+ *   const categories = await getCategories();
+ *   console.log(
+ *     '取得したカテゴリ数:',
+ *     categories.length,
+ *   );
+ *   categories.forEach((category) => {
+ *     console.log(category.name);
+ *   });
+ *
+ * @returns {Promise<Category[]>} - カテゴリの配列.
  */
 export const getCategories = async () => {
   try {
     const response = await axios.get<{
+      /** カテゴリの配列. */
       contents: Category[];
     }>(`${ENDPOINT}/categories`, {
       headers: {
@@ -131,25 +140,31 @@ export const getCategories = async () => {
 };
 
 /**
- * 指定されたカテゴリでブログ記事を取得します。
+ * 指定されたカテゴリのブログ記事を取得します。
  *
- * @param {string} categoryId - カテゴリのユニークなID
- * @param {number} page - ページネーション用の現在のページ番号
- * @param {number} limit - 1ページあたりのブログ記事数
+ * @example
+ *   const { contents, totalCount } =
+ *     await getBlogsByCategory(
+ *       'category-id-123',
+ *       1,
+ *       10,
+ *     );
+ *   console.log(
+ *     'カテゴリ内ブログ数:',
+ *     totalCount,
+ *   );
+ *   contents.forEach((blog) => {
+ *     console.log(blog.title);
+ *   });
+ *
+ * @param {string} categoryId - カテゴリのID.
+ * @param {number} page - 現在のページ番号 (デフォルトは1).
+ * @param {number} limit - 1ページあたりの記事数 (デフォルトは10).
  * @returns {Promise<{
  *   contents: Blog[];
  *   totalCount: number;
  * }>}
- *   - 指定カテゴリのブログリストと合計記事数
- *
- * @example
- * ```
- * const { contents, totalCount } = await getBlogsByCategory('category-id-123', 1, 10);
- * console.log('カテゴリ内ブログ数:', totalCount);
- * contents.forEach(blog => {
- *   console.log(blog.title);
- * });
- * ```
+ *   - ブログリストと合計記事数を含むオブジェクト.
  */
 export const getBlogsByCategory = async (
   categoryId: string,
@@ -158,7 +173,9 @@ export const getBlogsByCategory = async (
 ) => {
   try {
     const response = await axios.get<{
+      /** カテゴリ内のブログ記事の配列. */
       contents: Blog[];
+      /** カテゴリ内の記事の合計数. */
       totalCount: number;
     }>(`${ENDPOINT}/blog`, {
       headers: {
@@ -181,20 +198,26 @@ export const getBlogsByCategory = async (
 };
 
 /**
- * 指定されたカテゴリの詳細情報を取得します。
- *
- * @param {string} categoryId - カテゴリのユニークなID
- * @returns {Promise<Category | null>} - カテゴリの詳細情報、エラー時はnullを返します
+ * 指定されたカテゴリの詳細を取得します。
  *
  * @example
- * ```
- * const categoryDetail = await getCategory('category-id-123');
- * if (categoryDetail) {
- *   console.log('カテゴリ名:', categoryDetail.name);
- * } else {
- *   console.error('カテゴリが見つかりません');
- * }
- * ```
+ *   const categoryDetail = await getCategory(
+ *     'category-id-123',
+ *   );
+ *   if (categoryDetail) {
+ *     console.log(
+ *       'カテゴリ名:',
+ *       categoryDetail.name,
+ *     );
+ *   } else {
+ *     console.error(
+ *       'カテゴリが見つかりません',
+ *     );
+ *   }
+ *
+ * @param {string} categoryId - カテゴリのID.
+ * @returns {Promise<Category | null>} -
+ *   カテゴリの詳細、エラー時はnullを返します.
  */
 export const getCategory = async (
   categoryId: string,
@@ -219,25 +242,28 @@ export const getCategory = async (
 };
 
 /**
- * クエリ文字列を使ってブログ記事を検索します。
+ * クエリでブログ記事を検索します。
  *
- * @param {string} query - フィルタリングするための検索文字列
- * @param {number} page - ページネーション用の現在のページ番号
- * @param {number} limit - 1ページあたりのブログ記事数
+ * @example
+ *   const { contents, totalCount } =
+ *     await getBlogsByQuery(
+ *       'JavaScript',
+ *       1,
+ *       10,
+ *     );
+ *   console.log('検索結果:', totalCount);
+ *   contents.forEach((blog) => {
+ *     console.log(blog.title);
+ *   });
+ *
+ * @param {string} query - 検索クエリ文字列.
+ * @param {number} page - 現在のページ番号 (デフォルトは1).
+ * @param {number} limit - 1ページあたりの記事数 (デフォルトは10).
  * @returns {Promise<{
  *   contents: Blog[];
  *   totalCount: number;
  * }>}
- *   - 検索クエリに一致するブログリストと合計記事数
- *
- * @example
- * ```
- * const { contents, totalCount } = await getBlogsByQuery('JavaScript', 1, 10);
- * console.log('検索結果:', totalCount);
- * contents.forEach(blog => {
- *   console.log(blog.title);
- * });
- * ```
+ *   - 検索結果のブログリストと合計記事数.
  */
 export const getBlogsByQuery = async (
   query: string,
@@ -246,7 +272,9 @@ export const getBlogsByQuery = async (
 ) => {
   try {
     const response = await axios.get<{
+      /** クエリに一致するブログ記事の配列. */
       contents: Blog[];
+      /** 記事の合計数. */
       totalCount: number;
     }>(`${ENDPOINT}/blog`, {
       headers: {
@@ -268,23 +296,22 @@ export const getBlogsByQuery = async (
 /**
  * ニュース記事のリストを取得します。
  *
- * @param {number} page - ページネーション用の現在のページ番号
- * @param {number} limit - 1ページあたりのニュース記事数
- * @param {string} [categoryId] - （オプション）カテゴリIDでフィルタリングする
+ * @example
+ *   const { contents, totalCount } =
+ *     await getNews(1, 10);
+ *   console.log('ニュース記事数:', totalCount);
+ *   contents.forEach((news) => {
+ *     console.log(news.title);
+ *   });
+ *
+ * @param {number} page - 現在のページ番号 (デフォルトは1).
+ * @param {number} limit - 1ページあたりの記事数 (デフォルトは10).
+ * @param {string} [categoryId] - カテゴリID (オプション).
  * @returns {Promise<{
  *   contents: Blog[];
  *   totalCount: number;
  * }>}
- *   - ニュース記事リストと合計記事数
- *
- * @example
- * ```
- * const { contents, totalCount } = await getNews(1, 10);
- * console.log('ニュース記事数:', totalCount);
- * contents.forEach(news => {
- *   console.log(news.title);
- * });
- * ```
+ *   - ニュース記事リストと合計記事数.
  */
 export const getNews = async (
   page = 1,
@@ -293,7 +320,9 @@ export const getNews = async (
 ) => {
   try {
     const response = await axios.get<{
+      /** ニュース記事の配列. */
       contents: Blog[];
+      /** 記事の合計数. */
       totalCount: number;
     }>(`${ENDPOINT}/news`, {
       headers: { 'X-API-KEY': API_KEY },
@@ -316,20 +345,26 @@ export const getNews = async (
 };
 
 /**
- * 指定されたニュース記事の詳細情報を取得します。
- *
- * @param {string} contentId - ニュース記事のユニークなID
- * @returns {Promise<Blog | null>} - ニュース記事の詳細情報、エラー時はnullを返します
+ * ニュース記事の詳細を取得します。
  *
  * @example
- * ```
- * const newsDetail = await getNewsDetail('news-id-123');
- * if (newsDetail) {
- *   console.log('ニュースタイトル:', newsDetail.title);
- * } else {
- *   console.error('ニュース記事が見つかりません');
- * }
- * ```
+ *   const newsDetail = await getNewsDetail(
+ *     'news-id-123',
+ *   );
+ *   if (newsDetail) {
+ *     console.log(
+ *       'ニュースタイトル:',
+ *       newsDetail.title,
+ *     );
+ *   } else {
+ *     console.error(
+ *       'ニュース記事が見つかりません',
+ *     );
+ *   }
+ *
+ * @param {string} contentId - ニュース記事のID.
+ * @returns {Promise<Blog | null>} -
+ *   ニュース記事の詳細、エラー時はnullを返します.
  */
 export const getNewsDetail = async (
   contentId: string,

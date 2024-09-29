@@ -1,9 +1,3 @@
-/**
- * @file
- * このファイルは、ブログの詳細ページのレンダリングを担当しています。
- * microCMSからブログデータを取得し、動的に表示する機能を提供します。
- */
-
 export const runtime = 'experimental-edge';
 
 import {
@@ -23,21 +17,15 @@ import Footer from '@/components/Footer';
 import LoadingBar from '@/components/LoadingBar';
 import Breadcrumbs from '@/components/Breadcrumbs';
 
-// Define the props for the BlogPage component
-/**
- * ブログページコンポーネントのプロパティ型
- * @property {Blog | null} blog - ブログのデータ、存在しない場合はnull
- */
 type BlogProps = {
   blog: Blog | null;
 };
 
 /**
- * BlogPage コンポーネント
- * ブログデータを動的にレンダリングします。
+ * BlogPage コンポーネント ブログデータを動的にレンダリングします。
  *
- * @param {BlogProps} props - ブログデータを含むプロパティ
- * @returns {JSX.Element} - レンダリングされたブログページ
+ * @param {BlogProps} props - ブログデータを含むプロパティ.
+ * @returns {JSX.Element} - レンダリングされたブログページ.
  */
 const BlogPage = ({ blog }: BlogProps) => {
   const router = useRouter();
@@ -126,7 +114,7 @@ const BlogPage = ({ blog }: BlogProps) => {
  *   paths: { params: { id: string } }[];
  *   fallback: boolean;
  * }>}
- *   - 動的パスとFallback設定を返す
+ *   - 動的パスとFallback設定を返す.
  */
 export const getStaticPaths: GetStaticPaths =
   async () => {
@@ -141,12 +129,13 @@ export const getStaticPaths: GetStaticPaths =
 /**
  * GetStaticProps - 指定されたIDに基づいてブログデータを取得します。
  *
- * @param {Object} context - Next.jsのコンテキストオブジェクト、ルートパラメータを含む
+ * @param {Object} context -
+ *   Next.jsのコンテキストオブジェクト、ルートパラメータを含む.
  * @returns {Promise<
  *   | { props: BlogProps; revalidate: number }
  *   | { notFound: true }
  * >}
- *   - ブログデータ、またはデータが見つからない場合は404を返す
+ *   - ブログデータ、またはデータが見つからない場合は404を返す.
  */
 export const getStaticProps: GetStaticProps =
   async (context) => {

@@ -5,21 +5,17 @@ interface NoResultsProps {
 }
 
 /**
- * @file
- * このファイルは、検索結果が見つからなかった場合に表示されるコンポーネントを提供します。
- * 検索クエリに基づいて、該当する結果がない旨を表示します。
- */
-
-/**
  * NoResults コンポーネント
  * 指定された検索クエリに対して結果が見つからなかったことを表示します。
  *
- * @param {string} query - 結果が見つからなかった検索クエリ
- * @returns {JSX.Element} 結果が見つからない旨を表示するJSX要素
  * @example
- * ```
- * <NoResults query="example query" />
- * ```
+ *   ```
+ *   <NoResults query="example query" />
+ *   ```;
+ *
+ * @param {NoResultsProps} props - コンポーネントのプロパティ.
+ * @returns {JSX.Element} 結果が見つからない旨を表示するJSX要素.
+ * @source
  */
 const NoResults: React.FC<NoResultsProps> = ({
   query,

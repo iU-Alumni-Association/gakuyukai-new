@@ -1,8 +1,4 @@
-/**
- * @file
- * このファイルはプライバシーポリシーページのコンポーネントを定義しています。
- * ヘッダー、フッター、およびプライバシーポリシーに関する情報が含まれています。
- */
+
 
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';

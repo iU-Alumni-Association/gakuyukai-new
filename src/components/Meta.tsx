@@ -1,18 +1,6 @@
-/**
- * @file
- * このファイルは、Metaコンポーネントを提供します。Metaコンポーネントは、ページごとのメタデータを管理し、SEOおよびSNSでのシェア時に使用される情報を設定します。
- */
 import Head from 'next/head';
 import React from 'react';
 
-/**
- * メタ情報を管理するためのプロパティ型
- * @property {string} title - ページのタイトル
- * @property {string} [description] - ページの説明（デフォルトは学生自治組織に関する説明）
- * @property {string} [keywords] - 検索エンジン最適化のためのキーワード（デフォルトで指定されたキーワードが使用される）
- * @property {string} [imageUrl] - SNSでのシェア用画像のURL（デフォルトはメインイメージ）
- * @property {string} [url] - ページのURL（デフォルトはメインサイトのURL）
- */
 interface MetaProps {
   title: string;
   description?: string;
@@ -22,11 +10,38 @@ interface MetaProps {
 }
 
 /**
- * Metaコンポーネントは、SEOおよびSNSシェア用のメタデータを生成します。
- * @param {MetaProps} props - メタ情報の設定に使用するプロパティ
- * @returns {JSX.Element} ページのヘッダーにメタタグを追加するための要素
+ * Metaコンポーネント.
+ *
+ * このコンポーネントは、SEOおよびSNSシェア用のメタデータを生成します。ページのタイトル、説明、キーワード、画像URL、ページURLなどを設定し、検索エンジン最適化
+ * (SEO) やSNSでのシェアに必要なメタタグを自動で生成・挿入します。
+ *
+ * @remarks
+ *   ### プロパティ:
+ *
+ *   - `title`: ページのタイトルを設定します。SEOやブラウザタブに表示されます。
+ *   - `description`:
+ *       ページの説明を設定します。SEOとSNSシェア時に使用されます。デフォルト値は「情報経営イノベーション学友会は学生が運営する自治組織です」。
+ *   - `keywords`:
+ *       SEOのためのキーワードをカンマ区切りで指定します。デフォルトでは「情報経営イノベーション学友会,
+ *       iU GAKUYUKAI, 学友会, 学生自治組織」が使用されます。
+ *   - `imageUrl`:
+ *       SNSでシェアされる際に表示される画像のURLを指定します。デフォルトは「/main-top.webp」です。
+ *   - `url`: ページのURLを指定します。デフォルトでは「https://i-u.io」が使用されます。
+ *
+ *   ### Google Analytics:
+ *
+ *   - `NEXT_PUBLIC_GA_TRACKING_ID`: Google
+ *       AnalyticsのトラッキングIDが環境変数で設定されている場合、Google
+ *       Analyticsのコードが埋め込まれます。
+ *
  * @example
- * <Meta title="ホームページ" />
+ *   ```typescript
+ *   <Meta title="ホームページ" />
+ *   ```;
+ *
+ * @returns {JSX.Element}
+ *   ページのヘッダーにメタタグを追加するための要素.
+ * @source
  */
 const Meta: React.FC<MetaProps> = ({
   title,

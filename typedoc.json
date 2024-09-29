@@ -1,14 +1,46 @@
 {
-  "entryPoints": ["src"],
-  "entryPointStrategy": "expand",
+  "entryPoints": [
+    "src/index.ts",
+    "src/**/*.ts",
+    "components/**/*.ts"
+  ],
   "out": "docs",
-  "name": "学友会ポータルサイト",
-  "includeVersion": true,
+  "exclude": [
+    "node_modules",
+    "**/*.test.ts",
+    "**/*.spec.ts"
+  ],
   "excludeExternals": true,
-  "excludePrivate": true,
-  "excludeProtected": true,
+  "includeVersion": true,
   "excludeNotDocumented": true,
-  "tsconfig": "tsconfig.json",
-  "theme": "default",
-  "readme": "README.md"
+  "hideGenerator": false,
+  "categorizeByGroup": true,
+  "defaultCategory": "General",
+  "categoryOrder": [
+    "Components",
+    "Hooks",
+    "Utilities",
+    "Other"
+  ],
+  "disableSources": false,
+  "sort": ["source-order"],
+  "commentStyle": "jsdoc",
+  "validation": {
+    "notExported": true,
+    "invalidLink": true,
+    "notDocumented": true
+  },
+  "theme": "hierarchy",
+  "darkHighlightTheme": "dark-plus",
+  "lightHighlightTheme": "light-plus",
+  "sourceLinkTemplate": "https://github.com/username/repository/blob/{gitRevision}/{file}#L{line}",
+  "plugin": [
+    "typedoc-plugin-mermaid",
+    "typedoc-plugin-mdn-links",
+    "typedoc-plugin-inline-sources",
+    "typedoc-plugin-replace-text",
+    "typedoc-plugin-extras",
+    "typedoc-plugin-merge-modules",
+    "typedoc-theme-hierarchy"
+  ]
 }

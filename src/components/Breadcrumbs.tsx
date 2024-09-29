@@ -1,18 +1,12 @@
-/**
- * @file
- * このファイルは、現在のページのパスを表示するパンくずリストコンポーネントを提供します。
- * ページヘッダーの下に表示され、背景色はグレーに設定されています。
- */
-
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 /**
- * パンくずリストを表示するコンポーネント
- * @description
- * 現在のURLパスを分割してパンくずリストを生成します。
+ * パンくずリストを表示するコンポーネント 現在のURLパスを分割してパンくずリストを生成します。
  * 各パスセグメントをリンクとして表示し、最後のセグメントはアクティブなページとして表示します。
- * @returns {JSX.Element} パンくずリストを表すJSX要素
+ *
+ * @returns {JSX.Element} パンくずリストを表すJSX要素.
+ * @source
  */
 const Breadcrumbs = (): JSX.Element => {
   const router = useRouter();

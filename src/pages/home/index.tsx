@@ -1,9 +1,3 @@
-/**
- * @file
- * このファイルは、iU 学友会のホームページコンポーネントを提供します。
- * 最新ニュースの表示、学籍番号の入力検証、倉庫貸出情報などを含むセクションをレンダリングします。
- */
-
 import { useState, useEffect } from 'react';
 import { getNews } from '@/lib/microcms';
 import Header from '@/components/Header';
@@ -15,14 +9,10 @@ import CardBorder from '@/components/CardBorder';
 import type { Blog } from '@/lib/types';
 import Link from 'next/link';
 
-/**
- * ホームページコンポーネント
- * 最新ニュースの取得、学籍番号の入力検証、倉庫貸出情報の表示を行う。
- * @returns {JSX.Element} ホームページのReactコンポーネント
- */
 const HomePage = (): JSX.Element => {
   /**
-   * 最新ニュースを保持する状態
+   * 最新ニュースを保持する状態.
+   *
    * @type {Blog[]}
    */
   const [latestNews, setLatestNews] = useState<
@@ -30,24 +20,27 @@ const HomePage = (): JSX.Element => {
   >([]);
 
   /**
-   * 読み込み状態を保持する状態
+   * 読み込み状態を保持する状態.
+   *
    * @type {boolean}
    */
   const [loading, setLoading] = useState(false);
 
   /**
-   * エラーメッセージを保持する状態
+   * エラーメッセージを保持する状態.
+   *
    * @type {string}
    */
   const [errorMessage, setErrorMessage] =
     useState('');
 
   /**
-   * 最新ニュースを取得するための非同期関数
-   * @async
-   * @returns {Promise<void>} ニュースを取得し、状態を更新
+   * 最新ニュースを取得するための非同期関数.
+   *
    * @remarks
-   * 初回レンダリング時に実行され、最大3件のニュースを取得します。
+   *   初回レンダリング時に実行され、最大3件のニュースを取得します。
+   * @async
+   * @returns {Promise<void>} ニュースを取得し、状態を更新.
    */
   useEffect(() => {
     const fetchLatestNews = async () => {

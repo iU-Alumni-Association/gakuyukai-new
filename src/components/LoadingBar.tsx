@@ -1,37 +1,27 @@
-/**
- * @file
- * このファイルは、`LoadingBar` コンポーネントの実装を提供します。
- * `loading` 状態に応じて画面上部にプログレスバーを表示し、ユーザーに処理中であることを視覚的に知らせます。
- */
-
 import React, {
   useState,
   useEffect,
 } from 'react';
 
-/**
- * `LoadingBarProps` インターフェース
- * @property {boolean} loading - ローディング中かどうかを示すフラグ
- */
 interface LoadingBarProps {
   loading: boolean;
 }
 
 /**
- * LoadingBar コンポーネント
+ * LoadingBar コンポーネント.
  *
- * @description
  * ローディング中の状態を視覚化するためのプログレスバーを表示します。ローディング中は進行状況が90%まで進み、完了後に非表示になります。
  *
- * @param {boolean} loading - ローディングバーを表示するかどうかを制御するフラグ
- *
- * @example
- * ```tsx
- * <LoadingBar loading={true} />
- * ```
- *
  * @remarks
- * `loading` が `true` の場合、バーが90%まで増加し、`loading` が `false` に変わったタイミングで100%まで進行してからフェードアウトします。
+ *   `loading` が `true` の場合、バーが90%まで増加し、`loading` が
+ *   `false` に変わったタイミングで100%まで進行してからフェードアウトします。
+ * @example
+ *   ```tsx
+ *   <LoadingBar loading={true} />
+ *   ```;
+ *
+ * @param {object} props - コンポーネントのプロパティ.
+ * @source
  */
 const LoadingBar: React.FC<LoadingBarProps> = ({
   loading,

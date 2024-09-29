@@ -1,18 +1,24 @@
-/**
- * @file
- * このファイルは、ウェブサイトのフッターコンポーネントを提供します。
- * 主に、ナビゲーションリンクとコンタクト情報を表示するための機能を実装しています。
- */
-
 import Link from 'next/link';
 import React from 'react';
 
 /**
- * フッターコンポーネント
- * @returns {JSX.Element} フッター部分のReactコンポーネント
- * @description
- * ナビゲーションリンクをリスト形式で表示し、フッターには連絡先情報が含まれています。
+ * フッターコンポーネント.
+ *
+ * このコンポーネントは、ナビゲーションリンクと連絡先情報を含むフッター部分を表示します。
  * Tailwind CSSを使用して、スタイルが適用されています。
+ *
+ * @remarks
+ *   - ナビゲーションリンクはリスト形式で表示され、ホバー時に拡大するアニメーション効果が追加されています。
+ *   - フッターの背景は、上から下にかけて`highlight`色から透明になるグラデーションです。
+ *   - フッター下部には、著作権情報と連絡先のメールアドレスが含まれています。
+ *
+ * @example
+ *   ```tsx
+ *   <Footer />
+ *   ```;
+ *
+ * @returns {JSX.Element} フッター部分のReactコンポーネント.
+ * @source
  */
 const Footer: React.FC = (): JSX.Element => {
   // ナビゲーションリンクの配列
@@ -26,11 +32,6 @@ const Footer: React.FC = (): JSX.Element => {
   ];
 
   return (
-    /**
-     * @description
-     * フッターの背景は、上から下にかけて`highlight`色から透明になるグラデーション。
-     * フッター全体にパディングとシャドウが適用され、テキストは`headline`色で表示されます。
-     */
     <footer className="bg-gradient-to-t from-highlight to-transparent py-10 text-headline shadow-lg">
       <div className="container mx-auto px-4">
         <div className="flex flex-col items-center">

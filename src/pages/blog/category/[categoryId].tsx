@@ -1,9 +1,3 @@
-/**
- * @file
- * このファイルは、ブログカテゴリーのページを表示するためのコンポーネントを提供します。
- * カテゴリーごとのブログ記事を取得し、ページネーション機能を実装しています。
- */
-
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import {
@@ -20,8 +14,9 @@ import LoadingBar from '@/components/LoadingBar';
 import Meta from '@/components/Meta';
 
 /**
- * ブログのカテゴリーに基づいたページを表示するコンポーネント
- * @returns {JSX.Element} カテゴリーページをレンダリングする要素
+ * ブログのカテゴリーに基づいたページを表示するコンポーネント.
+ *
+ * @returns {JSX.Element} カテゴリーページをレンダリングする要素.
  */
 const CategoryPage = (): JSX.Element => {
   const router = useRouter();
@@ -37,10 +32,9 @@ const CategoryPage = (): JSX.Element => {
   const [loading, setLoading] = useState(false);
 
   /**
-   * @description
    * ページ変更時にページ番号を設定します。
    *
-   * @param {number} page - 新しいページ番号
+   * @param {number} page - 新しいページ番号.
    */
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -48,7 +42,7 @@ const CategoryPage = (): JSX.Element => {
 
   /**
    * カテゴリーとブログ記事を取得するための非同期処理
-   * カテゴリーIDと現在のページ番号が変わったときに実行される
+   * カテゴリーIDと現在のページ番号が変わったときに実行される.
    */
   useEffect(() => {
     if (!categoryId) return;

@@ -8,33 +8,33 @@ type ListItemProps = {
 };
 
 /**
- * @file
- * ListItemコンポーネントを提供するファイルです。
- * このコンポーネントは、オプションの画像、タイトル、説明を持つモダンなカードレイアウトを実現しています。
- * レスポンシブデザインで、ホバー時にスムーズなアニメーションが表示されます。
- */
-
-/**
  * ListItemコンポーネント。
  *
  * このコンポーネントは、画像、タイトル、説明を表示するコンテンツブロックをレンダリングします。
  * モダンなカードレイアウトを特徴としており、ホバー時のアニメーションやレスポンシブデザインが組み込まれています。
  *
- * @param {string} title - リストアイテムのタイトル。
- * @param {string} description - リストアイテムの説明またはコンテンツ。
- * @param {string} [imageSrc] - （オプション）表示される画像のURL。
- * @param {string} [imageAlt] - （オプション）画像の代替テキスト。指定がない場合はタイトルが使用されます。
- * @returns {JSX.Element} 画像、タイトル、説明を持つスタイルされたコンテンツカード。
+ * @remarks
+ *   ### プロパティ:
+ *
+ *   - `title`: リストアイテムのタイトルを指定します。
+ *   - `description`: リストアイテムの説明またはコンテンツを指定します。
+ *   - `imageSrc`: 表示される画像のURLを指定します。省略可能です。
+ *   - `imageAlt`:
+ *       画像の代替テキストを指定します。省略された場合、`title`が代替テキストとして使用されます。
  *
  * @example
- * ```
- * <ListItem
- *   title="サンプルタイトル"
- *   description="これは説明文です。"
- *   imageSrc="https://example.com/image.jpg"
- *   imageAlt="サンプル画像"
- * />
- * ```
+ *   ```tsx
+ *   <ListItem
+ *     title="サンプルタイトル"
+ *     description="これは説明文です。"
+ *     imageSrc="https://example.com/image.jpg"
+ *     imageAlt="サンプル画像"
+ *   />
+ *   ```;
+ *
+ * @returns {JSX.Element}
+ *   画像、タイトル、説明を持つスタイルされたコンテンツカードを返します。
+ * @source
  */
 const ListItem = ({
   title,

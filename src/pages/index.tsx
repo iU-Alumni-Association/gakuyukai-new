@@ -1,7 +1,4 @@
-/**
- * @file
- * このファイルは、トップページを表示するためのIndexPageコンポーネントを定義します。
- */
+
 
 import HomePage from '@/pages/home';
 

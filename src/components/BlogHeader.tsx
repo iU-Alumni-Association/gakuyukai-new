@@ -1,9 +1,3 @@
-/**
- * @file
- * このファイルは、ブログヘッダーコンポーネントの実装を提供します。
- * 主に、ナビゲーションメニューや検索機能を含むユーザーインターフェースを構成します。
- */
-
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
@@ -11,14 +5,34 @@ import { getCategories } from '@/lib/microcms';
 import type { Category } from '@/lib/types';
 
 /**
- * ブログヘッダーコンポーネント
- * @description
- * カテゴリー表示、検索機能、モバイルメニューのトグルなどを提供するブログのヘッダー部分を担当します。
+ * ブログヘッダーコンポーネント.
+ *
+ * このコンポーネントは、カテゴリー表示、検索機能、モバイルメニューのトグルなどのUI機能を提供します。
+ *
+ * @remarks
+ *   以下の状態管理とメソッドが含まれています:
+ *
+ *   - `categories`: カテゴリーのデータを保持する状態。
+ *   - `menuOpen`: モバイルメニューの開閉状態を保持するフック。
+ *   - `searchQuery`: 検索クエリを保持するフック。
+ *   - `toggleMenu`: モバイルメニューの表示状態をトグルする関数。
+ *   - `handleSearch`: 検索フォームの送信処理を行う関数。
+ *
+ * @example
+ *   ```tsx
+ *   <BlogHeader />
+ *   ```;
+ *
+ * @returns {JSX.Element} ブログのヘッダー要素.
+ * @source
  */
-const BlogHeader = () => {
+
+const BlogHeader = (): JSX.Element => {
   /**
-   * @description
-   * ブログカテゴリーのデータを保持する状態管理フック
+   * ブログカテゴリーのデータを保持する状態管理フック.
+   *
+   * ブログ内で表示されるカテゴリーのデータを管理します。
+   *
    * @type {Category[]}
    */
   const [categories, setCategories] = useState<
@@ -26,15 +40,19 @@ const BlogHeader = () => {
   >([]);
 
   /**
-   * @description
-   * モバイルメニューの開閉状態を管理する状態フック
+   * @remarks
+   *   モバイルメニューの開閉状態を管理するフック.
+   *
+   *   モバイルメニューが開いているか閉じているかを制御します。
    * @type {boolean}
    */
   const [menuOpen, setMenuOpen] = useState(false);
 
   /**
-   * @description
-   * 検索クエリを保持する状態フック
+   * 検索クエリを保持するフック.
+   *
+   * 検索フォームで入力されたクエリを保持し、検索処理を行います。
+   *
    * @type {string}
    */
   const [searchQuery, setSearchQuery] =
@@ -43,9 +61,12 @@ const BlogHeader = () => {
   const router = useRouter();
 
   /**
-   * @description
-   * カテゴリー情報を取得して状態を更新する非同期関数
+   * カテゴリー情報を取得して状態を更新する非同期関数.
+   *
+   * MicroCMSからブログのカテゴリー情報を取得し、それをstateにセットします。
+   *
    * @returns {Promise<void>}
+   *   カテゴリー情報を取得して状態を更新します。
    */
   useEffect(() => {
     const fetchCategories = async () => {
@@ -57,20 +78,27 @@ const BlogHeader = () => {
   }, []);
 
   /**
-   * @description
-   * モバイルメニューの表示状態をトグルする関数
+   * モバイルメニューの表示状態をトグルする関数.
+   *
+   * モバイルメニューの表示状態をトグルし、開閉を制御します。
+   *
+   * @returns {void}
    */
-  const toggleMenu = () => {
+  const toggleMenu = (): void => {
     setMenuOpen((prevState) => !prevState);
   };
 
   /**
-   * @description
-   * 検索フォームの送信処理を行う関数
-   * @param {React.FormEvent} e - フォーム送信イベント
+   * 検索フォームの送信処理を行う関数.
+   *
+   * 検索フォームが送信されたときに、入力された検索クエリをもとに検索結果ページへリダイレクトします。
+   *
+   * @param {React.FormEvent} e - フォーム送信イベント.
    * @returns {void}
    */
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = (
+    e: React.FormEvent,
+  ): void => {
     e.preventDefault();
     if (searchQuery.trim()) {
       router.push(
@@ -132,7 +160,6 @@ const BlogHeader = () => {
             className="relative flex h-auto w-full flex-col items-start bg-transparent p-5 pt-16"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* モバイルメニューの閉じるボタン */}
             <button
               className="absolute right-5 top-5 text-3xl text-black"
               onClick={toggleMenu}
@@ -140,7 +167,6 @@ const BlogHeader = () => {
               &times;
             </button>
 
-            {/* モバイルメニュー内検索フォーム */}
             <form
               onSubmit={handleSearch}
               className="mt-5 flex w-full items-center space-x-2"
@@ -162,14 +188,12 @@ const BlogHeader = () => {
               </button>
             </form>
 
-            {/* モバイルメニュー内のカテゴリーリンク */}
             <ul className="mt-8 flex flex-col items-start space-y-4">
               {categories.map((category) => (
                 <li key={category.id}>
                   <Link
                     href={`/blog/category/${category.id}`}
                     legacyBehavior
-                    onClick={toggleMenu}
                   >
                     <a
                       className="cursor-pointer text-xl text-black"

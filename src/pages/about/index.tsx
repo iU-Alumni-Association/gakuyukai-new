@@ -1,9 +1,3 @@
-/**
- * @file
- * このファイルは、「学友会について」ページの実装を提供します。
- * このページでは、学友会の委員会とサークルの情報を表示し、ブログ記事としてデータを取得しています。
- */
-
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
 import Breadcrumbs from '@/components/Breadcrumbs';
@@ -14,11 +8,6 @@ import BlogItem from '@/components/BlogItem';
 import LoadingBar from '@/components/LoadingBar';
 import { Blog } from '@/lib/types';
 
-/**
- * 「学友会について」のページコンポーネント
- * 委員会とサークルの情報をブログ形式で表示します。
- * @returns {JSX.Element} ページのJSX要素
- */
 const AboutPage = (): JSX.Element => {
   const [committees, setCommittees] = useState<
     Blog[]
@@ -30,10 +19,12 @@ const AboutPage = (): JSX.Element => {
 
   useEffect(() => {
     /**
-     * 委員会の情報を取得する非同期関数
+     * 委員会の情報を取得する非同期関数.
+     *
      * @async
-     * @returns {Promise<void>} データ取得後、委員会のデータをステートにセット
-     * @throws {Error} APIリクエスト中にエラーが発生した場合
+     * @returns {Promise<void>}
+     *   データ取得後、委員会のデータをステートにセット.
+     * @throws {Error} APIリクエスト中にエラーが発生した場合.
      */
     const fetchCommittees =
       async (): Promise<void> => {
@@ -57,10 +48,12 @@ const AboutPage = (): JSX.Element => {
       };
 
     /**
-     * サークルの情報を取得する非同期関数
+     * サークルの情報を取得する非同期関数.
+     *
      * @async
-     * @returns {Promise<void>} データ取得後、サークルのデータをステートにセット
-     * @throws {Error} APIリクエスト中にエラーが発生した場合
+     * @returns {Promise<void>}
+     *   データ取得後、サークルのデータをステートにセット.
+     * @throws {Error} APIリクエスト中にエラーが発生した場合.
      */
     const fetchCircles =
       async (): Promise<void> => {

@@ -1,9 +1,3 @@
-/**
- * @file
- * このファイルは、MicroCMSから取得したカテゴリに基づいてブログリストを表示するコンポーネントを提供します。
- * カテゴリごとのブログ記事をページネーション付きで表示し、結果がない場合は適切なUIを表示します。
- */
-
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import {
@@ -16,10 +10,6 @@ import Head from 'next/head';
 import { Blog, Category } from '@/lib/types';
 
 interface CategoryListProps {
-  /**
-   * 親コンポーネントで読み込み状態を制御する関数
-   * @param {boolean} isLoading - 現在の読み込み状態
-   */
   setIsLoading: (isLoading: boolean) => void;
 }
 
@@ -28,11 +18,12 @@ interface CategoryListProps {
  * URLのカテゴリIDに基づいてMicroCMSからブログ情報とカテゴリ情報を取得します。
  * ページネーション対応で、ブログがない場合は適切なメッセージを表示します。
  *
- * @param {object} props - コンポーネントのプロパティ
+ * @param {object} props - コンポーネントのプロパティ.
  * @param {(isLoading: boolean) => void} props.setIsLoading
- *   - 親コンポーネントで読み込み状態を制御するための関数
+ *   - 親コンポーネントで読み込み状態を制御するための関数.
  *
- * @returns {JSX.Element} カテゴリに基づいたブログリストを表示するReactコンポーネント
+ * @returns {JSX.Element}
+ *   カテゴリに基づいたブログリストを表示するReactコンポーネント.
  */
 const CategoryList: React.FC<
   CategoryListProps
@@ -53,9 +44,9 @@ const CategoryList: React.FC<
 
   /**
    * カテゴリに基づいたブログを取得し、現在のページに対応するブログを表示
-   * ページネーションのために総ページ数を計算
+   * ページネーションのために総ページ数を計算.
    *
-   * @param {number} page - 現在のページ番号
+   * @param {number} page - 現在のページ番号.
    */
   useEffect(() => {
     const fetchBlogs = async (page: number) => {
@@ -74,9 +65,7 @@ const CategoryList: React.FC<
       setIsLoading(false); // ローディング状態を解除
     };
 
-    /**
-     * カテゴリIDに基づいてカテゴリ詳細を取得
-     */
+    /** カテゴリIDに基づいてカテゴリ詳細を取得. */
     const fetchCategory = async () => {
       if (!categoryId) return;
 
@@ -91,10 +80,9 @@ const CategoryList: React.FC<
   }, [categoryId, setIsLoading, currentPage]);
 
   /**
-   * @description
    * ページ変更時にページ番号を設定します。
    *
-   * @param {number} page - 新しいページ番号
+   * @param {number} page - 新しいページ番号.
    */
   const handlePageChange = (page: number) => {
     setCurrentPage(page);

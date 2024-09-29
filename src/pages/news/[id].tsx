@@ -1,11 +1,3 @@
-/**
- * @file
- * このファイルは、ニュース記事の詳細ページを表示するための
- * コンポーネントと、静的生成のための関数を提供します。
- * 記事が存在しない場合にはフォールバックとして
- * "ニュースが見つかりません" を表示します。
- */
-
 export const config = {
   runtime: 'experimental-edge',
 };
@@ -27,14 +19,6 @@ type NewsDetailProps = {
   news: Blog | null;
 };
 
-/**
- * ニュース詳細ページコンポーネント
- *
- * @param {NewsDetailProps} props - ニュース詳細データを含むプロパティ
- * @returns {JSX.Element} - レンダリングされたニュース詳細ページの JSX 要素
- * @remarks
- * ニュースが存在しない場合、"ニュースが見つかりません" というメッセージを表示します。
- */
 const NewsDetailPage = ({
   news,
 }: NewsDetailProps): JSX.Element => {
@@ -82,13 +66,14 @@ const NewsDetailPage = ({
 /**
  * 静的生成用のパスを生成します。
  *
+ * @remarks
+ *   まだ事前生成されていないパスも動的に生成できるよう、`fallback: true`
+ *   に設定しています。
  * @returns {Promise<{
  *   paths: { params: { id: string } }[];
  *   fallback: boolean;
  * }>}
- *   - 記事のパスリストおよびフォールバックの有効化設定
- * @remarks
- * まだ事前生成されていないパスも動的に生成できるよう、`fallback: true` に設定しています。
+ *   - 記事のパスリストおよびフォールバックの有効化設定.
  */
 export const getStaticPaths: GetStaticPaths =
   async () => {
@@ -106,15 +91,16 @@ export const getStaticPaths: GetStaticPaths =
 /**
  * ニュース詳細ページのデータをビルド時に取得します。
  *
- * @param {any} context - 静的プロップスのコンテキスト
+ * @remarks
+ *   Incremental Static Regeneration (ISR)
+ *   を利用して、ニュースが定期的に最新のものに更新されます。
+ * @param {any} context - 静的プロップスのコンテキスト.
  * @returns {Promise<{
  *   props: { news: Blog };
  *   notFound?: boolean;
  *   revalidate: number;
  * }>}
- *   - ページのプロパティ、またはニュースが見つからない場合は `notFound` フラグ
- * @remarks
- * Incremental Static Regeneration (ISR) を利用して、ニュースが定期的に最新のものに更新されます。
+ *   - ページのプロパティ、またはニュースが見つからない場合は `notFound` フラグ.
  */
 export const getStaticProps: GetStaticProps =
   async (context) => {

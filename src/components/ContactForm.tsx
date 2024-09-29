@@ -1,8 +1,3 @@
-/**
- * @file
- * このファイルは、問い合わせフォームを提供します。フォームはユーザーからの入力を検証し、APIにデータを送信します。
- */
-
 import {
   useState,
   useEffect,
@@ -13,8 +8,9 @@ import Link from 'next/link';
 import Head from 'next/head';
 
 /**
- * 問い合わせフォームを提供するコンポーネント
- * @returns {JSX.Element} フォームUI
+ * 問い合わせフォームを提供するコンポーネント.
+ *
+ * @returns {JSX.Element} フォームUI.
  */
 const ContactForm = (): JSX.Element => {
   // ローディング状態、APIエラー、およびフォームエラーメッセージを管理
@@ -26,9 +22,26 @@ const ContactForm = (): JSX.Element => {
   const router = useRouter();
 
   /**
-   * APIエンドポイントのログを表示するための副作用
+   * 問い合わせフォームを提供するコンポーネント.
+   *
+   * このコンポーネントは、問い合わせフォームのUIを提供し、入力されたデータを検証してAPIに送信します。
+   * フォームには名前、学籍番号、メールアドレス、電話番号、件名、メッセージフィールドが含まれます。
+   *
    * @remarks
-   * このエフェクトはコンポーネントがマウントされた際に一度だけ実行されます。
+   *   - `loading`: APIリクエスト中に表示されるローディング状態.
+   *   - `apiError`: APIからのエラー応答を保持するフック.
+   *   - `errors`: フォームフィールドのバリデーションエラーを保持するオブジェクト.
+   *   - `validate`: フォームデータを検証し、エラーメッセージを返す関数.
+   *   - `handleSubmit`:
+   *       フォームが送信された際に呼び出され、APIへのリクエストを処理する非同期関数.
+   *
+   * @example
+   *   ```tsx
+   *   <ContactForm />
+   *   ```;
+   *
+   * @returns {JSX.Element} フォームUI.
+   * @source
    */
   useEffect(() => {
     console.log(
@@ -38,9 +51,12 @@ const ContactForm = (): JSX.Element => {
   }, []);
 
   /**
-   * フォームの入力データを検証する関数
-   * @param {Record<string, string>} data - ユーザーが入力したフォームデータ
-   * @returns {Record<string, string>} エラーメッセージを持つオブジェクト
+   * フォームの入力データを検証する関数.
+   *
+   * @param {Record<string, string>} data -
+   *   ユーザーが入力したフォームデータ.
+   * @returns {Record<string, string>}
+   *   エラーメッセージを持つオブジェクト.
    */
   const validate = (
     data: Record<string, string>,
@@ -80,9 +96,11 @@ const ContactForm = (): JSX.Element => {
   };
 
   /**
-   * フォームが送信された際に呼び出される関数
-   * @param {FormEvent<HTMLFormElement>} event - フォーム送信イベント
-   * @returns {Promise<void>} 非同期処理の完了
+   * フォームが送信された際に呼び出される関数.
+   *
+   * @param {FormEvent<HTMLFormElement>} event -
+   *   フォーム送信イベント.
+   * @returns {Promise<void>} 非同期処理の完了.
    */
   const handleSubmit = async (
     event: FormEvent<HTMLFormElement>,

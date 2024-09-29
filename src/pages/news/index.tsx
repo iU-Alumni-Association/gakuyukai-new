@@ -1,9 +1,3 @@
-/**
- * @file
- * このファイルは、ニュースページの実装を提供します。
- * ニュース記事の一覧表示やカテゴリによるフィルタリング、ページネーション機能を実装しています。
- */
-
 import { useState, useEffect } from 'react';
 import {
   getNews,
@@ -17,16 +11,6 @@ import LoadingBar from '@/components/LoadingBar';
 import Meta from '@/components/Meta';
 import type { Blog, Category } from '@/lib/types';
 
-/**
- * ニュースページコンポーネント
- * @description
- * カテゴリによる絞り込み機能とページネーションを備えたニュース記事一覧を表示するコンポーネントです。
- * @returns {JSX.Element} ニュースページのコンテンツを表示するReactコンポーネント
- * @example
- * ```
- * <NewsPage />
- * ```
- */
 const NewsPage = () => {
   const [news, setNews] = useState<Blog[]>([]);
   const [categories, setCategories] = useState<
@@ -39,12 +23,6 @@ const NewsPage = () => {
   const [totalPages, setTotalPages] = useState(0); // 合計ページ数
   const [loading, setLoading] = useState(false); // ローディング状態
 
-  /**
-   * ニュース記事をフェッチする関数
-   * @remarks
-   * ページ番号と選択されたカテゴリに基づいてニュース記事を取得します。
-   * データフェッチ中はローディングバーが表示されます。
-   */
   useEffect(() => {
     const fetchNews = async () => {
       setLoading(true);
@@ -70,9 +48,10 @@ const NewsPage = () => {
   }, [currentPage, selectedCategory]);
 
   /**
-   * カテゴリをフェッチする関数
+   * カテゴリをフェッチする関数.
+   *
    * @remarks
-   * 初回ロード時に、利用可能なニュースカテゴリを取得します。
+   *   初回ロード時に、利用可能なニュースカテゴリを取得します。
    */
   useEffect(() => {
     const fetchCategories = async () => {
@@ -90,20 +69,22 @@ const NewsPage = () => {
   }, []);
 
   /**
-   * ページ番号変更時の処理
-   * @param {number} page - 新しいページ番号
-   * @description
+   * ページ番号変更時の処理.
+   *
    * ページ番号を変更して、そのページのニュースをフェッチします。
+   *
+   * @param {number} page - 新しいページ番号.
    */
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
   /**
-   * カテゴリ変更時の処理
-   * @param {string} category - 選択されたカテゴリのID
-   * @description
+   * カテゴリ変更時の処理.
+   *
    * カテゴリが変更された際に、ニュースをそのカテゴリに基づいてフィルタリングし、ページ番号をリセットします。
+   *
+   * @param {string} category - 選択されたカテゴリのID.
    */
   const handleCategoryChange = (
     category: string,

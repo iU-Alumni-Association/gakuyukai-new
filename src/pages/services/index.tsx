@@ -1,19 +1,9 @@
-/**
- * @file
- * このファイルは、iU 学友会のサービスページの実装を提供します。
- * ページには、倉庫貸出サービス、その他の申請サービス、よくある質問（FAQ）セクションが含まれています。
- */
-
 import Header from '@/components/Header';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Footer from '@/components/Footer';
 import Meta from '@/components/Meta';
 import Link from 'next/link';
 
-/**
- * サービスページのコンポーネント
- * @returns {JSX.Element} サービスページのJSX要素を返します
- */
 const ServicePage = (): JSX.Element => {
   return (
     <>

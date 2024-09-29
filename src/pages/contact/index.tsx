@@ -1,21 +1,9 @@
-/**
- * @file
- * このファイルは、問い合わせページのコンポーネントを提供します。
- * メタ情報、ヘッダー、パンくずリスト、問い合わせフォーム、フッターを表示します。
- */
-
 import Header from '@/components/Header';
 import Breadcrumbs from '@/components/Breadcrumbs';
 import Footer from '@/components/Footer';
 import Meta from '@/components/Meta';
 import ContactForm from '@/components/ContactForm';
 
-/**
- * 問い合わせページのコンポーネント
- * @returns {JSX.Element} 問い合わせページを表示するReactコンポーネント
- * @example
- * <Contact />
- */
 const Contact = (): JSX.Element => {
   return (
     <>

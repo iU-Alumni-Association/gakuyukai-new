@@ -2,32 +2,38 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
 /**
- * @file
- * このファイルは、レスポンシブなヘッダーコンポーネントを実装し、ナビゲーション機能や
- * メニューのトグル機能を提供します。
- */
-
-/**
- * ヘッダーコンポーネント
- * @description
- * レスポンシブナビゲーションと、メニューのトグル機能を持ったヘッダーコンポーネント。
- * ビューポートのサイズ変更に応じて、モバイルメニューが自動的に閉じます。
- * @returns {JSX.Element} ヘッダーコンポーネントのJSX要素
+ * レスポンシブなヘッダーコンポーネント.
+ *
+ * このコンポーネントは、ナビゲーション機能やメニューのトグル機能を提供します。ビューポートのサイズ変更に応じて、モバイルメニューが自動的に閉じられます。
+ *
+ * @remarks
+ *   このコンポーネントでは、以下の状態と関数が含まれています:
+ *
+ *   - `menuOpen`: モバイルメニューの開閉状態を保持する状態。
+ *   - `toggleMenu`: メニューの開閉を切り替える関数。
+ *   - `handleResize`: ウィンドウサイズ変更時にメニューを自動的に閉じる関数。
+ *   - `handleNavigation`: ページ遷移とメニューの自動閉鎖を行う関数。
+ *
+ * @example
+ *   ```tsx
+ *   <Header />
+ *   ```;
+ *
+ * @returns {JSX.Element} ヘッダーコンポーネントのJSX要素.
+ * @source
  */
 const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
 
-  /**
-   * モバイルメニューの表示/非表示を切り替える関数
-   */
+  /** モバイルメニューの表示/非表示を切り替える関数. */
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
   /**
    * ウィンドウサイズ変更時に、ビューポート幅が768pxを超えたら
-   * メニューを自動的に閉じるハンドラ関数
+   * メニューを自動的に閉じるハンドラ関数.
    */
   const handleResize = () => {
     if (window.innerWidth >= 768) {
@@ -35,9 +41,7 @@ const Header = () => {
     }
   };
 
-  /**
-   * ウィンドウリサイズイベントにリスナーを設定し、クリーンアップ時にリスナーを解除します。
-   */
+  /** ウィンドウリサイズイベントにリスナーを設定し、クリーンアップ時にリスナーを解除します。 */
   useEffect(() => {
     window.addEventListener(
       'resize',
@@ -52,11 +56,14 @@ const Header = () => {
   }, []);
 
   /**
-   * ナビゲーション処理
-   * @description
+   * ナビゲーション処理.
+   *
    * 指定されたURLに遷移し、現在のページと異なる場合はルートを変更し、メニューを閉じます。
-   * @param {React.MouseEvent<HTMLAnchorElement>} e - クリックイベント
-   * @param {string} href - ナビゲーション先のURL
+   *
+   * @param {React.MouseEvent<HTMLAnchorElement>} e
+   *   - クリックイベント.
+   *
+   * @param {string} href - ナビゲーション先のURL.
    */
   const handleNavigation = (
     e: React.MouseEvent<HTMLAnchorElement>,
