@@ -135,7 +135,7 @@ const HomePage = (): JSX.Element => {
               倉庫の貸し出しをご希望の方は、下記のリンクから詳細をご確認いただけます。
             </p>
             <div className="text-left">
-              <Link href="/service">
+              <Link href="/services">
                 <Button
                   label="倉庫貸出詳細"
                   size="large"
