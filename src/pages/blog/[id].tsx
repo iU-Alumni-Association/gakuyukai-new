@@ -99,7 +99,7 @@ const BlogPage = ({ blog }: BlogProps) => {
 
         {/* Blog Content */}
         <div
-          className="prose prose-lg max-w-none"
+          className="prose prose-lg break-all"
           dangerouslySetInnerHTML={{
             __html: blog.content,
           }}

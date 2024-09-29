@@ -110,7 +110,7 @@ const HomePage = () => {
             <h2 className="mb-8 text-left text-h2 font-semibold sm:text-h2Sm">
               倉庫貸出について
             </h2>
-            <p className="mx-auto mb-6 max-w-2xl text-left leading-relaxed text-paragraph sm:text-pSm">
+            <p className="mx-auto mb-6 text-left leading-relaxed text-paragraph sm:text-pSm">
               倉庫の貸し出しをご希望の方は、下記のリンクから詳細をご確認いただけます。
             </p>
             <div className="text-left">
