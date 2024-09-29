@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --write .",
-    "docs": "typedoc --entryPointStrategy expand ./src"
+    "docs": "typedoc --options typedoc.json"
   },
   "dependencies": {
     "@tailwindcss/line-clamp": "^0.4.4",
