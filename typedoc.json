@@ -10,6 +10,5 @@
   "excludeNotDocumented": true,
   "tsconfig": "tsconfig.json",
   "theme": "default",
-  "readme": "README.md",
-  "plugin": ["typedoc-plugin-markdown"]
+  "readme": "README.md"
 }
