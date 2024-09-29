@@ -41,7 +41,7 @@ const ServicePage = (): JSX.Element => {
           {/* その他の申請サービスセクション */}
           <section className="mb-12">
             <h2 className="mb-6 text-h2 font-semibold sm:text-h2Sm">
-              その他の申請・サービス
+              その他の申請・サービス 準備中
             </h2>
             <ul className="list-disc pl-5 text-lg text-gray-700">
               <li className="mb-2">
