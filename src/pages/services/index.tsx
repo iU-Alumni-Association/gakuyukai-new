@@ -37,6 +37,40 @@ const ServicePage = (): JSX.Element => {
               </span>
             </Link>
           </section>
+          {/* 稟議書提出セクション */}
+          <section className="mb-12">
+            <h2 className="mb-6 text-h2 font-semibold sm:text-h2Sm">
+              稟議書の提出
+            </h2>
+            {/* 稟議書の提出についての説明 */}
+            <p className="mb-4 text-p leading-relaxed text-gray-700 sm:text-pSm">
+              学友会の活動に関する経費を支出する際には、企画書を提出する必要があります。
+              <br />
+              もし企画書を作る必要がないような場合や企画書が難しい場合は、稟議書を提出することで経費を支出することができます。
+              <br />
+              また企画については会計報告を行っていください。下記のテンプレートを参考にしても可能です。
+            </p>
+            <ul className="list-disc pl-5 text-lg text-gray-700">
+              <li className="mb-2">
+                {/* リンク：会計報告 */}
+                <Link
+                  href="https://docs.google.com/spreadsheets/d/1x4Fn1Df85Lc7d06ajZAT8pFH75185if5o8tOnn8L8d8/edit?usp=sharing"
+                  className="text-blue-500 hover:underline"
+                >
+                  会計報告のテンプレート
+                </Link>
+              </li>
+              <li className="mb-2">
+                {/* リンク：稟議書 */}
+                <Link
+                  href="https://docs.google.com/document/d/10ySEfpbsVUqxzvTOzvlUcFHDR-HfC95VK7NmNeSDFcE/edit?usp=sharing"
+                  className="text-blue-500 hover:underline"
+                >
+                  稟議書の書き方
+                </Link>
+              </li>
+            </ul>
+          </section>
 
           {/* その他の申請サービスセクション */}
           <section className="mb-12">
