@@ -72,6 +72,24 @@ const ServicePage = (): JSX.Element => {
             </ul>
           </section>
 
+          {/* サークル申請セクション */}
+          <section className="mb-12">
+            <h2 className="mb-6 text-h2 font-semibold sm:text-h2Sm">
+              任意サークルの新規設立申請
+            </h2>
+            <p className="mb-4 text-p leading-relaxed text-gray-700 sm:text-pSm">
+              任意サークルを新たに設立したい方は、以下のリンクから申請フォームにアクセスできます。
+              <br />
+              公認化手続きなどの申請は、別の窓口で行っております。ご希望の方は、自治委員会メンバーに直接ご連絡ください。
+            </p>
+            {/* 外部リンク：サークル申請フォーム */}
+            <Link href="https://docs.google.com/forms/d/e/1FAIpQLSeH4nI9CdjdpADy8KLjiugBdH0kcb8GlYn4S34AcCeUEfZgRQ/viewform">
+              <span className="text-blue-500 hover:underline">
+                サークル申請フォームへ
+              </span>
+            </Link>
+          </section>
+
           {/* その他の申請サービスセクション */}
           <section className="mb-12">
             <h2 className="mb-6 text-h2 font-semibold sm:text-h2Sm">
